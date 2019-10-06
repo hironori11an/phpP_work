@@ -23,8 +23,10 @@ Route::get('/hello', function () {
     return view('hello');
 });
 
-Route::get('/hello', function () {
-    return view('hello');
+
+
+Route::get('/loginKanri', function () {
+    return view('/kanri/loginKanri');
 });
 
 
