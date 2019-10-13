@@ -6,10 +6,13 @@
 </head>
 
 <body>
+    <h1>@yield('titleHeader')</h1>
+    <p class="title">@yield('title')</p>
     <div>
-        <h1>@yield('titleHeader')</h1>
-        <p class="title">@yield('title')</p>
+        @section('loginForm')
+        @show
     </div>
+
 
 </body>
 
