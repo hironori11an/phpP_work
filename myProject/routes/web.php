@@ -28,8 +28,10 @@ Route::get('/hello', function () {
 Route::get('/loginKanri', function () {
     return view('/kanri/loginKanri');
 });
-
-
+Route::post('/homeKanri', [
+    'uses' => 'homeKanriController@postSignin',
+    'as' => 'homeKanri.signin'
+    ]);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
