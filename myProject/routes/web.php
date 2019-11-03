@@ -20,8 +20,9 @@ Route::get('/home', function () {
 });
 
 Route::get('/hello', function () {
+    // xdebug_break();
     return view('hello');
-});
+})->name('hello');
 
 
 

@@ -1,7 +1,3 @@
-<html>
-<body>
 <?php
- echo "Hello World!!!\n";
+phpinfo();
 ?>
-</body>
-</html>
