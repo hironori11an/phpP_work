@@ -14,3 +14,19 @@ div {
   line-height: 1.0;
   text-align: center;
 }
+p.error {
+  color: #FF0000;
+}
+.input_item {
+  background-color:#AAFFFF;
+  width: 100px;
+}
+.input_item_value{
+  background-color:#BBBBBB;
+}
+/* input[type='text'] {
+  color: #aaaaaa;
+  border: 1px solid #1b2538;
+  border-radius: 4px;
+
+} */

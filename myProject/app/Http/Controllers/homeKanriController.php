@@ -17,12 +17,13 @@ class homeKanriController extends Controller
         //     ]);
         /* バリデーション */
         $rules = [
-            'name' => 'required',
+            'name' => 'between:4,8|alpha_dash_check',
             'password' => 'between:4,8|alpha_dash_check',
         ];
         // between:4,8
         $message = [
-            'name.required' => 'IDを入力してください',
+            'name.between' => 'IDは４桁から８桁で入力してください',
+            'name.alpha_dash_check' => '半角英数字・「_」・「-」の組み合せで入力してください',
             'password.between' => 'パスワードは４桁から８桁で入力してください',
             'password.alpha_dash_check' => '半角英数字・「_」・「-」の組み合せで入力してください',
         ];
