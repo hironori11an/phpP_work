@@ -9,18 +9,20 @@ use Validator;
 
 class homeKanriController extends Controller
 {
+    /* 初期表示 */
+    public function init()
+    {
+        return view('/kanri/loginKanri');
+    }
+    /* 送信ボタン押下時 */
     public function postSignin(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required',
-        //     'password' => 'min:4'
-        //     ]);
+
         /* バリデーション */
         $rules = [
             'name' => 'between:4,8|alpha_dash_check',
             'password' => 'between:4,8|alpha_dash_check',
         ];
-        // between:4,8
         $message = [
             'name.between' => 'IDは４桁から８桁で入力してください',
             'name.alpha_dash_check' => '半角英数字・「_」・「-」の組み合せで入力してください',
@@ -31,20 +33,26 @@ class homeKanriController extends Controller
             $request->all(),
             $rules,
             $message
-            // 'name' => 'required',
-            // 'password' => 'min:4'
         );
 
         if ($validator->fails()) {
-            redirect()->back()
+            /* バリデーションチェック失敗時 */
+            return redirect()->back()
             ->withErrors($validator)
             ->withInput();
+        } else {
+            /* バリデーションチェック成功時 */
+            /* Auth認証 */
+            if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
+                // 認証成功
+                return redirect()->route('hello');
+            } else {
+                // 認証失敗
+                $message_auth='ユーザ ID 又はパスワードが不正です';
+                // エラーメッセージをセッションに格納し、自画面遷移
+                return redirect()->back()->with('message_auth', $message_auth);
+            }
         }
-        /* Auth認証 */
-        if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
-            return redirect()->route('hello');
-        }
-        return redirect()->back();
     }
 
     /* ログイン時の入力項目をemailではなく、nameにするため追加 */

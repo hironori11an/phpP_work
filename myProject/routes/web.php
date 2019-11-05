@@ -26,9 +26,8 @@ Route::get('/hello', function () {
 
 
 
-Route::get('/loginKanri', function () {
-    return view('/kanri/loginKanri');
-});
+
+Route::get('/loginKanri', 'homeKanriController@init');
 Route::post('/homeKanri', [
     'uses' => 'homeKanriController@postSignin',
     'as' => 'homeKanri.signin'

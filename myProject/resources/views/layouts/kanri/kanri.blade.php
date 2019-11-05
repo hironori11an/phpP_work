@@ -7,7 +7,9 @@
 
 <body>
     <h1>@yield('titleHeader')</h1>
+
     <p class="title">@yield('title')</p>
+
     <div>
         @section('loginForm')
         @show

@@ -8,13 +8,14 @@ h1 {
 .title {
   text-align: center;
   font-size: 30px;
-  font-weight: bold; 
+  font-weight: bold;
+  line-height: 1.0;
 }
 div {
   line-height: 1.0;
   text-align: center;
 }
-p.error {
+.error {
   color: #FF0000;
 }
 .input_item {
@@ -22,11 +23,6 @@ p.error {
   width: 100px;
 }
 .input_item_value{
-  background-color:#BBBBBB;
+  background-color:#EEEEEE;
 }
-/* input[type='text'] {
-  color: #aaaaaa;
-  border: 1px solid #1b2538;
-  border-radius: 4px;
 
-} */
