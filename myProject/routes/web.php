@@ -20,14 +20,18 @@ Route::get('/home', function () {
 });
 
 Route::get('/hello', function () {
+    // xdebug_break();
     return view('hello');
-});
-
-Route::get('/hello', function () {
-    return view('hello');
-});
+})->name('hello');
 
 
+
+
+Route::get('/loginKanri', 'homeKanriController@init');
+Route::post('/homeKanri', [
+    'uses' => 'homeKanriController@postSignin',
+    'as' => 'homeKanri.signin'
+    ]);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
