@@ -10,8 +10,8 @@
 
     <p class="title">@yield('title')</p>
 
-    <div>
-        @section('loginForm')
+    <div class="work">
+        @section('work')
         @show
     </div>
 
