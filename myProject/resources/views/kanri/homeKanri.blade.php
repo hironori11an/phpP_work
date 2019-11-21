@@ -7,7 +7,7 @@
 <table align="center" border="0" width="220">
   <tr>
     <td>
-      <a href="http://localhost/hello/">●&nbsp;&nbsp;管理者ユーザ登録</a>
+      <a href="http://localhost/kanri/userRegist">●&nbsp;&nbsp;管理者ユーザ登録</a>
     </td>
   </tr>
   <tr>

@@ -40,6 +40,10 @@ Auth::routes();
         Route::get('/kanri', function () {
             return view('kanri.homeKanri');
         })->name('homeKanri');
+
+        Route::get('/kanri/userRegist', function () {
+            return view('kanri.userRegistKanri');
+        })->name('userRegistKanri');
     });
 
 

@@ -1,6 +1,6 @@
 @extends('layouts.kanri.kanri')
 @section('titleHeader','BookSpace')
-@section('title','管理者ログイン')
+@section('title','管理者登録')
 @section('work')
 <form method="POST" action="{{ route('homeKanri.signin') }}">
   {{ csrf_field()}}
