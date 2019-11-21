@@ -12,7 +12,7 @@
         "var/www": "/Users/hironori/work/phpP_work/myProject"
       },
       "log": true,
-      "stopOnEntry": true,
+      "stopOnEntry": false,
       "port": 9001
     },
     {
