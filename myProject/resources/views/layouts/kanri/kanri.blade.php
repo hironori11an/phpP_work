@@ -3,6 +3,8 @@
 <head>
     <title>@yield('title')</title>
     <link href="{{ asset('css/kanri/kanri.css') }}" rel="stylesheet">
+    @section('head')
+    @show
 </head>
 
 <body>
