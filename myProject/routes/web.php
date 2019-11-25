@@ -33,6 +33,12 @@ Route::post('/kanri', [
     'uses' => 'loginKanriController@postSignin',
     'as' => 'homeKanri.signin'
     ]);
+
+Route::post('/hello', [
+    'uses' => 'userRegistKanriController@validation',
+    'as' => 'userRegistKanri.validation'
+    ]);
+    
 Auth::routes();
 //管理ホーム画面
 // Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
