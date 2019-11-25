@@ -24,10 +24,10 @@ class loginKanriController extends Controller
             'password' => 'between:4,8|alpha_dash_check',
         ];
         $message = [
-            'name.between' => config('const.Validation.USERID_LIMIT_CHARACTER_NUMBER'),
-            'name.alpha_dash_check' => config('const.Validation.PASSWORD_AVAILABLE_CHARACTER'),
-            'password.between' => config('const.Validation.PASSWORD_LIMIT_CHARACTER_NUMBER'),
-            'password.alpha_dash_check' => config('const.Validation.PASSWORD_AVAILABLE_CHARACTER'),
+            'name.between' => config('const.validation.USERID_LIMIT_CHARACTER_NUMBER'),
+            'name.alpha_dash_check' => config('const.validation.PASSWORD_AVAILABLE_CHARACTER'),
+            'password.between' => config('const.validation.PASSWORD_LIMIT_CHARACTER_NUMBER'),
+            'password.alpha_dash_check' => config('const.validation.PASSWORD_AVAILABLE_CHARACTER'),
         ];
         $validator = Validator::make(
             $request->all(),
@@ -49,7 +49,7 @@ class loginKanriController extends Controller
                 return redirect()->route('homeKanri');
             } else {
                 // 認証失敗
-                $message_auth='ユーザ ID 又はパスワードが不正です';
+                $message_auth=config('const.login.CERTIFICATION_ERROR');
                 // エラーメッセージをセッションに格納し、自画面遷移
                 return redirect()->back()->with('message_auth', $message_auth);
             }
