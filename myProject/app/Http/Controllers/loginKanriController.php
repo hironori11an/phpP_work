@@ -24,10 +24,10 @@ class loginKanriController extends Controller
             'password' => 'between:4,8|alpha_dash_check',
         ];
         $message = [
-            'name.between' => 'IDは４桁から８桁で入力してください',
-            'name.alpha_dash_check' => '半角英数字・「_」・「-」の組み合せで入力してください',
-            'password.between' => 'パスワードは４桁から８桁で入力してください',
-            'password.alpha_dash_check' => '半角英数字・「_」・「-」の組み合せで入力してください',
+            'name.between' => config('const.Validation.USERID_LIMIT_CHARACTER_NUMBER'),
+            'name.alpha_dash_check' => config('const.Validation.PASSWORD_AVAILABLE_CHARACTER'),
+            'password.between' => config('const.Validation.PASSWORD_LIMIT_CHARACTER_NUMBER'),
+            'password.alpha_dash_check' => config('const.Validation.PASSWORD_AVAILABLE_CHARACTER'),
         ];
         $validator = Validator::make(
             $request->all(),
