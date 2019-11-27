@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 
 class userRegistKanriController extends Controller
 {
@@ -34,17 +35,7 @@ class userRegistKanriController extends Controller
               ->withInput();
         } else {
             /* バリデーションチェック成功時 */
-            /* Auth認証 */
-            if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
-                // 認証成功
-                // return redirect()->route('hello');
-                return redirect()->route('homeKanri');
-            } else {
-                // 認証失敗
-                $message_auth='ユーザ ID 又はパスワードが不正です';
-                // エラーメッセージをセッションに格納し、自画面遷移
-                return redirect()->back()->with('message_auth', $message_auth);
-            }
+            return redirect()->route('hello');
         }
     }
 }
