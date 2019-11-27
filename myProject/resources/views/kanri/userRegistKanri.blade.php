@@ -9,15 +9,9 @@
 @section('work')
 <form method="POST" action="{{ route('userRegistKanri.validation') }}">
   {{ csrf_field()}}
-  {{--
-  <div id="app">
-    <example-component></example-component>
-  </div>
-  --}}
-
   <table border="0" align="center" width="400">
     <tr>
-      <td colspan="2"></td>
+      <td colspan="2">{{Config::get('const.userRegist.MAX_REGIST_USERS')}}</td>
     </tr>
     <tr>
       <td width="65">
@@ -80,9 +74,6 @@
         if (count_row < 10) {
 
           $('#add_table_row')
-            // .append(
-            //   '<tr><td　class="del_row_check"></td><td　name="name"></td><td　name="password"></td><td　name="authority"></td></tr>'
-            // );
             .append(
               $('<tr></tr>')
               .append($('<td width="20"></td>').html(
@@ -98,7 +89,8 @@
           // $(copy_row).clone().appendTo("#add_table_row");
           // $('#add_table_row .del_row_check').prop("disabled", false);
         } else {
-          alert('一度に登録できるのは１０件までです');
+          //const.phpをjsonで取得
+          alert(@json(config('const.userRegist.WARN_MAX_REGIST_USERS')));
         }
       });
 
