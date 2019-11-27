@@ -61,6 +61,7 @@
     $(function() {
       // var copy_row = $('#first_table tr:last').clone();
       var count_row;
+      // var add_tr[];
       //行追加前の行数
       function count_table_row() {
         return $('#add_table_row tr').length;
@@ -71,11 +72,12 @@
         count_row = count_table_row() + 1;
         //合計１０行になるまで行追加できる
         //追加した行の削除チェックボタンを活性化
-        if (count_row < 10) {
+        if (count_row < 5) {
 
           $('#add_table_row')
             .append(
               $('<tr></tr>')
+              // $('<tr class="add_tr"> </tr>')
               .append($('<td width="20"></td>').html(
                 '<input type="checkbox" name="del_row_check" class="del_row_check">'))
               .append($('<td width="120"></td>').html('<input type="text" name="name[' + count_row + ']">'))
@@ -86,6 +88,12 @@
                 '<input type="radio" name="authority[' + count_row +
                 ']" value="1">管理'))
             );
+          if (count_row % 2 == 1) {
+            $('#add_table_row tr:last').css('background-color', '#c7d3e4');
+            // $('.' + "add_tr[" + count_row + "]").css('background-color', 'orange');
+            // $('".add_tr[ ' + count_row + ' ]"').css('background-color', 'orange');
+            // $(".add_tr").css('background-color', 'orange');
+          }
           // $(copy_row).clone().appendTo("#add_table_row");
           // $('#add_table_row .del_row_check').prop("disabled", false);
         } else {

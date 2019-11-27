@@ -13,7 +13,7 @@ return [
   ],
   //ユーザ登録
   'userRegist' => [
-    'MAX_REGIST_USERS' => '最大10名、ユーザ登録できます。',
-    'WARN_MAX_REGIST_USERS' => '一度に登録できるのは１０名までです',
+    'MAX_REGIST_USERS' => '最大５名、ユーザ登録できます。',
+    'WARN_MAX_REGIST_USERS' => '一度に登録できるのは５名までです',
 ],
 ];
