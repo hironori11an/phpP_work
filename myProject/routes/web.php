@@ -19,12 +19,13 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/hello', function () {
-    // xdebug_break();
-    return view('hello');
-})->name('hello');
+// テスト用画面
+Route::get('user', 'userRegistKanriController@index');
 
-
+//処理成功画面
+Route::get('/success', function () {
+    return view('common.success');
+});
 
 /* 管理画面 */
 

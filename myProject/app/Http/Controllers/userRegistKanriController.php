@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\userRegistRequest;
 
 use Validator;
+use App\User;
 
 class userRegistKanriController extends Controller
 {
@@ -13,6 +14,13 @@ class userRegistKanriController extends Controller
     public function validation(userRegistRequest $request)
     {
         /* バリデーションチェック成功時 */
-        return redirect()->route('home');
+        // $items = User::all();
+        // return redirect()->route('hello', ['items'=>$items]);
+    }
+
+    public function index(Request $request)
+    {
+        $items = User::all();
+        return view('user.test', ['items'=>$items]);
     }
 }
