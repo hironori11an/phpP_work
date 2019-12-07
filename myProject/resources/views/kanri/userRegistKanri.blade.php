@@ -7,6 +7,7 @@
 @section('titleHeader','BookSpace')
 @section('title','ユーザ登録')
 @section('work')
+
 <form method="POST" action="{{ route('userRegistKanri.validation') }}">
   {{ csrf_field()}}
   <table border="0" align="center" width="400">
@@ -22,11 +23,30 @@
       </td>
     </tr>
   </table>
+  <!-- バリデーションエラー  -->
+  @if ($errors->any())
+  <table border="0" id="all_errormessage">
+    <tr>
+      <td>
+        <div class=" error">
+          @for ($i = 0; $i < 5; $i++) @if ($errors->has('name.'.$i))
+            <li align="left">{{ $errors->first("name.".$i) }}</li>
+            @endif
+            @if ($errors->has('password.'.$i))
+            <li align="left">{{ $errors->first("password.".$i) }}</li>
+            @endif
+            @endfor
+        </div>
+    </tr>
+    </td>
+  </table>
+  @endif
   <br>
   <div id="form">
     <table border="0" align="center" margin="0" style="border-collapse:collapse;border:none;">
       <tr>
         <td>
+          <!-- 固定行 -->
           <table border="1" margin="0" id="first_table" width="400" style="border-collapse:collapse;border:none;">
             <tr class="input_item">
               <td width="20"><input type="checkbox" id="del_all_check"></td>
@@ -36,9 +56,10 @@
             </tr>
             <tr>
               <td><input type="checkbox" name="del_row_check" class="del_row_check" disabled='disabled'></td>
-              <td><input type="text" name="name"></td>
-              <td><input type="text" name="password"></td>
-              <td><input type="radio" name="authority" value="0">一般<input type="radio" name="authority" value="1">管理
+              <td><input type="text" name="name[0]" value="{{ old('name.0') }}"></td>
+              <td><input type="text" name="password[0]"></td>
+              <td><input type="radio" name="authority[0]" value="0">一般<input type="radio" name="authority[0]"
+                  value="1">管理
               </td>
             </tr>
           </table>
@@ -47,6 +68,7 @@
 
       <tr>
         <td>
+          <!-- 動的に行追加を行うテーブル -->
           <table id="add_table_row" border="1" margin="0" width="400" style="border-collapse:collapse;border:none;">
           </table>
         </td>
@@ -59,25 +81,24 @@
   <script src="{{mix('js/app.js')}}"></script>
   <script>
     $(function() {
-      // var copy_row = $('#first_table tr:last').clone();
-      var count_row;
-      // var add_tr[];
+      var count_row; //行数
+
       //行追加前の行数
       function count_table_row() {
         return $('#add_table_row tr').length;
       }
-      //行追加
+
+      //行追加ボタン押下
       $('#btn_add_row').click(function(e) {
-        //
+        //追加前の行数を取得、初期表示時から１行（削除不可）があるため +1 して取得
         count_row = count_table_row() + 1;
-        //合計１０行になるまで行追加できる
-        //追加した行の削除チェックボタンを活性化
+        //合計５行になるまで行追加できる
+        //追加した行の削除チェックボタンを活性化（固定行の削除チェックボタンは常に非活性）
         if (count_row < 5) {
 
           $('#add_table_row')
             .append(
               $('<tr></tr>')
-              // $('<tr class="add_tr"> </tr>')
               .append($('<td width="20"></td>').html(
                 '<input type="checkbox" name="del_row_check" class="del_row_check">'))
               .append($('<td width="120"></td>').html('<input type="text" name="name[' + count_row + ']">'))
@@ -88,14 +109,11 @@
                 '<input type="radio" name="authority[' + count_row +
                 ']" value="1">管理'))
             );
+          //上下の行で背景色を変えるように設定
           if (count_row % 2 == 1) {
             $('#add_table_row tr:last').css('background-color', '#c7d3e4');
-            // $('.' + "add_tr[" + count_row + "]").css('background-color', 'orange');
-            // $('".add_tr[ ' + count_row + ' ]"').css('background-color', 'orange');
-            // $(".add_tr").css('background-color', 'orange');
           }
-          // $(copy_row).clone().appendTo("#add_table_row");
-          // $('#add_table_row .del_row_check').prop("disabled", false);
+
         } else {
           //const.phpをjsonで取得
           alert(@json(config('const.userRegist.WARN_MAX_REGIST_USERS')));

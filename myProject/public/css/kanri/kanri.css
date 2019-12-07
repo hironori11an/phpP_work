@@ -27,6 +27,12 @@ h1 {
 .error {
   color: #FF0000;
 }
+#all_errormessage {
+  background-color:#ebe9b2;
+  width :"700";
+  margin-left:510px;
+  border-radius: 10px;
+}
 /* AAFFFF */
 .input_item {
   background-color:#364e96;
@@ -36,6 +42,4 @@ h1 {
 .input_item_value{
   background-color:#c7d3e4;
 }
-#form {
-  font-size: 50px; 
-}
+
