@@ -3,6 +3,6 @@
 @section('titleHeader','BookSpace')
 @section('work')
 @if(isset($success_message))
-<li align="center">{{ $success_message }}</li>
+<div align="center">{{ $success_message }}</div>
 @endif
 @endsection

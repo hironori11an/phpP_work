@@ -11,16 +11,21 @@ use App\User;
 class userRegistKanriController extends Controller
 {
     /* 送信ボタン押下時 */
-    public function validation(userRegistRequest $request)
+    public function regist(userRegistRequest $request)
     {
         /* バリデーションチェック成功時 */
-        // $items = User::all();
-        // return redirect()->route('hello', ['items'=>$items]);
-    }
+        $user= new User;
+        $max_cnt=count($request->input('name'));
+        $forms =$request->all();
+        for ($i=0; $i<$max_cnt; $i++) {
+            $user->name = $request->input('name.'.$i);
+            $user->password = $request->input('password.'.$i);
+            $user->role = $request->input('authority.'.$i);
+            // $user->password = $request->password.$i;
+            // $user->role = $request->authority.$i;
+            $user->save();
+        }
 
-    public function index(Request $request)
-    {
-        $items = User::all();
-        return view('user.test', ['items'=>$items]);
+        return view('common.success', ['success_message'=>'ユーザ登録処理が成功しました']);
     }
 }

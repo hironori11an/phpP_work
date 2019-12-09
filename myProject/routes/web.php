@@ -35,9 +35,9 @@ Route::post('/kanri', [
     'as' => 'homeKanri.signin'
     ]);
 
-Route::post('/hello', [
-    'uses' => 'userRegistKanriController@validation',
-    'as' => 'userRegistKanri.validation'
+Route::post('/kanri/userRegist/success', [
+    'uses' => 'userRegistKanriController@regist',
+    'as' => 'userRegistKanri.regist'
     ]);
     
 Auth::routes();

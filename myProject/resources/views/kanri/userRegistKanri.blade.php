@@ -8,7 +8,7 @@
 @section('title','ユーザ登録')
 @section('work')
 
-<form method="POST" action="{{ route('userRegistKanri.validation') }}">
+<form method="POST" action="{{ route('userRegistKanri.regist') }}">
   {{ csrf_field()}}
   <table border="0" align="center" width="400">
     <tr>
