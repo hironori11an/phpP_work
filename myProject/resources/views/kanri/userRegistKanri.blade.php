@@ -8,7 +8,7 @@
 @section('title','ユーザ登録')
 @section('work')
 
-<form method="POST" action="{{ route('userRegistKanri.regist') }}">
+<form id="form" method="POST" action="{{ route('userRegistKanri.regist') }}">
   {{ csrf_field()}}
   <table border="0" align="center" width="400">
     <tr>
@@ -28,7 +28,7 @@
   <table border="0" id="all_errormessage">
     <tr>
       <td>
-        <div class=" error">
+        <div class="error">
           @for ($i = 0; $i < 5; $i++) @if ($errors->has('name.'.$i))
             <li align="left">{{ $errors->first("name.".$i) }}</li>
             @endif
@@ -82,6 +82,34 @@
   <script>
     $(function() {
       var count_row; //行数
+      var v_user_id; //ユーザIDの値
+      var array_user_id = [];
+      //バリデーションチェック
+      $('#form').submit(function(e) {
+        //ユーザID配列の初期化
+        array_user_id = [];
+        count_row = count_table_row();
+
+
+        for (var i = 0; i < count_row + 1; i++) {
+          v_user_id = $('input[name="name[' + i + ']"]').val();
+          //ユーザIDに重複がない場合は、配列に追加していく
+          if (array_user_id.indexOf(v_user_id) == -1) {
+            array_user_id.push(v_user_id);
+          } else {
+            //ユーザIDに重複がある場合は、falseを返す
+            // alert("重複だよん：" + v_user_id);
+            // $('.error').append($('<li>'+ +'</li>')).html('value=' + v_user_id + ' が重複しています');
+            $('.error').append($('<li></li>'));
+            return false;
+          }
+
+        }
+        // alert(array_user_id); //test用
+        // return false; //test用
+
+
+      });
 
       //行追加前の行数
       function count_table_row() {
