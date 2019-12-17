@@ -23,9 +23,9 @@
       </td>
     </tr>
   </table>
-  <!-- バリデーションエラー  -->
+
   @if ($errors->any())
-  <table border="0" id="all_errormessage">
+  <table border="0" class="all_errormessage">
     <tr>
       <td>
         <div class="error">
@@ -39,6 +39,16 @@
         </div>
     </tr>
     </td>
+  </table>
+  @else
+  <!-- バリデーションエラー  -->
+  <table border="0" class="all_errormessage" id="error_client_tbl" style="visibility:hidden;">
+    <tr>
+      <td>
+        <div class="error_client">
+        </div>
+      </td>
+    </tr>
   </table>
   @endif
   <br>
@@ -83,14 +93,14 @@
     $(function() {
       var count_row; //行数
       var v_user_id; //ユーザIDの値
-      var array_user_id = [];
       //バリデーションチェック
       $('#form').submit(function(e) {
         //ユーザID配列の初期化
         array_user_id = [];
         count_row = count_table_row();
-
-
+        //エラーメッセージの初期化
+        $('.error_client').empty();
+        $('#error_client_tbl').css('visibility', 'hidden');
         for (var i = 0; i < count_row + 1; i++) {
           v_user_id = $('input[name="name[' + i + ']"]').val();
           //ユーザIDに重複がない場合は、配列に追加していく
@@ -98,9 +108,10 @@
             array_user_id.push(v_user_id);
           } else {
             //ユーザIDに重複がある場合は、falseを返す
-            // alert("重複だよん：" + v_user_id);
-            // $('.error').append($('<li>'+ +'</li>')).html('value=' + v_user_id + ' が重複しています');
-            $('.error').append($('<li></li>'));
+            $('.error_client').append($('<li>ユーザID「' + v_user_id + '」が重複しています</li>'));
+            $('#error_client_tbl').css('visibility', 'visible');
+
+
             return false;
           }
 
