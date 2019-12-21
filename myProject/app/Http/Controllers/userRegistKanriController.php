@@ -14,6 +14,11 @@ class userRegistKanriController extends Controller
     public function regist(userRegistRequest $request)
     {
         /* バリデーションチェック成功時 */
+        
+        //ユーザID・パスワードが両方とも未入力のデータを取り除く
+        require_once(app_path('Utility/utl_func.php'));
+        return validationData_check($request->all());
+
         $user= new User;
         $max_cnt=count($request->input('name'));
         $forms =$request->all();
