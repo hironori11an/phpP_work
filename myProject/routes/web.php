@@ -19,19 +19,44 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/hello', function () {
-    // xdebug_break();
-    return view('hello');
-})->name('hello');
+// テスト用画面
+Route::get('user', 'userRegistKanriController@index');
 
+//処理成功画面
+Route::get('/success', function () {
+    return view('common.success');
+});
 
+/* 管理画面 */
 
-
-Route::get('/loginKanri', 'homeKanriController@init');
-Route::post('/homeKanri', [
-    'uses' => 'homeKanriController@postSignin',
+Route::get('/loginKanri', 'loginKanriController@init');
+Route::post('/kanri', [
+    'uses' => 'loginKanriController@postSignin',
     'as' => 'homeKanri.signin'
     ]);
+
+Route::post('/kanri/userRegist/success', [
+    'uses' => 'userRegistKanriController@regist',
+    'as' => 'userRegistKanri.regist'
+    ]);
+    
 Auth::routes();
+//管理ホーム画面
+// Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
+    Route::group(['middleware' => ['can:admin']], function () {
+        Route::get('/kanri', function () {
+            return view('kanri.homeKanri');
+        })->name('homeKanri');
+
+        Route::get('/kanri/userRegist', function () {
+            return view('kanri.userRegistKanri');
+        })->name('userRegistKanri');
+    });
+
+
+
+
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -1,7 +1,7 @@
 @extends('layouts.kanri.kanri')
-@section('titleHeader','BookSpace')
 @section('title','管理者ログイン')
-@section('loginForm')
+@section('titleHeader','BookSpace')
+@section('work')
 <form method="POST" action="{{ route('homeKanri.signin') }}">
   {{ csrf_field()}}
   <!-- 認証エラーメッセージ -->
@@ -32,9 +32,7 @@
         @endif
       </td>
     </tr>
-    <tr>
-      <td></td>
-    </tr>
+
     <!-- パスワード -->
     <tr>
       <td class="input_item">
@@ -55,6 +53,6 @@
     <tr height="30"></tr>
   </table>
 
-  <input type="submit">
+  <center><input type="submit"></center>
 </form>
 @endsection
