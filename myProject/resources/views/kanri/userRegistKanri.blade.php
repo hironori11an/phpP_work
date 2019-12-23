@@ -21,6 +21,7 @@
     </tr>
 
   </table>
+  {{session('err_m')}}
 
   @if ($errors->any())
   <table border="0" class="all_errormessage">

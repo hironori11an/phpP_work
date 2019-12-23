@@ -17,7 +17,10 @@ class userRegistKanriController extends Controller
         
         //ユーザID・パスワードが両方とも未入力のデータを取り除く
         require_once(app_path('Utility/utl_func.php'));
-        return validationData_check($request->all());
+        $request->merge(validationData_check($request->all()));
+        if (count($request->input('name'))===0 and count($request->input('password'))===0) {
+            return redirect()->route('userRegistKanri')->with('err_m', '入力されていません');
+        }
 
         $user= new User;
         $max_cnt=count($request->input('name'));
