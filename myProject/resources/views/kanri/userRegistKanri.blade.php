@@ -69,8 +69,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[0]" value="{{ old('name.0') }}"></td>
               <td><input type="text" name="password[0]"></td>
-              <td><input type="radio" name="authority[0]" value="0">一般<input type="radio" name="authority[0]"
-                  value="1">管理
+              <td><input type="radio" name="authority[0]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[0]" value="1">管理
               </td>
             </tr>
             <!-- ２行目 -->
@@ -78,8 +78,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[1]" value="{{ old('name.1') }}"></td>
               <td><input type="text" name="password[1]"></td>
-              <td><input type="radio" name="authority[1]" value="0">一般<input type="radio" name="authority[1]"
-                  value="1">管理
+              <td><input type="radio" name="authority[1]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[1]" value="1">管理
               </td>
             </tr>
             <!-- ３行目 -->
@@ -87,8 +87,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[2]" value="{{ old('name.2') }}"></td>
               <td><input type="text" name="password[2]"></td>
-              <td><input type="radio" name="authority[2]" value="0">一般<input type="radio" name="authority[2]"
-                  value="1">管理
+              <td><input type="radio" name="authority[2]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[2]" value="1">管理
               </td>
             </tr>
             <!-- ４行目 -->
@@ -96,8 +96,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[3]" value="{{ old('name.3') }}"></td>
               <td><input type="text" name="password[3]"></td>
-              <td><input type="radio" name="authority[3]" value="0">一般<input type="radio" name="authority[3]"
-                  value="1">管理
+              <td><input type="radio" name="authority[3]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[3]" value="1">管理
               </td>
             </tr>
 
@@ -106,8 +106,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[4]" value="{{ old('name.4') }}"></td>
               <td><input type="text" name="password[4]"></td>
-              <td><input type="radio" name="authority[4]" value="0">一般<input type="radio" name="authority[4]"
-                  value="1">管理
+              <td><input type="radio" name="authority[4]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[4]" value="1">管理
               </td>
             </tr>
 

@@ -23,6 +23,7 @@ class userRegistKanriController extends Controller
         }
 
         $user= new User;
+        //ユーザID・パスワードが両方とも入力済みでバリデーションOKの行のみを登録する
         $max_cnt=count($request->input('name'));
         $forms =$request->all();
         for ($i=0; $i<$max_cnt; $i++) {
