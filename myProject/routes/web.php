@@ -27,6 +27,10 @@ Route::get('/success', function () {
     return view('common.success');
 });
 
+Route::get('/kanri/userListTEST', function () {
+    return view('kanri.userListKanri');
+});
+
 /* 管理画面 */
 
 Route::get('/loginKanri', 'loginKanriController@init');
@@ -51,6 +55,11 @@ Auth::routes();
         Route::get('/kanri/userRegist', function () {
             return view('kanri.userRegistKanri');
         })->name('userRegistKanri');
+
+        Route::get(
+            '/kanri/userList',
+            'userListKanriController@index'
+        );
     });
 
 
