@@ -132,8 +132,7 @@
         //初期化
         array_user_id = [];
         $("#minyryk").empty();
-        $('.error_client').empty();
-        $('#error_client_tbl').css('visibility', 'hidden');
+        $('.all_errormessage').empty();
 
         for (var i = 0; i < 5; i++) {
           v_user_id = $('input[name="name[' + i + ']"]').val();
@@ -143,15 +142,13 @@
               array_user_id.push(v_user_id);
             } else {
               //ユーザIDに重複がある場合は、メッセージを設定する
-              $('.error_client').append($('<li>ユーザID「' + v_user_id + '」が重複しています</li>'));
-              $('#error_client_tbl').css('visibility', 'visible');
+              $('#minyryk').append($('<li>ユーザID「' + v_user_id + '」が重複しています</li>'));
 
             }
           }
         }
         //ユーザIDに重複がある場合は、falseを返す
-        $kekka = $('#error_client_tbl').css('visibility');
-        if ($('#error_client_tbl').css('visibility') === 'visible') {
+        if ($('#minyryk').has('li').length > 0) {
           return false;
         }
       });
@@ -163,8 +160,6 @@
 
       //削除ボタン押下時
       $('#btn_clear').click(function(e) {
-        // $('#regist_user_tbl tr').has('input[type=checkbox]:checked').has('input[type=text]').empty();
-        // $('.name.3').empty();
         $('#regist_user_tbl tr').has('input[type=checkbox]:checked').find($("input[type='text']")).val('');
 
       });
