@@ -21,9 +21,11 @@
     </tr>
 
   </table>
-  {{session('err_m')}}
-
+  <div id="minyryk">
+    {!!session('err_m')!!}
+  </div>
   @if ($errors->any())
+  <!-- バリデーションエラー  userRegistRequest-->
   <table border="0" class="all_errormessage">
     <tr>
       <td>
@@ -40,11 +42,12 @@
     </td>
   </table>
   @else
-  <!-- バリデーションエラー  -->
+  <!-- バリデーションエラー  既存ユーザチェック、空入力チェック-->
   <table border="0" class="all_errormessage" id="error_client_tbl" style="visibility:hidden;">
     <tr>
       <td>
         <div class="error_client">
+
         </div>
       </td>
     </tr>
@@ -126,26 +129,30 @@
       var v_user_id; //ユーザIDの値
       //バリデーションチェック
       $('#form').submit(function(e) {
-        //ユーザID配列の初期化
+        //初期化
         array_user_id = [];
-        count_row = count_table_row();
-        //エラーメッセージの初期化
+        $("#minyryk").empty();
         $('.error_client').empty();
         $('#error_client_tbl').css('visibility', 'hidden');
-        for (var i = 0; i < count_row + 1; i++) {
+
+        for (var i = 0; i < 5; i++) {
           v_user_id = $('input[name="name[' + i + ']"]').val();
-          //ユーザIDに重複がない場合は、配列に追加していく
-          if (array_user_id.indexOf(v_user_id) == -1) {
-            array_user_id.push(v_user_id);
-          } else {
-            //ユーザIDに重複がある場合は、falseを返す
-            $('.error_client').append($('<li>ユーザID「' + v_user_id + '」が重複しています</li>'));
-            $('#error_client_tbl').css('visibility', 'visible');
+          if (v_user_id !== "") {
+            //ユーザIDに重複がない場合は、配列に追加していく
+            if (array_user_id.indexOf(v_user_id) == -1) {
+              array_user_id.push(v_user_id);
+            } else {
+              //ユーザIDに重複がある場合は、メッセージを設定する
+              $('.error_client').append($('<li>ユーザID「' + v_user_id + '」が重複しています</li>'));
+              $('#error_client_tbl').css('visibility', 'visible');
 
-
-            return false;
+            }
           }
-
+        }
+        //ユーザIDに重複がある場合は、falseを返す
+        $kekka = $('#error_client_tbl').css('visibility');
+        if ($('#error_client_tbl').css('visibility') === 'visible') {
+          return false;
         }
       });
 
@@ -161,6 +168,8 @@
         $('#regist_user_tbl tr').has('input[type=checkbox]:checked').find($("input[type='text']")).val('');
 
       });
+
+
 
     });
   </script>

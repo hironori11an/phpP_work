@@ -7,6 +7,7 @@ use App\Http\Requests\userRegistRequest;
 
 use Validator;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class userRegistKanriController extends Controller
 {
@@ -23,15 +24,25 @@ class userRegistKanriController extends Controller
         }
 
         $user= new User;
-        //ユーザID・パスワードが両方とも入力済みでバリデーションOKの行のみを登録する
         $max_cnt=count($request->input('name'));
+        //ユーザIDの一意制約チェック
+        $error_message = null;
+        $nameNyryks =$request->input('name');
+        foreach ($nameNyryks as $nameNyryk) {
+            $nameExist= DB ::table('users')->where('name', $nameNyryk)->count();
+            if ($nameExist > 0) {
+                $error_message = $error_message . $nameNyryk . " は既に登録されています" ."<br>";
+            }
+        }
+        if (!is_null($error_message)) {
+            return redirect()->route('userRegistKanri')->with('err_m', $error_message)->withInput();
+        }
+        
         $forms =$request->all();
         for ($i=0; $i<$max_cnt; $i++) {
             $user->name = $request->input('name.'.$i);
             $user->password = $request->input('password.'.$i);
             $user->role = $request->input('authority.'.$i);
-            // $user->password = $request->password.$i;
-            // $user->role = $request->authority.$i;
             $user->save();
         }
 
