@@ -5,11 +5,11 @@
 --}}
 <style>
   .pagination {
-    fonst-size: 10pt;
-  }
-
-  .pagination {
-    display: inline;
+    display: -webkit-box;
+    display: flex;
+    padding-left: 650;
+    list-style: none;
+    border-radius: 0.25rem;
   }
 </style>
 @endsection
@@ -18,7 +18,7 @@
 @section('titleHeader','BookSpace')
 @section('title','ユーザ一覧')
 @section('work')
-<table border="0" align="center" height="200">
+<table border="0" align="center" height="180">
   <tr>
     <td valign="top">
       <table border="1" margin="0" width="400" style="border-collapse:collapse;border:none;">
@@ -41,11 +41,11 @@
   </td>
 </table>
 <div align="center">
+  {{ $items->links()}}
+  <br><br>
   @component('components.btn_modoru')
   @slot('url','/kanri')
   @slot('value','戻る')
   @endcomponent
-
-  {!! $items->links('default') !!}
 </div>
 @endsection
