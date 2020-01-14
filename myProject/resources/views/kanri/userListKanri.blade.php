@@ -41,6 +41,11 @@
   </td>
 </table>
 <div align="center">
-  {{$items->links()}}
+  @component('components.btn_modoru')
+  @slot('url','/kanri')
+  @slot('value','戻る')
+  @endcomponent
+
+  {!! $items->links('default') !!}
 </div>
 @endsection

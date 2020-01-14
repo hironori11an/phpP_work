@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <td width="65">
-        <input type="button" id="btn_clear" value="クリア">
+        <input type="button" id="btn_clear" value="クリア" class="btn">
       </td>
     </tr>
 
@@ -118,8 +118,16 @@
         </td>
       </tr>
     </table>
+    <br>
   </div>
-  <center><input type="submit"></center>
+  <center>
+    @component('components.btn_modoru')
+    @slot('url','/kanri')
+    @slot('value','戻る')
+    @endcomponent
+    &nbsp;&nbsp;&nbsp;
+    <input type="submit" class="btn">
+  </center>
 
 
   <script src="{{mix('js/app.js')}}"></script>

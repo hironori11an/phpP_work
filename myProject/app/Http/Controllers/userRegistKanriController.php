@@ -23,7 +23,7 @@ class userRegistKanriController extends Controller
             return redirect()->route('userRegistKanri')->with('err_m', '入力されていません');
         }
 
-        $user= new User;
+        
         $max_cnt=count($request->input('name'));
         //ユーザIDの一意制約チェック
         $error_message = null;
@@ -40,10 +40,12 @@ class userRegistKanriController extends Controller
         
         $forms =$request->all();
         for ($i=0; $i<$max_cnt; $i++) {
+            $user= new User;
             $user->name = $request->input('name.'.$i);
             $user->password = $request->input('password.'.$i);
             $user->role = $request->input('authority.'.$i);
             $user->save();
+            DB::commit();
         }
 
         return view('common.success', ['success_message'=>'ユーザ登録処理が成功しました']);
