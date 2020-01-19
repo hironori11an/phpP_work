@@ -8,6 +8,7 @@ use App\Http\Requests\userRegistRequest;
 use Validator;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class userRegistKanriController extends Controller
 {
@@ -42,7 +43,7 @@ class userRegistKanriController extends Controller
         for ($i=0; $i<$max_cnt; $i++) {
             $user= new User;
             $user->name = $request->input('name.'.$i);
-            $user->password = $request->input('password.'.$i);
+            $user->password = Hash::make($request->input('password.'.$i));
             $user->role = $request->input('authority.'.$i);
             $user->save();
             DB::commit();

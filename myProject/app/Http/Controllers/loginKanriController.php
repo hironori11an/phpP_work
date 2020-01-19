@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 class loginKanriController extends Controller
 {
@@ -45,6 +47,8 @@ class loginKanriController extends Controller
             /* Auth認証 */
             if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
                 // 認証成功
+
+                $user=DB ::table('users')->where('name', $request->input('name'));
                 return redirect()->route('homeKanri');
             } else {
                 // 認証失敗
