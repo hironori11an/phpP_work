@@ -12,7 +12,7 @@
   <tr>
     <td valign="top">
       <table border="1" margin="0" width="400" style="border-collapse:collapse;border:none;">
-        <tr>
+        <tr class="input_item">
           <th>ユーザ名</th>
           <th>役割</th>
         </tr>
