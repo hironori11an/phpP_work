@@ -11,7 +11,8 @@ class userListKanriController extends Controller
     //
     public function index(Request $request)
     {
-        $items = DB::table('users')->simplePaginate(5);
+        // $items = DB::table('users')->simplePaginate(5);
+        $items = DB::table('users')->paginate(5);
         
         return view('kanri.userListKanri', ['items'=>$items]);
     }

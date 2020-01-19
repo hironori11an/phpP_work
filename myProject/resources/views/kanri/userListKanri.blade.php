@@ -1,17 +1,7 @@
 @extends('layouts.kanri.kanri')
 @section('head')
-{{--
-<link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
---}}
-<style>
-  .pagination {
-    display: -webkit-box;
-    display: flex;
-    padding-left: 650;
-    list-style: none;
-    border-radius: 0.25rem;
-  }
-</style>
+<link href="{{ asset('css/pagination.css') }}" rel="stylesheet" type="text/css">
+
 @endsection
 
 
