@@ -48,8 +48,17 @@ class loginKanriController extends Controller
             if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
                 // 認証成功
 
-                $user=DB ::table('users')->where('name', $request->input('name'));
-                return redirect()->route('homeKanri');
+                $users= DB ::table('users')->where('name', $request->input('name'))->get();
+                
+                //管理者ホームへ
+                foreach ($users as $user) {
+                    $role=$user->role;
+                }
+                if ($role> 0) {
+                    return redirect()->route('homeKanri');
+                }
+                //一般ホームへ
+                return redirect()->route('hello');
             } else {
                 // 認証失敗
                 $message_auth=config('const.login.CERTIFICATION_ERROR');
