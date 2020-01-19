@@ -45,7 +45,6 @@ class loginKanriController extends Controller
             /* Auth認証 */
             if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
                 // 認証成功
-                // return redirect()->route('hello');
                 return redirect()->route('homeKanri');
             } else {
                 // 認証失敗
@@ -62,15 +61,15 @@ class loginKanriController extends Controller
         return $username;
     }
 
-    protected function attemptLogin(Request $request)
-    {
-        $username = $request->input($this->username());
-        $password = $request->input('password');
+    // protected function attemptLogin(Request $request)
+    // {
+    //     $username = $request->input($this->username());
+    //     $password = $request->input('password');
  
-        if (filter_var($username, \FILTER_VALIDATE_EMAIL)) {
-            $credentials = [$this->username() => $username, 'password' => $password];
-        }
+    //     if (filter_var($username, \FILTER_VALIDATE_EMAIL)) {
+    //         $credentials = [$this->username() => $username, 'password' => $password];
+    //     }
  
-        return $this->guard()->attempt($credentials, $request->filled('remember'));
-    }
+    //     return $this->guard()->attempt($credentials, $request->filled('remember'));
+    // }
 }
