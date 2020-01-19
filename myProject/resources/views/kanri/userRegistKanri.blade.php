@@ -16,14 +16,16 @@
     </tr>
     <tr>
       <td width="65">
-        <input type="button" id="btn_clear" value="クリア">
+        <input type="button" id="btn_clear" value="クリア" class="btn">
       </td>
     </tr>
 
   </table>
-  {{session('err_m')}}
-
+  <div id="minyryk">
+    {!!session('err_m')!!}
+  </div>
   @if ($errors->any())
+  <!-- バリデーションエラー  userRegistRequest-->
   <table border="0" class="all_errormessage">
     <tr>
       <td>
@@ -40,11 +42,12 @@
     </td>
   </table>
   @else
-  <!-- バリデーションエラー  -->
+  <!-- バリデーションエラー  既存ユーザチェック、空入力チェック-->
   <table border="0" class="all_errormessage" id="error_client_tbl" style="visibility:hidden;">
     <tr>
       <td>
         <div class="error_client">
+
         </div>
       </td>
     </tr>
@@ -69,8 +72,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[0]" value="{{ old('name.0') }}"></td>
               <td><input type="text" name="password[0]"></td>
-              <td><input type="radio" name="authority[0]" value="0">一般<input type="radio" name="authority[0]"
-                  value="1">管理
+              <td><input type="radio" name="authority[0]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[0]" value="1">管理
               </td>
             </tr>
             <!-- ２行目 -->
@@ -78,8 +81,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[1]" value="{{ old('name.1') }}"></td>
               <td><input type="text" name="password[1]"></td>
-              <td><input type="radio" name="authority[1]" value="0">一般<input type="radio" name="authority[1]"
-                  value="1">管理
+              <td><input type="radio" name="authority[1]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[1]" value="1">管理
               </td>
             </tr>
             <!-- ３行目 -->
@@ -87,8 +90,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[2]" value="{{ old('name.2') }}"></td>
               <td><input type="text" name="password[2]"></td>
-              <td><input type="radio" name="authority[2]" value="0">一般<input type="radio" name="authority[2]"
-                  value="1">管理
+              <td><input type="radio" name="authority[2]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[2]" value="1">管理
               </td>
             </tr>
             <!-- ４行目 -->
@@ -96,8 +99,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[3]" value="{{ old('name.3') }}"></td>
               <td><input type="text" name="password[3]"></td>
-              <td><input type="radio" name="authority[3]" value="0">一般<input type="radio" name="authority[3]"
-                  value="1">管理
+              <td><input type="radio" name="authority[3]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[3]" value="1">管理
               </td>
             </tr>
 
@@ -106,8 +109,8 @@
               <td><input type="checkbox" name="clear_row_check" class="clear_row_check"></td>
               <td><input type="text" name="name[4]" value="{{ old('name.4') }}"></td>
               <td><input type="text" name="password[4]"></td>
-              <td><input type="radio" name="authority[4]" value="0">一般<input type="radio" name="authority[4]"
-                  value="1">管理
+              <td><input type="radio" name="authority[4]" value="0" checked="checked">一般<input type="radio"
+                  name="authority[4]" value="1">管理
               </td>
             </tr>
 
@@ -115,8 +118,16 @@
         </td>
       </tr>
     </table>
+    <br>
   </div>
-  <center><input type="submit"></center>
+  <center>
+    @component('components.btn_modoru')
+    @slot('url','/kanri')
+    @slot('value','戻る')
+    @endcomponent
+    &nbsp;&nbsp;&nbsp;
+    <input type="submit" class="btn">
+  </center>
 
 
   <script src="{{mix('js/app.js')}}"></script>
@@ -126,26 +137,27 @@
       var v_user_id; //ユーザIDの値
       //バリデーションチェック
       $('#form').submit(function(e) {
-        //ユーザID配列の初期化
+        //初期化
         array_user_id = [];
-        count_row = count_table_row();
-        //エラーメッセージの初期化
-        $('.error_client').empty();
-        $('#error_client_tbl').css('visibility', 'hidden');
-        for (var i = 0; i < count_row + 1; i++) {
+        $("#minyryk").empty();
+        $('.all_errormessage').empty();
+
+        for (var i = 0; i < 5; i++) {
           v_user_id = $('input[name="name[' + i + ']"]').val();
-          //ユーザIDに重複がない場合は、配列に追加していく
-          if (array_user_id.indexOf(v_user_id) == -1) {
-            array_user_id.push(v_user_id);
-          } else {
-            //ユーザIDに重複がある場合は、falseを返す
-            $('.error_client').append($('<li>ユーザID「' + v_user_id + '」が重複しています</li>'));
-            $('#error_client_tbl').css('visibility', 'visible');
+          if (v_user_id !== "") {
+            //ユーザIDに重複がない場合は、配列に追加していく
+            if (array_user_id.indexOf(v_user_id) == -1) {
+              array_user_id.push(v_user_id);
+            } else {
+              //ユーザIDに重複がある場合は、メッセージを設定する
+              $('#minyryk').append($('<li>ユーザID「' + v_user_id + '」が重複しています</li>'));
 
-
-            return false;
+            }
           }
-
+        }
+        //ユーザIDに重複がある場合は、falseを返す
+        if ($('#minyryk').has('li').length > 0) {
+          return false;
         }
       });
 
@@ -156,11 +168,11 @@
 
       //削除ボタン押下時
       $('#btn_clear').click(function(e) {
-        // $('#regist_user_tbl tr').has('input[type=checkbox]:checked').has('input[type=text]').empty();
-        // $('.name.3').empty();
         $('#regist_user_tbl tr').has('input[type=checkbox]:checked').find($("input[type='text']")).val('');
 
       });
+
+
 
     });
   </script>
