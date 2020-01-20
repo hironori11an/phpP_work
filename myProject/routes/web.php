@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('bookspace');
 });
 //トップ画面
 Route::get('/home', function () {

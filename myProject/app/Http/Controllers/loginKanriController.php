@@ -58,7 +58,7 @@ class loginKanriController extends Controller
                     return redirect()->route('homeKanri');
                 }
                 //一般ホームへ
-                return redirect()->route('hello');
+                return view('welcome');
             } else {
                 // 認証失敗
                 $message_auth=config('const.login.CERTIFICATION_ERROR');
