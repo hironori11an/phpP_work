@@ -59,13 +59,13 @@
       <tr>
         <td>
 
-          <table border="1" margin="0" id="regist_user_tbl" width="400" style="border-collapse:collapse;border:none;">
+          <table border="1" margin="0" id="regist_user_tbl" style="border-collapse:collapse;border:none;">
             <!-- 項目 -->
-            <tr class="input_item">
+            <tr width="400" class="input_item">
               <td width="20"><input type="checkbox" id="del_all_check"></td>
               <td width="120">ユーザID</td>
               <td width="120">パスワード</td>
-              <td>権限</td>
+              <td width="120">権限</td>
             </tr>
             <!-- １行目 -->
             <tr>

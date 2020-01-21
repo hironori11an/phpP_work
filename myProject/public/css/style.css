@@ -363,3 +363,34 @@ a:hover { color: #996600; }
 	line-height: 1.5;
 	margin-bottom: 0;
 }
+/* ヘッダ str*/
+.sampleHead {
+	background: #333;
+	padding: 10px;
+	margin: 0;
+	overflow: hidden;
+}
+.sampleHead h1 {
+	padding: 0;
+	margin: 0;
+	color: #FFF;
+	font-size: 16px;
+	line-height: 1.375;
+	float: left;
+}
+.sampleHead .bookSite {
+	padding: 0;
+	margin: 0;
+	font-size: 16px;
+	line-height: 1.571;
+	color: #FFF;
+	float: right;
+	font-size: 14px;
+}
+.sampleHead .bookSite a {
+	color: #FFF;
+}
+.sampleHead .bookSite a:hover {
+	color: #EEE;
+}
+/* ヘッダ end*/
