@@ -16,6 +16,7 @@ class loginKanriController extends Controller
     {
         return view('/kanri/loginKanri');
     }
+
     /* 送信ボタン押下時 */
     public function postSignin(Request $request)
     {
@@ -59,9 +60,15 @@ class loginKanriController extends Controller
                     return redirect()->route('homeKanri');
                 }
                 //一般ホームへ
-                $ybrr = app()->make('App\Http\Controllers\bookspaceController');
-                $ybrr->login($request, $name, $role);
-                return view('bookspace');
+                $request->session()->put('name', $name);
+                $request->session()->put('role', $role);
+                return redirect('/home');
+                
+            // return redirect('/');
+                // return view('bookspace');
+            // $ybrr = app()->make('App\Http\Controllers\bookspaceController');
+                // $ybrr->login($request, $name, $role);
+                // return view('bookspace');
             // return redirect('/');
             } else {
                 // 認証失敗
@@ -71,22 +78,9 @@ class loginKanriController extends Controller
             }
         }
     }
-
     /* ログイン時の入力項目をemailではなく、nameにするため追加 */
     public function username()
     {
         return $username;
     }
-
-    // protected function attemptLogin(Request $request)
-    // {
-    //     $username = $request->input($this->username());
-    //     $password = $request->input('password');
- 
-    //     if (filter_var($username, \FILTER_VALIDATE_EMAIL)) {
-    //         $credentials = [$this->username() => $username, 'password' => $password];
-    //     }
- 
-    //     return $this->guard()->attempt($credentials, $request->filled('remember'));
-    // }
 }

@@ -11,23 +11,14 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('bookspace');
-// });
+/* ホーム（ログイン前）*/
 Route::get('/', [
     'uses' => 'bookspaceController@init',
     ]);
-Route::post('/', [
+/* 一般ユーザログイン後ホーム*/
+Route::get('/home', [
     'uses' => 'bookspaceController@login',
     ]);
-Route::get('/home', [
-        'uses' => 'bookspaceController@back',
-        ]);
-
-//トップ画面
-// Route::get('/home', function () {
-//     return view('home');
-// });
 
 // テスト用画面
 Route::get('user', 'userRegistKanriController@index');
@@ -36,7 +27,7 @@ Route::get('user', 'userRegistKanriController@index');
 Route::get('/success', function () {
     return view('common.success');
 });
-
+/*ユーザ一覧 */
 Route::get('/kanri/userListTEST', function () {
     return view('kanri.userListKanri');
 });
@@ -44,7 +35,7 @@ Route::get('/kanri/userListTEST', function () {
 /* 管理画面 */
 
 Route::get('/loginKanri', 'loginKanriController@init');
-Route::post('/kanri', [
+Route::post('/login/home', [
     'uses' => 'loginKanriController@postSignin',
     'as' => 'homeKanri.signin'
     ]);
@@ -71,11 +62,3 @@ Auth::routes();
             'userListKanriController@index'
         );
     });
-
-
-
-
-
-
-
-// Route::get('/home', 'HomeController@index')->name('home');

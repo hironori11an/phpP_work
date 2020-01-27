@@ -15,17 +15,11 @@ class bookspaceController extends Controller
     }
 
     /* ログイン */
-    public function login(Request $request, $name, $role)
+    public function login(Request $request)
     {
-        $request->session()->put('name', $name);
-        $request->session()->put('role', $role);
-        return view('bookspace');
-        return;
-    }
-
-    /* ログイン後にホームヘの戻る */
-    public function back(Request $request)
-    {
+        // $request->session()->put('name', $name);
+        // $request->session()->put('role', $role);
+        // return view('bookspace');
         $all = Session::all();
         return view('bookspace', compact('all'));
     }

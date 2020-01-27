@@ -33,7 +33,7 @@
           <ul>
             @if(Session::has('role'))
 
-            <li><a href="{{ action('bookspaceController@back') }}">ホームバック</a></li>
+            <li><a href="{{ action('bookspaceController@login') }}">ホームバック</a></li>
             @else
             <li class="current"><a href="/">ホーム</a></li>
             @endif
