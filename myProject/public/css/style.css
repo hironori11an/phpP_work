@@ -1,4 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Antic+Didone);
 
 body { color: #333333; }
 
@@ -23,6 +22,7 @@ a:hover { color: #996600; }
 }
 
 /*ページ*/
+/*左右中央寄せ*/
 #page {
 	width: 980px;
 	margin: 0 auto;

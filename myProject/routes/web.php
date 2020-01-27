@@ -11,13 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('bookspace');
-});
+// Route::get('/', function () {
+//     return view('bookspace');
+// });
+Route::get('/', [
+    'uses' => 'bookspaceController@init',
+    ]);
+Route::post('/', [
+    'uses' => 'bookspaceController@login',
+    ]);
+Route::get('/home', [
+        'uses' => 'bookspaceController@back',
+        ]);
+
 //トップ画面
-Route::get('/home', function () {
-    return view('home');
-});
+// Route::get('/home', function () {
+//     return view('home');
+// });
 
 // テスト用画面
 Route::get('user', 'userRegistKanriController@index');
@@ -68,4 +78,4 @@ Auth::routes();
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

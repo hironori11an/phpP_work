@@ -53,12 +53,16 @@ class loginKanriController extends Controller
                 //管理者ホームへ
                 foreach ($users as $user) {
                     $role=$user->role;
+                    $name=$user->name;
                 }
                 if ($role> 0) {
                     return redirect()->route('homeKanri');
                 }
                 //一般ホームへ
-                return view('welcome');
+                $ybrr = app()->make('App\Http\Controllers\bookspaceController');
+                $ybrr->login($request, $name, $role);
+                return view('bookspace');
+            // return redirect('/');
             } else {
                 // 認証失敗
                 $message_auth=config('const.login.CERTIFICATION_ERROR');
