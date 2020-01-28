@@ -17,9 +17,6 @@ class bookspaceController extends Controller
     /* ログイン */
     public function login(Request $request)
     {
-        // $request->session()->put('name', $name);
-        // $request->session()->put('role', $role);
-        // return view('bookspace');
         $all = Session::all();
         return view('bookspace', compact('all'));
     }

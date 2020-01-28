@@ -19,7 +19,7 @@
         &nbsp;&nbsp;
         <a>{{ session('name') }}</a></div>
       @else
-      <a href="/loginKanri">ログイン</a>&nbsp;&nbsp;
+      <a href="/loginbs">ログイン</a>&nbsp;&nbsp;
       <a>ゲスト</a>
       @endif
     </div>
@@ -40,7 +40,7 @@
             <li><a href="about/index.html">探す</a></li>
             {{-- ログイン後に表示 --}}
             @if(Session::has('role'))
-            <li><a href="portfolio/index.html">記録する</a></li>
+            <li><a href="{{ action('reviewController@init') }}">レビューする</a></li>
             @endif
 
           </ul>

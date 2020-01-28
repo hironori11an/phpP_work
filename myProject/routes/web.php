@@ -14,11 +14,18 @@
 /* ホーム（ログイン前）*/
 Route::get('/', [
     'uses' => 'bookspaceController@init',
-    ]);
-/* 一般ユーザログイン後ホーム*/
+]);
+/* 一般ユーザログイン後　ホーム*/
 Route::get('/home', [
     'uses' => 'bookspaceController@login',
-    ]);
+]);
+
+/* 一般ユーザログイン後　レビューする*/
+Route::get('/review', [
+    'uses' => 'reviewController@init',
+]);
+
+
 
 // テスト用画面
 Route::get('user', 'userRegistKanriController@index');
@@ -27,14 +34,15 @@ Route::get('user', 'userRegistKanriController@index');
 Route::get('/success', function () {
     return view('common.success');
 });
-/*ユーザ一覧 */
-Route::get('/kanri/userListTEST', function () {
-    return view('kanri.userListKanri');
-});
+
+
+
+
+
 
 /* 管理画面 */
 
-Route::get('/loginKanri', 'loginKanriController@init');
+Route::get('/loginbs', 'loginKanriController@init');
 Route::post('/login/home', [
     'uses' => 'loginKanriController@postSignin',
     'as' => 'homeKanri.signin'
@@ -44,6 +52,10 @@ Route::post('/kanri/userRegist/success', [
     'uses' => 'userRegistKanriController@regist',
     'as' => 'userRegistKanri.regist'
     ]);
+/*ユーザ一覧 */
+Route::get('/kanri/userListTEST', function () {
+    return view('kanri.userListKanri');
+});
     
 Auth::routes();
 //管理ホーム画面
