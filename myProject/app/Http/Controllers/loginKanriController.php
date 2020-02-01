@@ -63,13 +63,6 @@ class loginKanriController extends Controller
                 $request->session()->put('name', $name);
                 $request->session()->put('role', $role);
                 return redirect('/home');
-                
-            // return redirect('/');
-                // return view('bookspace');
-            // $ybrr = app()->make('App\Http\Controllers\bookspaceController');
-                // $ybrr->login($request, $name, $role);
-                // return view('bookspace');
-            // return redirect('/');
             } else {
                 // 認証失敗
                 $message_auth=config('const.login.CERTIFICATION_ERROR');

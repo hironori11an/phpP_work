@@ -3,10 +3,12 @@
 <head>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/common.css">
 </head>
 
 <body>
-  <form method="POST" name="form1">
+  <form method="POST" action="{{ action('reviewController@regist') }}">
+    {{ csrf_field()}}
     <div class="sampleHead">
       <h1>BookSpace</h1>
 
@@ -68,11 +70,11 @@
                   評価
                 </th>
                 <td>
-                  <input type="radio" name="hyuk" value="5">5
-                  <input type="radio" name="hyuk" value="4">4
-                  <input type="radio" name="hyuk" value="3" checked="checked">3
-                  <input type="radio" name="hyuk" value="2">2
-                  <input type="radio" name="hyuk" value="1">1
+                  <input type="radio" name="hyk" value="5">5
+                  <input type="radio" name="hyk" value="4">4
+                  <input type="radio" name="hyk" value="3" checked="checked">3
+                  <input type="radio" name="hyk" value="2">2
+                  <input type="radio" name="hyk" value="1">1
                 </td>
               </tr>
               <tr>
@@ -87,6 +89,8 @@
             </table>
         </section>
       </div>
+      <br>
+      <input type="submit" class="btn">
     </div>
 
   </form>

@@ -24,6 +24,9 @@ Route::get('/home', [
 Route::get('/review', [
     'uses' => 'reviewController@init',
 ]);
+Route::post('/review/success', [
+    'uses' => 'reviewController@regist',
+]);
 
 
 
@@ -58,19 +61,24 @@ Route::get('/kanri/userListTEST', function () {
 });
     
 Auth::routes();
-//管理ホーム画面
-// Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
-    Route::group(['middleware' => ['can:admin']], function () {
-        Route::get('/kanri', function () {
-            return view('kanri.homeKanri');
-        })->name('homeKanri');
+/*一般ログイン後画面 */
+Route::group(['middleware' => ['can:user']], function () {
+    Route::get('/review', [
+        'uses' => 'reviewController@init',
+    ]);
+});
+/*管理者ログイン画面*/
+Route::group(['middleware' => ['can:admin']], function () {
+    Route::get('/kanri', function () {
+        return view('kanri.homeKanri');
+    })->name('homeKanri');
 
-        Route::get('/kanri/userRegist', function () {
-            return view('kanri.userRegistKanri');
-        })->name('userRegistKanri');
+    Route::get('/kanri/userRegist', function () {
+        return view('kanri.userRegistKanri');
+    })->name('userRegistKanri');
 
-        Route::get(
-            '/kanri/userList',
-            'userListKanriController@index'
-        );
-    });
+    Route::get(
+        '/kanri/userList',
+        'userListKanriController@index'
+    );
+});
