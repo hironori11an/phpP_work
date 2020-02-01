@@ -49,12 +49,67 @@
 
       <div id="pageBody">
         <section class="mainVisual">
+          <div id="pageBodyMain">
+            @if(isset($items))
+            マイレビュー
+            <div id="my_review">
+              @foreach ($items as $item)
+              <table id="my_review">
+                <tr>
+                  <th>
+                    ジャンル
+                  </th>
+                  <td>
+                    {{$item->genre}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    タイトル
+                  </th>
+                  <td>
+                    {{$item->title}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    著者
+                  </th>
+                  <td>
+                    {{$item->chysh}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    評価
+                  </th>
+                  <td>
+                    {{$item->hyk}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    レビュー
+                  </th>
+                  <td>
+                    {{$item->review_niy}}
+                  </td>
+                </tr>
+              </table>
+              <br>
+              @endforeach
+            </div>
+            @else
+          </div>
+
           <div class="mainVisualText">
+
             <h1>Cafe Debut</h1>
             <p>baserCMS、カフェサイト用テーマ<br>
               baserCMS2012 テーマコンテスト　飲食店系テーマ賞受賞</p>
           </div>
           <img src="{{ asset('/images/bookspace_home.jpg')}}" width="980" height="500" alt="">
+          @endif
         </section>
       </div>
     </div>
