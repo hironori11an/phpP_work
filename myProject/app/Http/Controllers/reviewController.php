@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Review;
+use App\Http\Requests\reviewRequest;
 
 class reviewController extends Controller
 {
@@ -16,9 +17,8 @@ class reviewController extends Controller
         return view('review', compact('all'));
     }
 
-    public function regist(Request $request)
+    public function regist(reviewRequest $request)
     {
-        $this->validate($request, Review::$rules);
         $review= new Review;
         $form =$request->all();
         unset($form['_token']);

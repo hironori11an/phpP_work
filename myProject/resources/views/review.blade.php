@@ -9,6 +9,7 @@
 <body>
   <form method="POST" action="{{ action('reviewController@regist') }}">
     {{ csrf_field()}}
+    <input name="user_name" type="hidden" value={{ session('name') }}>
     <div class="sampleHead">
       <h1>BookSpace</h1>
 
@@ -32,6 +33,13 @@
       </header>
 
       <div id="pageBody">
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+
+        @endforeach
+
+        @endif
         <section class="mainVisual">
           <div id="pageBodyMain">
             <table>
@@ -54,7 +62,7 @@
                   タイトル
                 </th>
                 <td>
-                  <input id="tytle" type="text">
+                  <input name="title" type="text" value="{{ old('title') }}">
                 </td>
               </tr>
               <tr>
@@ -62,7 +70,7 @@
                   著者
                 </th>
                 <td>
-                  <input id="chysh" type="text">
+                  <input name="chysh" type="text" value="{{ old('chysh') }}">
                 </td>
               </tr>
               <tr>
@@ -82,8 +90,8 @@
                   レビュー
                 </th>
                 <td>
-                  <textarea name="review_" id="review_" maxlength="10000" rows="4" placeholder="レビューを書く"
-                    style="width:100%;"></textarea>
+                  <textarea name="review_niy" maxlength="10000" rows="4" placeholder="レビューを書く"
+                    value="{{ old('review_niy') }}" style="width:100%;"></textarea>
                 </td>
               </tr>
             </table>

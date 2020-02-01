@@ -15,6 +15,8 @@ class userRegistRequest extends FormRequest
     {
         return true;
     }
+
+    //FormRequestのメソッドをオーバライド
     protected function validationData()
     {
         //ユーザID・パスワードのバリデーション処理前に、不要データを取り除く
