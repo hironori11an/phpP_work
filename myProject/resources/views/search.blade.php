@@ -63,6 +63,7 @@
                 </th>
                 <td>
                   <select name="genre">
+                    <option value="9">指定しない</option>
                     <option value="0">文学・評論</option>
                     <option value="1">ノンフィクション</option>
                     <option value="2">人文・思想・宗教</option>
