@@ -15,6 +15,15 @@
 Route::get('/', [
     'uses' => 'bookspaceController@init',
 ]);
+
+/* 一般ユーザログイン前後 探す*/
+Route::get('/search', [
+    'uses' => 'searchController@init',
+]);
+Route::post('/search/success', [
+    'uses' => 'searchController@search',
+]);
+
 /* 一般ユーザログイン後　ホーム*/
 Route::get('/home', [
     'uses' => 'bookspaceController@login',
@@ -27,6 +36,8 @@ Route::get('/review', [
 Route::post('/review/success', [
     'uses' => 'reviewController@regist',
 ]);
+
+
 
 
 

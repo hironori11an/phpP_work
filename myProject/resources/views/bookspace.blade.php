@@ -35,7 +35,7 @@
             @else
             <li class="current"><a href="/">ホーム</a></li>
             @endif
-            <li><a href="about/index.html">探す</a></li>
+            <li><a href="{{ action('searchController@init') }}">探す</a></li>
             {{-- ログイン後に表示 --}}
             @if(Session::has('role'))
             <li><a href="{{ action('reviewController@init') }}">レビューする</a></li>

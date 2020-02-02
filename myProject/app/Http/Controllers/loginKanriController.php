@@ -19,7 +19,7 @@ class loginKanriController extends Controller
     {
         return view('/kanri/loginKanri');
     }
-    /* 送信ボタン押下時 */
+    /* ログインボタン押下時 */
     public function postSignin(Request $request)
     {
         //かんたんログイン（一般）
@@ -29,6 +29,7 @@ class loginKanriController extends Controller
             $request->session()->put('name', 'ippan');
             $request->session()->put('role', '0');
             return redirect('/home');
+            
         //かんたんログイン（管理）
         //ユーザ「kanri」としてログイン
         } elseif (Input::get('knr')) {
@@ -71,18 +72,10 @@ class loginKanriController extends Controller
             }
         }
     }
-    public function ippn(Request $request)
-    {
-        return view('/kanri/loginKanri');
-    }
-    public function knr(Request $request)
-    {
-        return view('/kanri/loginKanri');
-    }
 
+    //バリデーション
     public function validation(Request $request)
     {
-        /* バリデーション */
         $rules = [
                     'name' => 'between:4,8|alpha_dash_check',
                     'password' => 'between:4,8|alpha_dash_check',

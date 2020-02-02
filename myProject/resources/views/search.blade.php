@@ -7,17 +7,23 @@
 </head>
 
 <body>
-  <form method="POST" action="{{ action('reviewController@regist') }}">
+  <form method="POST" action="{{ action('searchController@search') }}">
     {{ csrf_field()}}
     <input name="user_name" type="hidden" value={{ session('name') }}>
     <div class="sampleHead">
       <h1>BookSpace</h1>
 
       <div class="bookSite">
+        {{-- ログイン前はゲスト、ログイン後はユーザネーム --}}
+        @if(Session::has('role'))
         <a href="{{ action('bookspaceController@init') }}">ログアウト</a>
         &nbsp;&nbsp;
-        <a>{{ session('name') }}</a>
-      </div>
+        <a>{{ session('name') }}</a></div>
+      @else
+      <a href="/loginbs">ログイン</a>&nbsp;&nbsp;
+      <a>ゲスト</a>
+      @endif
+    </div>
     </div>
     <div id="page">
 
@@ -26,9 +32,15 @@
         <p id="catchcopy">1人じゃできないことも、力を合わせればできる。やってみたいをカタチにする、3人の楽しいものづくり。</p>
         <nav class="globalNavi">
           <ul>
+            @if(Session::has('role'))
             <li><a href="{{ action('bookspaceController@login') }}">ホーム</a></li>
-            <li><a href="{{ action('searchController@init') }}">探す</a></li>
-            <li class="current"><a href="{{ action('reviewController@init') }}">レビューする</a></li>
+            @else
+            <li><a href="/">ホーム</a></li>
+            @endif
+            <li class="current"><a href="{{ action('searchController@init') }}">探す</a></li>
+            @if(Session::has('role'))
+            <li><a href="{{ action('reviewController@init') }}">レビューする</a></li>
+            @endif
 
           </ul>
         </nav>
@@ -75,32 +87,11 @@
                   <input name="chysh" type="text" value="{{ old('chysh') }}">
                 </td>
               </tr>
-              <tr>
-                <th>
-                  評価
-                </th>
-                <td>
-                  <input type="radio" name="hyk" value="5">5
-                  <input type="radio" name="hyk" value="4">4
-                  <input type="radio" name="hyk" value="3" checked="checked">3
-                  <input type="radio" name="hyk" value="2">2
-                  <input type="radio" name="hyk" value="1">1
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  レビュー
-                </th>
-                <td>
-                  <textarea name="review_niy" maxlength="10000" rows="4" placeholder="レビューを書く"
-                    value="{{ old('review_niy') }}" style="width:100%;"></textarea>
-                </td>
-              </tr>
             </table>
         </section>
       </div>
       <br>
-      <input type="submit" class="btn">
+      <input type="submit" class="btn" value="検索">
     </div>
 
   </form>
