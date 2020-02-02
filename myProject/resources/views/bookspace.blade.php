@@ -12,8 +12,6 @@
 
       <div class="bookSite">
         {{-- ログイン前はゲスト、ログイン後はユーザネーム --}}
-
-
         @if(Session::has('role'))
         <a href="{{ action('bookspaceController@init') }}">ログアウト</a>
         &nbsp;&nbsp;
@@ -33,7 +31,7 @@
           <ul>
             @if(Session::has('role'))
 
-            <li><a href="{{ action('bookspaceController@login') }}">ホームバック</a></li>
+            <li class="current"><a href="{{ action('bookspaceController@login') }}">ホーム</a></li>
             @else
             <li class="current"><a href="/">ホーム</a></li>
             @endif

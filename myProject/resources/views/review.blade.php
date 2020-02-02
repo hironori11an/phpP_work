@@ -24,7 +24,7 @@
         <p id="catchcopy">1人じゃできないことも、力を合わせればできる。やってみたいをカタチにする、3人の楽しいものづくり。</p>
         <nav class="globalNavi">
           <ul>
-            <li><a href="{{ action('bookspaceController@login') }}">ホームバック</a></li>
+            <li><a href="{{ action('bookspaceController@login') }}">ホーム</a></li>
             <li><a href="about/index.html">探す</a></li>
             <li class="current"><a href="{{ action('reviewController@init') }}">レビューする</a></li>
 
