@@ -49,7 +49,10 @@
         <section class="mainVisual">
           <div id="pageBodyMain">
             @if(isset($items))
-            マイレビュー
+            マイレビュー<br>
+            @if(count($items) ===0)
+            レビュー投稿がありません
+            @endif
             <div id="my_review">
               @foreach ($items as $item)
               <table id="my_review">

@@ -23,11 +23,14 @@ class loginKanriController extends Controller
     public function postSignin(Request $request)
     {
         //かんたんログイン（一般）
+        //ユーザ「ippan」としてログイン
         if (Input::get('ippn')) {
+            Auth::attempt(['name' => 'ippan', 'password' => 'ippan']);
             $request->session()->put('name', 'ippan');
             $request->session()->put('role', '0');
             return redirect('/home');
         //かんたんログイン（管理）
+        //ユーザ「kanri」としてログイン
         } elseif (Input::get('knr')) {
             Auth::attempt(['name' => 'kanri', 'password' => 'kanri']);
             return redirect()->route('homeKanri');
@@ -52,7 +55,7 @@ class loginKanriController extends Controller
                         $role=$user->role;
                         $name=$user->name;
                     }
-                    if ($role> 0) {
+                    if ($role > 0) {
                         return redirect()->route('homeKanri');
                     }
                     //一般ホームへ

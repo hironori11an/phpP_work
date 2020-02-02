@@ -14,6 +14,8 @@
       <h1>BookSpace</h1>
 
       <div class="bookSite">
+        <a href="{{ action('bookspaceController@init') }}">ログアウト</a>
+        &nbsp;&nbsp;
         <a>{{ session('name') }}</a>
       </div>
     </div>
