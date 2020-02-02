@@ -4,6 +4,7 @@
     <title>@yield('title')</title>
     <link href="{{ asset('css/kanri/kanri.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/normalize.css') }}">
+    <link rel="stylesheet" href="/css/common.css">
     @section('head')
     @show
 </head>
