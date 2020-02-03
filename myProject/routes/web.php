@@ -39,6 +39,9 @@ Route::post('/review/success', [
 Route::get('/userRegist', function () {
     return view('userRegist');
 });
+Route::post('/userRegist/success', [
+    'uses' => 'userRegistController@regist',
+]);
 
 
 

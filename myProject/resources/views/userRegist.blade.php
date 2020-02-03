@@ -8,7 +8,7 @@
 @section('title','ユーザ登録')
 @section('work')
 
-<form id="form" method="POST" action="{{ route('userRegistKanri.regist') }}">
+<form id="form" method="POST" action="{{ action('userRegistController@regist') }}">
   {{ csrf_field()}}
 
   <div id="minyryk">
@@ -20,7 +20,6 @@
     <tr>
       <td>
         <div class="error">
-
         </div>
     </tr>
     </td>
@@ -39,15 +38,28 @@
   @endif
   <br>
   <div class="form_ur">
-    <p class="item_ur" id="user_id">ユーザID</p>
-    <input class="value_ur" type="text" name="name" size="20">
-    <br><br>
-    <p class="item_ur" id="password">パスワード</p>
-    <input class="value_ur" type="text" name="password" size="20">
-    <br><br>
-    <p class="item_ur" id="passwordKknn">パスワードの確認</p>
-    <input class="value_ur" type="text" name="password_kknn" size="20">
+    <p class="item_ur" id="user_id">ユーザID
+    </p>
+    @if ($errors->has('name'))
+    {{ $errors->first("name") }}
+    @else
     <br>
+    @endif
+
+    <input class="value_ur" type="text" name="name" size="20">
+
+    <p class="item_ur" id="password">パスワード
+    </p>
+    @if ($errors->has('password'))
+    {{ $errors->first("password") }}
+    @else
+    <br>
+    @endif
+    <input class="value_ur" type="text" name="password" size="20">
+
+    <p class="item_ur" id="passwordKknn">パスワードの確認</p>
+    <br>
+    <input class="value_ur" type="text" name="password_kknn" size="20">
   </div>
   <br>
   <center>
