@@ -17,6 +17,7 @@
         &nbsp;&nbsp;
         <a>{{ session('name') }}</a></div>
       @else
+      <a href="/userRegist">ユーザ登録</a>&nbsp;&nbsp;
       <a href="/loginbs">ログイン</a>&nbsp;&nbsp;
       <a>ゲスト</a>
       @endif

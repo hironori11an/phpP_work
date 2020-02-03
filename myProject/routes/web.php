@@ -20,7 +20,7 @@ Route::get('/', [
 Route::get('/search', [
     'uses' => 'searchController@init',
 ]);
-Route::post('/search/success', [
+Route::post('/search/results', [
     'uses' => 'searchController@search',
 ]);
 
@@ -36,7 +36,9 @@ Route::get('/review', [
 Route::post('/review/success', [
     'uses' => 'reviewController@regist',
 ]);
-
+Route::get('/userRegist', function () {
+    return view('userRegist');
+});
 
 
 

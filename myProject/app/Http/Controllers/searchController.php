@@ -23,14 +23,20 @@ class searchController extends Controller
         $chysh = $request->input('chysh');
 
         $query = DB::table('reviews');
-        if ($request->has('genre') && $request->input('genre') !=='9') {
+        if (!is_null($genre) && $genre !=='9') {
             $query = $query->where('genre', '=', $genre);
+        }
+        if (!is_null($title)) {
+            $query = $query->where('title', 'LIKE', "%{$title}%");
+        }
+        if (!is_null($chysh)) {
+            $query = $query->where('chysh', 'LIKE', "%{$chysh}%");
         }
         
 
         $items = $query->get();
         $all = Session::all();
-        // return view('search', compact('all', 'items'));
-        return view('search', compact('all'));
+        return view('searchResult', compact('all', 'items'));
+        // return view('search', compact('all'));
     }
 }
