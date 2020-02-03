@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
-use App\Http\Requests\userRegistRequest;
+use App\Http\Requests\userRegistKanriRequest;
 
 use Validator;
 use App\User;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class userRegistKanriController extends Controller
 {
     /* 送信ボタン押下時 */
-    public function regist(userRegistRequest $request)
+    public function regist(userRegistKanriRequest $request)
     {
         /* バリデーションチェック成功時 */
         
