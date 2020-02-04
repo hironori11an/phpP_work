@@ -40,10 +40,23 @@ class reviewRequest extends FormRequest
 
         ];
     }
-    // public function messages()
-    // {
-    //     return [
-    //         'required'=>'必須項目です',
-    // ];
-    // }
+    public function messages()
+    {
+        return [
+            'required'=>':attribute の入力がありません',
+    ];
+    }
+    public function attributes()
+    {
+        $attributes = [];
+        $attributes = array_merge(
+            $attributes,
+            [
+                "title" => "タイトル",
+                "chysh" => "著者",
+                "review_niy" => "レビュー",
+            ]
+        );
+        return $attributes;
+    }
 }

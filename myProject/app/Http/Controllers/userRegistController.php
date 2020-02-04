@@ -26,7 +26,7 @@ class userRegistController extends Controller
         }
         
         if (!is_null($error_message)) {
-            return redirect()->route('/userRegist')->with('err_m', $error_message)->withInput();
+            return redirect()->route('userRegist')->with('err_m', $error_message)->withInput();
         }
             
         $forms =$request->all();

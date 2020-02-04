@@ -31,7 +31,7 @@ class userRegistRequest extends FormRequest
     public function messages()
     {
         return [
-            'between'=>':attribute　４桁から８桁で入力してください',
+            'between'=>':attribute ４桁から８桁で入力してください',
             'alpha_dash_check'=>':attribute 半角英数字・「_」・「-」の組み合せで入力してください',
     ];
     }
@@ -39,20 +39,13 @@ class userRegistRequest extends FormRequest
     public function attributes()
     {
         $attributes = [];
-
-        // foreach ($_POST['name'] as $key => $value) {
-        // $rowNumber = $key + 1;
-
         $attributes = array_merge(
             $attributes,
             [
                 "name" => "",
-                // "name.$key" => $value,
                 "password" => "",
             ]
         );
-        // }
-
         return $attributes;
     }
 }

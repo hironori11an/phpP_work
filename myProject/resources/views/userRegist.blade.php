@@ -11,37 +11,12 @@
 <form id="form" method="POST" action="{{ action('userRegistController@regist') }}">
   {{ csrf_field()}}
 
-  <div id="minyryk">
-    {!!session('err_m')!!}
-  </div>
-  @if ($errors->any())
-  <!-- バリデーションエラー  userRegistRequest-->
-  <table border="0" class="all_errormessage">
-    <tr>
-      <td>
-        <div class="error">
-        </div>
-    </tr>
-    </td>
-  </table>
-  @else
-  <!-- バリデーションエラー  既存ユーザチェック、空入力チェック-->
-  <table border="0" class="all_errormessage" id="error_client_tbl" style="visibility:hidden;">
-    <tr>
-      <td>
-        <div class="error_client">
-
-        </div>
-      </td>
-    </tr>
-  </table>
-  @endif
-  <br>
   <div class="form_ur">
+    <div class="error">{!!session('err_m')!!}</div>
     <p class="item_ur" id="user_id">ユーザID
     </p>
     @if ($errors->has('name'))
-    {{ $errors->first("name") }}
+    <div class="error">{{ $errors->first("name") }}</div>
     @else
     <br>
     @endif
@@ -51,15 +26,15 @@
     <p class="item_ur" id="password">パスワード
     </p>
     @if ($errors->has('password'))
-    {{ $errors->first("password") }}
+    <div class="error">{{ $errors->first("password") }}</div>
     @else
     <br>
     @endif
-    <input class="value_ur" type="text" name="password" size="20">
+    <input class="value_ur" type="password" name="password" size="20">
 
     <p class="item_ur" id="passwordKknn">パスワードの確認</p>
     <br>
-    <input class="value_ur" type="text" name="password_kknn" size="20">
+    <input class="value_ur" type="password" name="password_kknn" size="20">
   </div>
   <br>
   <center>
@@ -68,13 +43,14 @@
   <script src="{{mix('js/app.js')}}"></script>
   <script>
     $(function() {
-      $('#form').submit(function(e) {});
-      v_password = $('input[name="password"]').val();
-      v_password_kknn = $('input[name="password_kknn"]').val();
-      if (v_password !== v_password_kknn) {
-        alert('パスワードが一致しません');
-      }
-
+      $('#form').submit(function(e) {
+        v_password = $('input[name="password"]').val();
+        v_password_kknn = $('input[name="password_kknn"]').val();
+        if (v_password !== v_password_kknn) {
+          alert('パスワードが一致しません');
+          return false;
+        }
+      });
     });
   </script>
 </form>
