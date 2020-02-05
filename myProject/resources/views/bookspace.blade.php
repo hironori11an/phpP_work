@@ -62,7 +62,9 @@
                     ジャンル
                   </th>
                   <td>
-                    {{$item->genre}}
+                    @foreach ($item->genres as $genre)
+                    {{ $genre->genre_name }}
+                    @endforeach
                   </td>
                 </tr>
                 <tr>

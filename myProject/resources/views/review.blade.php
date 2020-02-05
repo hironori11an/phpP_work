@@ -55,6 +55,7 @@
                     <option value="1">ノンフィクション</option>
                     <option value="2">人文・思想・宗教</option>
                     <option value="3">コミックス</option>
+                    <option value="8">その他</option>
                   </select>
 
                 </td>
