@@ -51,13 +51,10 @@
                 </th>
                 <td>
                   <select name="genre">
-                    <option value="0">文学・評論</option>
-                    <option value="1">ノンフィクション</option>
-                    <option value="2">人文・思想・宗教</option>
-                    <option value="3">コミックス</option>
-                    <option value="8">その他</option>
+                    @foreach ($genres as $genre)
+                    <option value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
+                    @endforeach
                   </select>
-
                 </td>
               </tr>
               <tr>

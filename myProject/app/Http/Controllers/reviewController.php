@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Review;
+use App\Genre;
 use App\Http\Requests\reviewRequest;
 
 class reviewController extends Controller
@@ -13,8 +14,9 @@ class reviewController extends Controller
     /* 初期表示 */
     public function init(Request $request)
     {
+        $genres = \App\Genre::all();
         $all = Session::all();
-        return view('review', compact('all'));
+        return view('review', compact('all', 'genres'));
     }
 
     public function regist(reviewRequest $request)
