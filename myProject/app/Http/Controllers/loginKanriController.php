@@ -34,6 +34,8 @@ class loginKanriController extends Controller
         //ユーザ「kanri」としてログイン
         } elseif (Input::get('knr')) {
             Auth::attempt(['name' => 'kanri', 'password' => 'kanri']);
+            $request->session()->put('name', 'kanri');
+            $request->session()->put('role', '1');
             return redirect()->route('homeKanri');
 
         //通常ログイン
@@ -56,12 +58,13 @@ class loginKanriController extends Controller
                         $role=$user->role;
                         $name=$user->name;
                     }
-                    if ($role > 0) {
-                        return redirect()->route('homeKanri');
-                    }
-                    //一般ホームへ
                     $request->session()->put('name', $name);
                     $request->session()->put('role', $role);
+                    if ($role > 0) {
+                        return redirect()->route('homeKanri');
+                        // return redirect('/home');
+                    }
+                    //一般ホームへ
                     return redirect('/home');
                 } else {
                     // 認証失敗

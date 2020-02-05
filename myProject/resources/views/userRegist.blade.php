@@ -2,9 +2,10 @@
 @section('head')
 <link href="/css/userRegist.css" rel="stylesheet" type="text/css">
 @endsection
-
-
 @section('titleHeader','BookSpace')
+@section('headerRight')
+<a href="{{ action('bookspaceController@init') }}">ホーム</a>
+@endsection
 @section('title','ユーザ登録')
 @section('work')
 

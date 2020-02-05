@@ -10,8 +10,16 @@
 </head>
 
 <body>
-    <h1>@yield('titleHeader')</h1>
+    <div class="header">
 
+        <h1>@yield('titleHeader')</h1>
+        <div class="bookSite">
+            @section('headerRight')
+            @show
+        </div>
+
+
+    </div>
     <p class="title">@yield('title')</p>
 
     <div class="work">

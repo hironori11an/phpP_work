@@ -22,7 +22,8 @@ class searchController extends Controller
         $title = $request->input('title');
         $chysh = $request->input('chysh');
 
-        $query = DB::table('reviews');
+        // $query = DB::table('reviews');
+        $query = Review::whereHas('genres');
         if (!is_null($genre) && $genre !=='9') {
             $query = $query->where('genre', '=', $genre);
         }

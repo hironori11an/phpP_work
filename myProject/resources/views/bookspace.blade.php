@@ -15,7 +15,8 @@
         @if(Session::has('role'))
         <a href="{{ action('bookspaceController@init') }}">ログアウト</a>
         &nbsp;&nbsp;
-        <a>{{ session('name') }}</a></div>
+        <a>{{ session('name') }}</a>
+      </div>
       @else
       <a href="/userRegist">ユーザ登録</a>&nbsp;&nbsp;
       <a href="/loginbs">ログイン</a>&nbsp;&nbsp;
