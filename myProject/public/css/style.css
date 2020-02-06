@@ -44,8 +44,9 @@ a:hover { color: #996600; }
 /* グローバルナビ */
 #pageHead .globalNavi {
 	border: solid #CCCCCC;
-	border-width: 1px 0;
-	padding: 10px 0;
+	border-width: 1px 1px;
+	padding: 10px;
+	margin: 10px 0;
 }
 
 #pageHead .globalNavi ul {
@@ -96,7 +97,8 @@ a:hover { color: #996600; }
 
 /* ページボディ */
 #pageBody {
-	margin-top: 30px;
+	margin-top: 20px;
+	
 }
 #pageBody:after {
 	content: "";
@@ -370,30 +372,32 @@ a:hover { color: #996600; }
 	line-height: 1.5;
 	margin-bottom: 0;
 }
+
 /* ヘッダ str*/
 .sampleHead {
-	background: #333;
+	background: #555555;
 	padding: 10px;
 	margin: 0;
 	overflow: hidden;
+	height: 60px;
 }
 .sampleHead h1 {
-	padding: 0;
+	padding: 10px 30px;
 	margin: 0;
 	color: #FFF;
-	font-size: 16px;
+	font-size: 20px;
 	line-height: 1.375;
 	float: left;
 }
 /* .bookSite ヘッダー右側*/
 .sampleHead .bookSite {
-	padding: 0;
+	padding: 35px 40px;
 	margin: 0;
 	font-size: 16px;
 	line-height: 1.571;
 	color: #FFF;
 	float: right;
-	font-size: 14px;
+	font-size: 18px;
 }
 .sampleHead .bookSite a {
 	color: #FFF;

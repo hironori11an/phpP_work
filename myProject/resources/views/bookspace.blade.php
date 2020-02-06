@@ -18,8 +18,8 @@
         <a>{{ session('name') }}</a>
       </div>
       @else
-      <a href="/userRegist">ユーザ登録</a>&nbsp;&nbsp;
-      <a href="/loginbs">ログイン</a>&nbsp;&nbsp;
+      <a href="/userRegist">ユーザ登録</a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="/loginbs">ログイン</a>&nbsp;&nbsp;&nbsp;&nbsp;
       <a>ゲスト</a>
       @endif
     </div>
@@ -27,8 +27,6 @@
     <div id="page">
 
       <header id="pageHead">
-        <h1 id="siteTitle">komorikomasha</h1>
-        <p id="catchcopy">1人じゃできないことも、力を合わせればできる。やってみたいをカタチにする、3人の楽しいものづくり。</p>
         <nav class="globalNavi">
           <ul>
             @if(Session::has('role'))
@@ -109,9 +107,9 @@
 
           <div class="mainVisualText">
 
-            <h1>Cafe Debut</h1>
-            <p>baserCMS、カフェサイト用テーマ<br>
-              baserCMS2012 テーマコンテスト　飲食店系テーマ賞受賞</p>
+            <h1>読書レビューサイト</h1>
+            <p>読みたい本が見つかる。<br>
+              読み終わった本のレビューを投稿しよう</p>
           </div>
           <img src="{{ asset('/images/bookspace_home.jpg')}}" width="980" height="500" alt="">
           @endif

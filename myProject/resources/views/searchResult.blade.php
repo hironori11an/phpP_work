@@ -28,8 +28,6 @@
     <div id="page">
 
       <header id="pageHead">
-        <h1 id="siteTitle">komorikomasha</h1>
-        <p id="catchcopy">1人じゃできないことも、力を合わせればできる。やってみたいをカタチにする、3人の楽しいものづくり。</p>
         <nav class="globalNavi">
           <ul>
             @if(Session::has('role'))

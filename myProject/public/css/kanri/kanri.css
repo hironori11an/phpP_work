@@ -6,28 +6,33 @@ body {
 }
 /* ヘッダ str*/
 .header {
-	background-color:#364e96;
+	/* background-color:#364e96;
+	padding: 10px;
+	margin: 0;
+  overflow: hidden; */
+  background: #777777;
 	padding: 10px;
 	margin: 0;
 	overflow: hidden;
+	height: 60px;
 }
 .header h1 {
-	padding: 0;
+	padding: 10px 30px;
 	margin: 0;
 	color: #FFF;
-	font-size: 16px;
+	font-size: 20px;
 	line-height: 1.375;
 	float: left;
 }
 /* .bookSite ヘッダー右側*/
 .header .bookSite {
-	padding: 0;
+	padding: 35px 40px;
 	margin: 0;
 	font-size: 16px;
 	line-height: 1.571;
 	color: #FFF;
 	float: right;
-	font-size: 14px;
+	font-size: 18px;
 }
 .header .bookSite a {
 	color: #FFF;
@@ -68,7 +73,7 @@ body {
 }
 /* AAFFFF */
 .input_item {
-  background-color:#364e96;
+  background-color:rgb(109, 146, 237);
   color: #faf8f8;
   width: 100px;
   text-align: left;
