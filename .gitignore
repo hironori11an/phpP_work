@@ -11,8 +11,8 @@ app/storage/
 public/storage
 public/hot
 storage/*.key
-.env.*.php
-.env.php
+# .env.*.php
+# .env.php
 Homestead.yaml
 Homestead.json
 
