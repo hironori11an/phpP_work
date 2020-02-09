@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
-use App\Http\Requests\userRegistRequest;
+use App\Http\Requests\userRegistKanriRequest;
 
 use Validator;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class userRegistKanriController extends Controller
 {
     /* 送信ボタン押下時 */
-    public function regist(userRegistRequest $request)
+    public function regist(userRegistKanriRequest $request)
     {
         /* バリデーションチェック成功時 */
         
@@ -42,7 +43,7 @@ class userRegistKanriController extends Controller
         for ($i=0; $i<$max_cnt; $i++) {
             $user= new User;
             $user->name = $request->input('name.'.$i);
-            $user->password = $request->input('password.'.$i);
+            $user->password = Hash::make($request->input('password.'.$i));
             $user->role = $request->input('authority.'.$i);
             $user->save();
             DB::commit();

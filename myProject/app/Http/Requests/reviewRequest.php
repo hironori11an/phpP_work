@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class userRegistRequest extends FormRequest
+class reviewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,6 +16,13 @@ class userRegistRequest extends FormRequest
         return true;
     }
 
+    // //FormRequestのメソッドをオーバライド
+    // protected function validationData(Request $request)
+    // {
+    //     // $request->merge(['user_name' => '2000']);
+    //     return ($this->all());
+    // }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,26 +31,30 @@ class userRegistRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'between:4,8|alpha_dash_check',
-            'password' => 'between:4,8|alpha_dash_check',
+            'user_name' => 'required',
+            'genre' => 'required',
+            'title' => 'required',
+            'chysh' => 'required',
+            'hyk' => 'required',
+            'review_niy' => 'required'
+
         ];
     }
     public function messages()
     {
         return [
-            'between'=>':attribute ４桁から８桁で入力してください',
-            'alpha_dash_check'=>':attribute 半角英数字・「_」・「-」の組み合せで入力してください',
+            'required'=>':attribute の入力がありません',
     ];
     }
-
     public function attributes()
     {
         $attributes = [];
         $attributes = array_merge(
             $attributes,
             [
-                "name" => "",
-                "password" => "",
+                "title" => "タイトル",
+                "chysh" => "著者",
+                "review_niy" => "レビュー",
             ]
         );
         return $attributes;

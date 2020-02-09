@@ -4,16 +4,52 @@ body {
   /* font-family: arial, sans-serif; */
   /* font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif; */
 }
-h1 {
-  /* color: #364e96;文字色 */
-  /* padding: 0.5px 0;上下の余白 */
-  /* border-top: solid 2px #364e96;上線 */
-  /* border-bottom: solid 2px #364e96;下線 */
+/* ヘッダ str*/
+.header {
+	/* background-color:#364e96;
+	padding: 10px;
+	margin: 0;
+  overflow: hidden; */
+  background: #777777;
+	padding: 10px;
+	margin: 0;
+	overflow: hidden;
+	height: 60px;
+}
+.header h1 {
+	padding: 10px 30px;
+	margin: 0;
+	color: #FFF;
+	font-size: 20px;
+	line-height: 1.375;
+	float: left;
+}
+/* .bookSite ヘッダー右側*/
+.header .bookSite {
+	padding: 35px 40px;
+	margin: 0;
+	font-size: 16px;
+	line-height: 1.571;
+	color: #FFF;
+	float: right;
+	font-size: 18px;
+}
+.header .bookSite a {
+	color: #FFF;
+}
+.header .bookSite a:hover {
+	color: #EEE;
+}
+/* ヘッダ end*/
+
+
+
+/* h1 {
   font-size: 18px;
   padding: 15px 15px;
   background-color:#364e96;
   color: #faf8f8;
-}
+} */
 .title {
   text-align: center;
   font-size: 30px;
@@ -22,7 +58,6 @@ h1 {
 }
 .work {
   line-height: 1.0;
-  text-align: center;
 }
 .error {
   color: #FF0000;
@@ -38,7 +73,7 @@ h1 {
 }
 /* AAFFFF */
 .input_item {
-  background-color:#364e96;
+  background-color:rgb(109, 146, 237);
   color: #faf8f8;
   width: 100px;
   text-align: left;
@@ -51,19 +86,11 @@ h1 {
   background-color:#c7d3e4;
 }
 
-.btn {
-  display: inline-block;
-  padding: 0.5em 0.8em;
-  text-decoration: none;
-  background: #668ad8;
-  /*ボタン色*/
-  color: #FFF;
-  border-bottom: solid 4px #627295;
-  border-radius: 3px;
-  font-size: 10px
+.tbl_bold {
+  border: 3px green solid;
+  border-radius: 5px;
 }
-
-.btn:hover {
-  cursor : pointer;
-  background: #27d3ed;
+.tbl_bold_thtd{
+  text-align: left;
+  padding: 10px 0px;
 }

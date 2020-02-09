@@ -1,9 +1,10 @@
 .pagination {
   display: -webkit-box;
   display: flex;
-  padding-left: 645;
+  padding-left: 640;
   list-style: none;
   border-radius: 0.25rem;
+  /* text-align: center; */
 }
 
 .pagination-lg .page-link {

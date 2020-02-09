@@ -30,12 +30,12 @@
   </tr>
   </td>
 </table>
-<div align="center">
+<center>
   {{ $items->links()}}
   <br><br>
   @component('components.btn_modoru')
   @slot('url','/kanri')
   @slot('value','戻る')
   @endcomponent
-</div>
+</center>
 @endsection
