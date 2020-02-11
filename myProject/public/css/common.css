@@ -1,0 +1,16 @@
+.btn {
+  display: inline-block;
+  padding: 0.5em 0.8em;
+  text-decoration: none;
+  background: rgb(109, 146, 237);
+  /*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  font-size: 10px
+}
+
+.btn:hover {
+  cursor : pointer;
+  background: rgb(23, 30, 100);
+}
