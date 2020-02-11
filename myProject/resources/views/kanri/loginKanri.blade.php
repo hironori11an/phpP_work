@@ -5,7 +5,7 @@
 @endsection
 @section('work')
 <form method="POST" action="{{ route('homeKanri.signin') }}">
-  {{ csrf_field()}}
+  @csrf
   <!-- 認証エラーメッセージ -->
   <table align="center" border="0" width="350" height="35">
     <tr>
