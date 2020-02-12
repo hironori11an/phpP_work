@@ -11,6 +11,7 @@
 
 <form id="form" method="POST" action="{{ action('userRegistController@regist') }}">
   @csrf
+  test
   <div class="form_ur">
     <div class="error">{!!session('err_m')!!}</div>
     <p class="item_ur" id="user_id">ユーザID
