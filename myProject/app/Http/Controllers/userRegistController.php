@@ -38,6 +38,10 @@ class userRegistController extends Controller
         $user->save();
         DB::commit();
     
-        return view('common.success', ['success_message'=>'ユーザ登録処理が成功しました']);
+        return view(
+            'common.success',
+            ['success_message'=>'ユーザ登録処理が成功しました',
+            'url'=>'/']
+        );
     }
 }
