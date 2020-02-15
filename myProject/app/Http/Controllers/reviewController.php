@@ -26,6 +26,10 @@ class reviewController extends Controller
         unset($form['_token']);
         $review->fill($form)->save();
 
-        return view('common.success', ['success_message'=>'レビュー投稿が完了しました']);
+        return view(
+            'common.success',
+            ['success_message'=>'レビュー投稿が完了しました',
+            'url'=>'/home']
+        );
     }
 }
