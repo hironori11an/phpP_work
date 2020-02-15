@@ -15,9 +15,6 @@ class bookspaceController extends Controller
         $request->session()->flush();
 
         return view('bookspace');
-        // $items = Review::where('user_name', $request->session()->get('name'))->get();
-        // $all = Session::all();
-        // return view('bookspace', compact('all', 'items'));
     }
 
     /* ログイン */

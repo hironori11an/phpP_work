@@ -7,7 +7,7 @@
 </head>
 
 <body>
-  <form method="POST" action="{{ action('reviewController@regist') }}">
+  <form method="POST" action="{{ action('reviewController@regist') }}" enctype="multipart/form-data">
     {{ csrf_field()}}
     <input name="user_name" type="hidden" value={{ session('name') }}>
     <div class="sampleHead">
@@ -92,6 +92,17 @@
                     value="{{ old('review_niy') }}" style="width:100%;"></textarea>
                 </td>
               </tr>
+              {{-- 写真str --}}
+              <tr>
+                <th>
+                  画像
+                </th>
+                <td>
+                  <input type="file" name="photo">
+                </td>
+              </tr>
+
+              {{-- 写真end --}}
             </table>
         </section>
       </div>
