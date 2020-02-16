@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Review;
 use App\Genre;
+use Storage;
 use App\Http\Requests\reviewRequest;
 
 // use Illuminate\Support\Facades\Storage;
@@ -36,7 +37,9 @@ class reviewController extends Controller
         }
         $review->fill($form)->save();
         if ($review->photo_flg=== 'X') {
-            $request->photo->storeAs('public/profile_images', 'review-'.$review->id .'.jpg');
+            //S3にアップロード
+            // $request->photo->storeAs('public/profile_images', 'review-'.$review->id .'.jpg');
+            Storage::disk('s3')->putFileAs('myprefix/', $request->photo, 'review-'.$review->id .'.jpg', 'public');
         }
 
         return view(
