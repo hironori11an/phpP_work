@@ -14,7 +14,7 @@ class AddColumnPhotoFlgToReviewsTable extends Migration
     public function up()
     {
         Schema::table('reviews', function (Blueprint $table) {
-            $table->string('photo_flg');
+            $table->string('photo_path')->nullable()->after('review_niy');
         });
     }
 
