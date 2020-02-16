@@ -36,14 +36,17 @@ class reviewRequest extends FormRequest
             'title' => 'required',
             'chysh' => 'required',
             'hyk' => 'required',
-            'review_niy' => 'required'
+            'review_niy' => 'required',
+            'photo' => 'mimes:jpeg,png,jpg,gif|max:2048'
 
         ];
     }
     public function messages()
     {
         return [
-            'required'=>':attribute の入力がありません',
+            'required'=>':attribute は必須項目です',
+            'mimes'=>':attributeファイルには jpeg,png,jpg,gif のうちいずれかの形式にしてください',
+            'max'=>':attributeファイルのサイズは 2048KB 以内にしてください',
     ];
     }
     public function attributes()
@@ -55,6 +58,7 @@ class reviewRequest extends FormRequest
                 "title" => "タイトル",
                 "chysh" => "著者",
                 "review_niy" => "レビュー",
+                "photo" => "画像",
             ]
         );
         return $attributes;

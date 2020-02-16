@@ -56,11 +56,18 @@
             <div id="my_review">
               @foreach ($items as $item)
               <table id="my_review">
-                <tr>
+                <tr width>
+                  <td rowspan="5" width="22%">
+                    @isset($item->photo_path)
+                    <img src="{{$item->photo_path}}" width="150px" height="150px">
+                    @else
+                    画像なし
+                    @endisset
+                  </td>
                   <th>
                     ジャンル
                   </th>
-                  <td>
+                  <td width="540">
                     @foreach ($item->genres as $genre)
                     {{ $genre->genre_name }}
                     @endforeach
@@ -70,7 +77,7 @@
                   <th>
                     タイトル
                   </th>
-                  <td>
+                  <td width="540">
                     {{$item->title}}
                   </td>
                 </tr>
@@ -78,7 +85,7 @@
                   <th>
                     著者
                   </th>
-                  <td>
+                  <td width="540">
                     {{$item->chysh}}
                   </td>
                 </tr>
@@ -86,7 +93,7 @@
                   <th>
                     評価
                   </th>
-                  <td>
+                  <td width="540">
                     {{$item->hyk}}
                   </td>
                 </tr>
@@ -94,7 +101,7 @@
                   <th>
                     レビュー
                   </th>
-                  <td>
+                  <td width="540">
                     {{$item->review_niy}}
                   </td>
                 </tr>

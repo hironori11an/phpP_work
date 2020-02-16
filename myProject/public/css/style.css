@@ -107,7 +107,7 @@ a:hover { color: #996600; }
 }
 
 #pageBodyMain {
-	width: 720px;
+	width: 800px;
 	float: left;
 }
 
@@ -189,19 +189,18 @@ a:hover { color: #996600; }
 #pageBodyMain table th {
 	background-color: #EEEEEE;
 	text-align: left;
-	width: 30%;
+	width: 20%;
 }
 #pageBodyMain table caption {
 	text-align: left;
 	font-weight: bold;
 }
 /* my_review*/
-/*
-#my_review {
-	overflow-y: scroll;
-	height:200px; 
-}
-*/
+
+/* my_review {
+	width :800px;
+} */
+ 
 /* 図版 */
 #pageBodyMain figure {
 	margin: 0;
