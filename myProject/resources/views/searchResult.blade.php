@@ -55,6 +55,13 @@
             @foreach ($items as $item)
             <table>
               <tr>
+                <td rowspan="5" width="22%">
+                  @isset($item->photo_path)
+                  <img src="{{$item->photo_path}}" width="150px" height="150px">
+                  @else
+                  画像なし
+                  @endisset
+                </td>
                 <th>
                   ジャンル
                 </th>

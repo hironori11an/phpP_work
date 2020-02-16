@@ -56,7 +56,7 @@
             <div id="my_review">
               @foreach ($items as $item)
               <table id="my_review">
-                <tr width>
+                <tr>
                   <td rowspan="5" width="22%">
                     @isset($item->photo_path)
                     <img src="{{$item->photo_path}}" width="150px" height="150px">
@@ -71,6 +71,20 @@
                     @foreach ($item->genres as $genre)
                     {{ $genre->genre_name }}
                     @endforeach
+
+                    {{--編集できるよう
+                    <select name="genre">
+                      @foreach ($allgenres as $allgenre)
+                      @foreach ($item->genres as $genre)
+                      @if($allgenre->id === $genre->id)
+                      <option selected value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
+                      @else
+                      <option value="{{ $allgenre->id }}">{{ $allgenre->genre_name }}</option>
+                      @endif
+                      @endforeach
+                      @endforeach
+                    </select>
+                    --}}
                   </td>
                 </tr>
                 <tr>
