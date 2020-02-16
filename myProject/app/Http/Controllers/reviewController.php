@@ -24,23 +24,22 @@ class reviewController extends Controller
 
     public function regist(reviewRequest $request)
     {
+        /* レビュー登録 */
         $review= new Review;
         $form =$request->all();
+        $review->photo_path = null;
         unset($form['_token']);
         unset($form['photo']);
-        //アップロードファイル画像がある場合、photo_flg='X'にして、
-        ///var/www/storage/app/public/profile_images にアップロード
-        if ($_FILES['photo']['size'] > 0) {
-            $review->photo_flg='X';
-        } else {
-            $review->photo_flg='O';
-        }
         $review->fill($form)->save();
-        if ($review->photo_flg=== 'X') {
-            //S3にアップロード
-            // $request->photo->storeAs('public/profile_images', 'review-'.$review->id .'.jpg');
-            Storage::disk('s3')->putFileAs('myprefix/', $request->photo, 'review-'.$review->id .'.jpg', 'public');
+        //アップロードファイルがある場合、S3にアップロードする
+        //S3のurlは、reviews.photo_pathに登録する
+        if ($_FILES['photo']['size'] > 0) {
+            $path = Storage::disk('s3')->putFileAs('myprefix', $request->photo, 'review-'.$review->id .'.jpg', 'public');
+            $reviewUpd = Review::find($review->id);
+            $reviewUpd->photo_path = Storage::disk('s3')->url($path);
+            $reviewUpd->save();
         }
+        
 
         return view(
             'common.success',

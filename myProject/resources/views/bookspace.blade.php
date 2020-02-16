@@ -58,12 +58,11 @@
               <table id="my_review">
                 <tr width>
                   <td rowspan="5" width="22%">
-                    @if($item->photo_flg === 'X')
-                    <img src="{!!asset('storage/profile_images/review-' . $item->id . '.jpg')!!}" width="150px"
-                      height="150px">
+                    @isset($item->photo_path)
+                    <img src="{{$item->photo_path}}" width="150px" height="150px">
                     @else
                     画像なし
-                    @endif
+                    @endisset
                   </td>
                   <th>
                     ジャンル
