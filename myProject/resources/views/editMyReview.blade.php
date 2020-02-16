@@ -31,11 +31,11 @@
         <nav class="globalNavi">
           <ul>
             @if(Session::has('role'))
-            <li><a href="{{ action('bookspaceController@login') }}">ホーム</a></li>
+            <li class="current"><a href="{{ action('bookspaceController@login') }}">ホーム</a></li>
             @else
             <li><a href="/">ホーム</a></li>
             @endif
-            <li class="current"><a href="{{ action('searchController@init') }}">探す</a></li>
+            <li><a href="{{ action('searchController@init') }}">探す</a></li>
             @if(Session::has('role'))
             <li><a href="{{ action('reviewController@init') }}">レビューする</a></li>
             @endif
@@ -45,30 +45,24 @@
       </header>
 
       <div id="pageBody">
-        @if ($errors->any())
-        @foreach ($errors->all() as $error)
-        <li>{{$error}}</li>
-
-        @endforeach
-
-        @endif
         <section class="mainVisual">
           <div id="pageBodyMain">
             <table id="mainTable">
               <tr>
+                <td rowspan="5" width="22%">
+                  @isset($item->photo_path)
+                  <img src="{{$item->photo_path}}" width="150px" height="150px">
+                  @else
+                  画像なし
+                  @endisset
+                </td>
                 <th>
                   ジャンル
                 </th>
                 <td>
-                  <select name="genre">
-                    <option value="9">指定しない</option>
-                    <option value="0">文学・評論</option>
-                    <option value="1">ノンフィクション</option>
-                    <option value="2">人文・思想・宗教</option>
-                    <option value="3">コミックス</option>
-                    <option value="8">その他</option>
-                  </select>
-
+                  @foreach ($item->genres as $genre)
+                  {{ $genre->genre_name }}
+                  @endforeach
                 </td>
               </tr>
               <tr>
@@ -76,7 +70,7 @@
                   タイトル
                 </th>
                 <td>
-                  <input name="title" type="text" value="{{ old('title') }}">
+                  {{$item->title}}
                 </td>
               </tr>
               <tr>
@@ -84,15 +78,34 @@
                   著者
                 </th>
                 <td>
-                  <input name="chysh" type="text" value="{{ old('chysh') }}">
+                  {{$item->chysh}}
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  評価
+                </th>
+                <td>
+                  {{$item->hyk}}
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  レビュー
+                </th>
+                <td>
+                  {{$item->review_niy}}
                 </td>
               </tr>
             </table>
+
+
+          </div>
         </section>
       </div>
       <br>
-      <input type="submit" class="btn" value="検索">
     </div>
+
 
   </form>
 </body>

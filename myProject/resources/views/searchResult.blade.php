@@ -53,7 +53,7 @@
         <section class="mainVisual">
           <div id="pageBodyMain">
             @foreach ($items as $item)
-            <table>
+            <table id="mainTable">
               <tr>
                 <td rowspan="5" width="22%">
                   @isset($item->photo_path)

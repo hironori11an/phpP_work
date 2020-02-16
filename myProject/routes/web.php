@@ -43,6 +43,9 @@ Route::post('/userRegist/success', [
     'uses' => 'userRegistController@regist',
 ]);
 
+Route::post('/home/editMyReview', [
+    'uses' => 'editMyReviewController@init',
+]);
 
 
 

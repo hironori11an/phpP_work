@@ -42,7 +42,7 @@
         @endif
         <section class="mainVisual">
           <div id="pageBodyMain">
-            <table>
+            <table id="mainTable">
               <tr>
                 <th>
                   ジャンル
@@ -88,7 +88,7 @@
                   レビュー
                 </th>
                 <td>
-                  <textarea name="review_niy" maxlength="10000" rows="4" placeholder="レビューを書く"
+                  <textarea name="review_niy" maxlength="250" rows="4" placeholder="250文字以内でレビューしてください"
                     value="{{ old('review_niy') }}" style="width:100%;"></textarea>
                 </td>
               </tr>
