@@ -15,3 +15,21 @@
   cursor : pointer;
   background: rgb(23, 30, 100);
 }
+
+.btn-strong {
+  display: inline-block;
+  padding: 0.5em 0.8em;
+  text-decoration: none;
+  background: rgb(223, 38, 29);
+  /*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #7b0600;
+  border-radius: 3px;
+  font-size: 10px;
+  height: 30px;
+}
+
+.btn-strong:hover {
+  cursor : pointer;
+  background: #7b0600;
+}
