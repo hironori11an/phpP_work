@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <form method="POST" action="{{ action('editMyReviewController@edit') }}">
+  <form method="POST" action="{{ action('editMyReviewController@edit') }}" enctype="multipart/form-data">
     {{ csrf_field()}}
     <input name="user_name" type="hidden" value={{ session('name') }}>
     <div class="sampleHead">
@@ -127,7 +127,9 @@
                 </td>
               </tr>
               <tr>
+
                 <td width="100">
+
                   <label class="upload-img-btn">
                     画像を変更する
                     <input type="file" id="file" name="photo" style="display:none"
@@ -138,6 +140,12 @@
                 <td>
                   <input type="text" id="fake_text_box" value="" size="35" readonly onClick="$('#file').click();">
                 </td>
+
+                {{--
+                <td>
+                  <input type="file" name="photo">
+                </td>
+                --}}
               </tr>
               <tr>
                 <td>&nbsp;</td>
