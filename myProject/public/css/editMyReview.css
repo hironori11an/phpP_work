@@ -1,0 +1,13 @@
+.upload-img-btn {
+  padding: 0.5em 0.8em;
+  max-width: 80px;
+  text-align: center;
+  display: block;
+  background: rgb(109, 146, 237);
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  font-size: 10px;
+  height: 15px;
+  cursor: pointer;
+}
