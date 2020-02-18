@@ -10,8 +10,6 @@ use App\Genre;
 use Storage;
 use App\Http\Requests\reviewRequest;
 
-// use Illuminate\Support\Facades\Storage;
-
 class reviewController extends Controller
 {
     /* 初期表示 */
@@ -34,9 +32,12 @@ class reviewController extends Controller
         //アップロードファイルがある場合、S3にアップロードする
         //S3のurlは、reviews.photo_pathに登録する
         if ($_FILES['photo']['size'] > 0) {
-            $path = Storage::disk('s3')->putFileAs('myprefix', $request->photo, 'review-'.$review->id .'.jpg', 'public');
+            //S3への保存は、composeメモリ不足により断念
+            // $path = Storage::disk('s3')->putFileAs('myprefix', $request->photo, 'review-'.$review->id .'.jpg', 'public');
+            $request->photo->storeAs('public/profile_images', 'review-'.$review->id .'.jpg');
             $reviewUpd = Review::find($review->id);
-            $reviewUpd->photo_path = Storage::disk('s3')->url($path);
+            // $reviewUpd->photo_path = Storage::disk('s3')->url($path);
+            $reviewUpd->photo_path = asset('storage/profile_images/review-' . $review->id. '.jpg');
             $reviewUpd->save();
         }
         

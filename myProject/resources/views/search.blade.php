@@ -54,7 +54,7 @@
         @endif
         <section class="mainVisual">
           <div id="pageBodyMain">
-            <table>
+            <table id="mainTable">
               <tr>
                 <th>
                   ジャンル
