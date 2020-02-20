@@ -35,9 +35,24 @@ class searchController extends Controller
         }
         
 
-        $items = $query->get();
+        $items = $query->orderByRaw('updated_at DESC')->get();
         $all = Session::all();
         return view('searchResult', compact('all', 'items'));
         // return view('search', compact('all'));
+    }
+    public function searchUserName(Request $request)
+    {
+        $user_name=$request->user_name;
+        $items = Review::where('user_name', $user_name)->orderByRaw('updated_at DESC')->get();
+        if ($items->isEmpty()) {
+            return response()->view(
+                'common.success',
+                ['success_message'=>'ユーザが見つかりません',
+            'url'=>'/search']
+            );
+        }
+
+        $all = Session::all();
+        return view('searchUserName', compact('all', 'items'));
     }
 }

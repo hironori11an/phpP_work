@@ -49,7 +49,10 @@ Route::post('/home/editMyReview', [
 Route::post('/home/editMyReview/success', [
     'uses' => 'editMyReviewController@edit',
 ]);
-
+//レビュー検索結果
+Route::get('/search/results/{user_name?}', [
+    'uses' => 'searchController@searchUserName',
+]);
 
 
 // テスト用画面
