@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/bookspace.css">
   <script src="{{mix('js/app.js')}}"></script>
   <script src="/js/bookspaceHome.js"></script>
 
@@ -63,65 +64,45 @@
 
               <table width="900" border="0">
                 <tr>
-                  <input type="hidden" name="reviewLike_user_id" class="reviewLike_user_id"
-                    value="{{$reviewLike->pivot->user_id}}">
-
                   <input type="hidden" name="reviewLike_review_id" class="reviewLike_review_id"
                     value="{{$reviewLike->pivot->review_id}}">
 
                   <td width="800">
-                    <table id="mainTable">
-                      <tr>
-                        <td rowspan="5" width="22%">
+                    <table border="0" width="800">
+                      <tr class=tr_title>
+                        <td colspan="2">
+                          <div>
+                            <p><span class="title">{{$reviewLike->title}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                              著者:&nbsp;&nbsp;{{$reviewLike->chysh}}&nbsp;&nbsp;&nbsp;&nbsp;
+                              ジャンル：
+                              @foreach ($reviewLike->genres as $genre)
+                              {{ $genre->genre_name }}
+                              @endforeach
+                            </p>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr class=tr_review>
+                        <td width="22%">
                           @isset($reviewLike->photo_path)
                           <img src="{{$reviewLike->photo_path}}" width="150px" height="150px">
                           @else
                           画像なし
                           @endisset
                         </td>
-                        <th>
-                          ジャンル
-                        </th>
-                        <td width="540">
-                          @foreach ($reviewLike->genres as $genre)
-                          {{ $genre->genre_name }}
-                          @endforeach
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>
-                          タイトル
-                        </th>
-                        <td width="540">
-                          {{$reviewLike->title}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>
-                          著者
-                        </th>
-                        <td width="540">
-                          {{$reviewLike->chysh}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>
-                          評価
-                        </th>
-                        <td width="540">
-                          {{$reviewLike->hyk}}
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>
-                          レビュー
-                        </th>
-                        <td width="540">
+                        <td class="td">
+                          <a
+                            href="/search/results/{{$reviewLike->user_name}}">{{$reviewLike->user_name}}</a>さんのレビュー&nbsp;&nbsp;
+                          <img src="{{ asset('/images/hyk_level/ico_grade_'.$reviewLike->hyk.'.gif')}}" width="80"
+                            height="15"><br>
                           {{$reviewLike->review_niy}}
                         </td>
                       </tr>
+
                     </table>
+                  </td>
+
                   <td>
                     <input type="button" class="btn-strong" value="取消">
                   </td>
@@ -145,69 +126,53 @@
               @endif
               <div id="my_review">
                 @foreach ($items as $item)
+
                 <table width="900" border="0">
                   <tr>
+                    <input type="hidden" name="reviewId" class="reviewId" value="{{$item->id}}">
+
                     <td width="800">
-                      <table id="mainTable">
-                        <tr>
-                          <input type="hidden" name="reviewId" class="reviewId" value="{{$item->id}}">
-                          <td rowspan="5" width="22%">
+                      <table border="0" width="800">
+                        <tr class=tr_title>
+
+                          <td colspan="2">
+                            <div>
+                              <p><span class="title">{{$item->title}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                著者:&nbsp;&nbsp;{{$item->chysh}}&nbsp;&nbsp;&nbsp;&nbsp;
+                                ジャンル：
+                                @foreach ($item->genres as $genre)
+                                {{ $genre->genre_name }}
+                                @endforeach
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr class=tr_review>
+                          <td width="22%">
                             @isset($item->photo_path)
                             <img src="{{$item->photo_path}}" width="150px" height="150px">
                             @else
                             画像なし
                             @endisset
                           </td>
-                          <th>
-                            ジャンル
-                          </th>
-                          <td width="540">
-                            @foreach ($item->genres as $genre)
-                            {{ $genre->genre_name }}
-                            @endforeach
-
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>
-                            タイトル
-                          </th>
-                          <td width="540">
-                            {{$item->title}}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>
-                            著者
-                          </th>
-                          <td width="540">
-                            {{$item->chysh}}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>
-                            評価
-                          </th>
-                          <td width="540">
-                            {{$item->hyk}}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>
-                            レビュー
-                          </th>
-                          <td width="540">
+                          <td class="td">
+                            <img src="{{ asset('/images/hyk_level/ico_grade_'.$item->hyk.'.gif')}}" width="80"
+                              height="15"><br>
                             {{$item->review_niy}}
                           </td>
                         </tr>
+
                       </table>
                     </td>
+
                     <td>
                       <input type="submit" class="btn" value="編集">
                     </td>
                   </tr>
                 </table>
                 <br>
+
                 @endforeach
               </div>
             </details>
