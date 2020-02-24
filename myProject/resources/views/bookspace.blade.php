@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="/css/common.css">
   <script src="{{mix('js/app.js')}}"></script>
   <script src="/js/bookspaceHome.js"></script>
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -52,22 +54,27 @@
       <div id="pageBody">
         <section class="mainVisual">
           <div id="pageBodyMain">
-            @if(isset($items))
-            マイレビュー<br>
-            @if(count($items) ===0)
-            レビュー投稿がありません
-            @endif
-            <div id="my_review">
-              @foreach ($items as $item)
+            @isset($reviewLikes)
+            <details>
+              <summary>いいねしたレビュー</summary>
+              @if(count($reviewLikes) > 0)
+              @foreach ($reviewLikes as $reviewLike)
+
+
               <table width="900" border="0">
                 <tr>
+                  <input type="hidden" name="reviewLike_user_id" class="reviewLike_user_id"
+                    value="{{$reviewLike->pivot->user_id}}">
+
+                  <input type="hidden" name="reviewLike_review_id" class="reviewLike_review_id"
+                    value="{{$reviewLike->pivot->review_id}}">
+
                   <td width="800">
                     <table id="mainTable">
                       <tr>
-                        <input type="hidden" name="reviewId" class="reviewId" value="{{$item->id}}">
                         <td rowspan="5" width="22%">
-                          @isset($item->photo_path)
-                          <img src="{{$item->photo_path}}" width="150px" height="150px">
+                          @isset($reviewLike->photo_path)
+                          <img src="{{$reviewLike->photo_path}}" width="150px" height="150px">
                           @else
                           画像なし
                           @endisset
@@ -76,23 +83,10 @@
                           ジャンル
                         </th>
                         <td width="540">
-                          @foreach ($item->genres as $genre)
+                          @foreach ($reviewLike->genres as $genre)
                           {{ $genre->genre_name }}
                           @endforeach
 
-                          {{--編集できるよう
-                          <select name="genre">
-                            @foreach ($allgenres as $allgenre)
-                            @foreach ($item->genres as $genre)
-                            @if($allgenre->id === $genre->id)
-                            <option selected value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
-                            @else
-                            <option value="{{ $allgenre->id }}">{{ $allgenre->genre_name }}</option>
-                            @endif
-                            @endforeach
-                            @endforeach
-                          </select>
-                          --}}
                         </td>
                       </tr>
                       <tr>
@@ -100,7 +94,7 @@
                           タイトル
                         </th>
                         <td width="540">
-                          {{$item->title}}
+                          {{$reviewLike->title}}
                         </td>
                       </tr>
                       <tr>
@@ -108,7 +102,7 @@
                           著者
                         </th>
                         <td width="540">
-                          {{$item->chysh}}
+                          {{$reviewLike->chysh}}
                         </td>
                       </tr>
                       <tr>
@@ -116,7 +110,7 @@
                           評価
                         </th>
                         <td width="540">
-                          {{$item->hyk}}
+                          {{$reviewLike->hyk}}
                         </td>
                       </tr>
                       <tr>
@@ -124,19 +118,99 @@
                           レビュー
                         </th>
                         <td width="540">
-                          {{$item->review_niy}}
+                          {{$reviewLike->review_niy}}
                         </td>
                       </tr>
                     </table>
-                  </td>
                   <td>
-                    <input type="submit" class="btn" value="編集">
+                    <input type="button" class="btn-strong" value="取消">
                   </td>
                 </tr>
               </table>
               <br>
               @endforeach
-            </div>
+
+              @else
+              いいねしたレビューがありません
+              @endif
+
+            </details>
+            @endisset
+
+            @if(isset($items)){{--itemsがない場合は画像表示 class:mainVisualText--}}
+            <details open>
+              <summary>マイレビュー</summary>
+              @if(count($items) ===0)
+              レビュー投稿がありません
+              @endif
+              <div id="my_review">
+                @foreach ($items as $item)
+                <table width="900" border="0">
+                  <tr>
+                    <td width="800">
+                      <table id="mainTable">
+                        <tr>
+                          <input type="hidden" name="reviewId" class="reviewId" value="{{$item->id}}">
+                          <td rowspan="5" width="22%">
+                            @isset($item->photo_path)
+                            <img src="{{$item->photo_path}}" width="150px" height="150px">
+                            @else
+                            画像なし
+                            @endisset
+                          </td>
+                          <th>
+                            ジャンル
+                          </th>
+                          <td width="540">
+                            @foreach ($item->genres as $genre)
+                            {{ $genre->genre_name }}
+                            @endforeach
+
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>
+                            タイトル
+                          </th>
+                          <td width="540">
+                            {{$item->title}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>
+                            著者
+                          </th>
+                          <td width="540">
+                            {{$item->chysh}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>
+                            評価
+                          </th>
+                          <td width="540">
+                            {{$item->hyk}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>
+                            レビュー
+                          </th>
+                          <td width="540">
+                            {{$item->review_niy}}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td>
+                      <input type="submit" class="btn" value="編集">
+                    </td>
+                  </tr>
+                </table>
+                <br>
+                @endforeach
+              </div>
+            </details>
             @else
           </div>
 

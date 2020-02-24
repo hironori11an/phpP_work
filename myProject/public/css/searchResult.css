@@ -16,3 +16,9 @@ table {
 .tr_review{
   background-color: #dedade;
 }
+.iine-btn {
+  padding: 0.5em 0.8em;
+  display: block;
+  font-size: 10px;
+  cursor: pointer;
+}

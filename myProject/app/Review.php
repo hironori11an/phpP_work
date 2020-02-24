@@ -12,4 +12,8 @@ class Review extends Model
     {
         return $this->hasMany('\App\Genre', 'id', 'genre');
     }
+    public function users()
+    {
+        return $this->belongsToMany('\App\User', 'review_userLikes', 'review_id', 'user_id');
+    }
 }

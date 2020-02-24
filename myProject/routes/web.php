@@ -53,7 +53,13 @@ Route::post('/home/editMyReview/success', [
 Route::get('/search/results/{user_name?}', [
     'uses' => 'searchController@searchUserName',
 ]);
+//ajax いいね登録用
+Route::post('/search/results/like', [
+    'uses' => 'searchController@like']);
 
+//ajax いいね取消用
+Route::post('/search/results/delLike', [
+    'uses' => 'searchController@delLike']);
 
 // テスト用画面
 Route::get('user', 'userRegistKanriController@index');
