@@ -79,4 +79,9 @@ $(function () {
         connecting = false;
       })
   });
+
+  $(document).on('click', '.iine-btn', function () {
+    $(this).find('img').click();
+  });
+
 });

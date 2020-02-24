@@ -96,7 +96,6 @@
                   <label class="iine-btn">
 
                     {{--@if(count($item->users) > 0)--}}
-                    {{$item->id}}あとで消す
                     @forelse($item->users as $user)
                     @if($user->name === session('name'))
                     <img src="{{ asset('/images/iineZumi.png')}}" class="iine-off" width="20" height="20">
