@@ -24,7 +24,7 @@ class bookspaceController extends Controller
     {
         $items = Review::where('user_name', $request->session()->get('name'))->get();
         $user = Auth::user();
-        $reviewLikes=$user->reviews()->orderBy('id')->get();
+        $reviewLikes=$user->reviews()->get();
         $all = Session::all();
         return view('bookspace', compact('all', 'items', 'reviewLikes'));
     }

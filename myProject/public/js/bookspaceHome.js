@@ -27,7 +27,7 @@ $(function () {
     });
 
     $.ajax({
-      url: '/search/results/delLike',
+      url: '/delLike',
       type: 'POST',
       data: {
         'review_id': review_id

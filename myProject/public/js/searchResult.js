@@ -15,7 +15,7 @@ $(function () {
     });
 
     $.ajax({
-      url: '/search/results/like',
+      url: '/like',
       type: 'POST',
       data: {
         // 'user_name': user_name,
@@ -56,7 +56,7 @@ $(function () {
     });
 
     $.ajax({
-      url: '/search/results/delLike',
+      url: '/delLike',
       type: 'POST',
       data: {
         // 'user_name': user_name,
