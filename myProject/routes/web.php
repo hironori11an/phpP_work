@@ -24,10 +24,6 @@ Route::post('/search/results', [
     'uses' => 'searchController@search',
 ]);
 
-/* 一般ユーザログイン後　ホーム*/
-Route::get('/home', [
-    'uses' => 'bookspaceController@login',
-]);
 
 /* 一般ユーザログイン後　レビューする*/
 Route::get('/review', [
@@ -49,8 +45,17 @@ Route::post('/home/editMyReview', [
 Route::post('/home/editMyReview/success', [
     'uses' => 'editMyReviewController@edit',
 ]);
+//レビュー検索結果
+Route::get('/search/results/{user_name?}', [
+    'uses' => 'searchController@searchUserName',
+]);
+//ajax いいね登録用
+Route::post('/like', [
+    'uses' => 'reviewLikesController@like']);
 
-
+//ajax いいね取消用
+Route::post('/delLike', [
+    'uses' => 'reviewLikesController@delLike']);
 
 // テスト用画面
 Route::get('user', 'userRegistKanriController@index');
@@ -88,6 +93,11 @@ Route::group(['middleware' => ['can:user']], function () {
     Route::get('/review', [
         'uses' => 'reviewController@init',
     ]);
+
+    /* 一般ユーザログイン後　ホーム*/
+    Route::get('/home', [
+    'uses' => 'bookspaceController@login',
+]);
 });
 /*管理者ログイン画面*/
 Route::group(['middleware' => ['can:admin']], function () {

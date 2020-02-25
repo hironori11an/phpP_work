@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Review;
 use App\Genre;
 
@@ -22,9 +23,9 @@ class bookspaceController extends Controller
     public function login(Request $request)
     {
         $items = Review::where('user_name', $request->session()->get('name'))->get();
-        // $allgenres = \App\Genre::all();
+        $user = Auth::user();
+        $reviewLikes=$user->reviews()->get();
         $all = Session::all();
-        // return view('bookspace', compact('all', 'items', 'allgenres'));
-        return view('bookspace', compact('all', 'items'));
+        return view('bookspace', compact('all', 'items', 'reviewLikes'));
     }
 }
