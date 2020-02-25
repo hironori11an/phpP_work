@@ -60,7 +60,7 @@
                   タイトル
                 </th>
                 <td>
-                  <input name="title" type="text" value="{{ old('title') }}">
+                  <input name="title" type="text" value="{{ old('title') }}" maxlength="20" size="40">
                 </td>
               </tr>
               <tr>
@@ -68,7 +68,7 @@
                   著者
                 </th>
                 <td>
-                  <input name="chysh" type="text" value="{{ old('chysh') }}">
+                  <input name="chysh" type="text" value="{{ old('chysh') }}" maxlength="10" size="20">
                 </td>
               </tr>
               <tr>
@@ -88,7 +88,7 @@
                   レビュー
                 </th>
                 <td>
-                  <textarea name="review_niy" maxlength="250" rows="4" placeholder="250文字以内でレビューしてください"
+                  <textarea name="review_niy" maxlength="250" rows="6" placeholder="250文字以内でレビューしてください"
                     value="{{ old('review_niy') }}" style="width:100%;"></textarea>
                 </td>
               </tr>
