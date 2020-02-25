@@ -24,10 +24,6 @@ Route::post('/search/results', [
     'uses' => 'searchController@search',
 ]);
 
-/* 一般ユーザログイン後　ホーム*/
-Route::get('/home', [
-    'uses' => 'bookspaceController@login',
-]);
 
 /* 一般ユーザログイン後　レビューする*/
 Route::get('/review', [
@@ -97,6 +93,11 @@ Route::group(['middleware' => ['can:user']], function () {
     Route::get('/review', [
         'uses' => 'reviewController@init',
     ]);
+
+    /* 一般ユーザログイン後　ホーム*/
+    Route::get('/home', [
+    'uses' => 'bookspaceController@login',
+]);
 });
 /*管理者ログイン画面*/
 Route::group(['middleware' => ['can:admin']], function () {
