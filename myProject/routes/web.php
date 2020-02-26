@@ -26,9 +26,6 @@ Route::post('/search/results', [
 
 
 /* 一般ユーザログイン後　レビューする*/
-Route::get('/review', [
-    'uses' => 'reviewController@init',
-]);
 Route::post('/review/success', [
     'uses' => 'reviewController@regist',
 ]);
