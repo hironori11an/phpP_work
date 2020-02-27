@@ -23,8 +23,7 @@ jobs:
 
     steps:
       - checkout
-
-    - run:
+      - run:
           name: Update apt-get
           command: sudo apt-get update
       - run:
