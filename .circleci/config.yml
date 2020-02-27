@@ -43,6 +43,6 @@ jobs:
       - run:
           name: Run PHPUnit
           command: |
-            echo|pwd
-            cd ../myProject
+            echo|ls -l
+            cd ./myProject
             vendor/bin/phpunit
