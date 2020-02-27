@@ -19,9 +19,9 @@ class ViewTest extends TestCase
         $this->get('/')->assertSee('BookSpace');
 
         // URLパラメーター（ユーザが存在する場合）　/search/results/{user_name?}
-        $this->get('/search/results/ippan')->assertSee('ippan');
+        // $this->get('/search/results/ippan')->assertSee('ippan');
         // URLパラメーター（ユーザが存在しない場合）　/search/results/{user_name?}
-        $this->get('/search/results/hoge')->assertSee('ユーザが見つかりません');
+        // $this->get('/search/results/hoge')->assertSee('ユーザが見つかりません');
 
         // 検索画面
         $this->get('/search')->assertOK();
@@ -40,19 +40,19 @@ class ViewTest extends TestCase
         $this->get('/kanri/userList')->assertStatus(403);
 
         //管理者でログインすると管理者ホームヘ遷移
-        $res=$this->post('/login/home', [
-            'login' => 'ログイン',
-            'name' => 'kanri',
-            'password' => 'kanri',
-        ]);
-        $res->assertStatus(302);
+        // $res=$this->post('/login/home', [
+        //     'login' => 'ログイン',
+        //     'name' => 'kanri',
+        //     'password' => 'kanri',
+        // ]);
+        // $res->assertStatus(302);
 
         //一般ユーザでログインすると一般ホームヘ遷移
-        $res=$this->post('/login/home', [
-            'login' => 'ログイン',
-            'name' => 'ippan',
-            'password' => 'ippan',
-        ]);
-        $res->assertStatus(302);
+        // $res=$this->post('/login/home', [
+        //     'login' => 'ログイン',
+        //     'name' => 'ippan',
+        //     'password' => 'ippan',
+        // ]);
+        // $res->assertStatus(302);
     }
 }
