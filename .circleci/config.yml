@@ -44,4 +44,4 @@ jobs:
           name: Run PHPUnit
           command: |
             cd ../myProject
-            ./vendor/bin/phpunit
+            vendor/bin/phpunit
