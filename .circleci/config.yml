@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+    # machine:
+      # image: circleci/classic:edge
+      # Specify the version you desire here
+        - image: circleci/php:7.2-node-browsers
+        - image: circleci/mysql:8.0.18
+    # machine: true
+    environment:
+      - DB_CONNECTION: testing
+    # working_directory: ~/myProject
+
+    steps:
+      - checkout
+      - run:
+          name: docker-compose build
+          command: cd laradock && docker-compose build workspace
+      - run:
+          name: composer
+          command: |
+            cd laradock && \
+            docker-compose run workspace composer install --no-dev
+
+      - run:
+          name: Unittest
+          command: cd myProject && ./vendor/bin/phpunit
