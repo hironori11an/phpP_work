@@ -9,8 +9,11 @@ jobs:
 
     steps:
       - checkout
-      # - setup_remote_docker
+      - setup_remote_docker
       - run: sudo apt-get update
+      - run:
+          name: Docker php extensions install
+          command: sudo docker-php-ext-install pdo_mysql
       - run:
           name: docker-compose build
           command: cd laradock && sudo docker-compose build workspace
