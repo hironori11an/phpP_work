@@ -11,14 +11,14 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: sudo apt-get update
-      # - run:
-          # name: docker-compose build
-          # command: cd laradock && sudo docker-compose build workspace
+      - run:
+          name: docker-compose build
+          command: cd laradock && sudo docker-compose build workspace
 
-      # - restore_cache:
-      #     keys:
-      #       - v1-dependencies-{{ checksum "./myProject/composer.json" }}
-      #       - v1-dependencies-
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./myProject/composer.json" }}
+            - v1-dependencies-
 
       - run:
           name: composer
@@ -26,10 +26,10 @@ jobs:
             cd laradock && \
             sudo docker-compose exec workspace composer require --dev phpunit/phpunit ^7.0
 
-      # - save_cache:
-      #     paths:
-      #       - ./myProject/vendor
-      #     key: v1-dependencies-{{ checksum "./myProject/composer.json" }}
+      - save_cache:
+          paths:
+            - ./myProject/vendor
+          key: v1-dependencies-{{ checksum "./myProject/composer.json" }}
       
       # - run: ls -lR
       - run:
