@@ -4,7 +4,7 @@
 @section('head')
 @endsection
 @section('work')
-<form method="POST" action="{{ route('homeKanri.signin') }}">
+<form method="POST" action="{{ route('homeKanri.login') }}">
   @csrf
   <!-- 認証エラーメッセージ -->
   <table align="center" border="0" width="350" height="35">
@@ -57,7 +57,10 @@
 
   <center><input type="submit" class="btn" name="login" value="ログイン"></center>
   <br><br><br>
+</form>
 
+<form method="POST" action="{{ route('homeKanri.kntnLogin') }}">
+  @csrf
   <table align="center" width="350" class="tbl_bold">
     <tr>
       <th class="tbl_bold_thtd">
