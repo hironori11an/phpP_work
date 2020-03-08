@@ -36,7 +36,7 @@
     <br>
     <input class="value_ur" type="password" name="password_kknn" size="20">
   </div>
-  <br>
+  <br><br>
   <center>
     <input type="submit" class="btn">
   </center>

@@ -72,17 +72,23 @@
                       <tr class=tr_title>
                         <td colspan="2">
                           <div>
-                            <p><span class="title">{{$reviewLike->title}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                              著者:&nbsp;&nbsp;{{$reviewLike->chysh}}&nbsp;&nbsp;&nbsp;&nbsp;
-                              ジャンル：
-                              @foreach ($reviewLike->genres as $genre)
-                              {{ $genre->genre_name }}
-                              @endforeach
+                            <p><span class="title">{{$reviewLike->title}}</span>
                             </p>
                           </div>
                         </td>
                       </tr>
-
+                      <tr class=tr_title>
+                        <td width="270">
+                          著者:&nbsp;&nbsp;{{$reviewLike->chysh}}
+                        </td>
+                        <td>ジャンル：
+                          @foreach ($reviewLike->genres as $genre)
+                          {{ $genre->genre_name }}
+                          @endforeach
+                        </td>
+                      </tr>
+                    </table>
+                    <table border="0" width="800">
                       <tr class=tr_review>
                         <td width="22%">
                           @isset($reviewLike->photo_path)
@@ -137,17 +143,23 @@
 
                           <td colspan="2">
                             <div>
-                              <p><span class="title">{{$item->title}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                著者:&nbsp;&nbsp;{{$item->chysh}}&nbsp;&nbsp;&nbsp;&nbsp;
-                                ジャンル：
-                                @foreach ($item->genres as $genre)
-                                {{ $genre->genre_name }}
-                                @endforeach
-                              </p>
+                              <p><span class="title">{{$item->title}}</span></p>
                             </div>
                           </td>
                         </tr>
-
+                        <tr class=tr_title>
+                          <td width="270">
+                            著者:&nbsp;&nbsp;{{$item->chysh}}
+                          </td>
+                          <td>
+                            ジャンル：
+                            @foreach ($item->genres as $genre)
+                            {{ $genre->genre_name }}
+                            @endforeach
+                          </td>
+                        </tr>
+                      </table>
+                      <table border="0" width="800">
                         <tr class=tr_review>
                           <td width="22%">
                             @isset($item->photo_path)

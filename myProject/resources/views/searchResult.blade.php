@@ -58,24 +58,30 @@
         <section class="mainVisual">
           <div id="pageBodyMain">
             @foreach ($items as $item)
-            <table border="0" width="800">
+            <table border="0" width="800" id="reviewTable">
               <tr class=tr_title>
                 <input type="hidden" name="reviewId" class="reviewId" value="{{$item->id}}">
                 <td colspan="2">
                   <div>
                     <p><span class="title">{{$item->title}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                      著者:&nbsp;&nbsp;{{$item->chysh}}&nbsp;&nbsp;&nbsp;&nbsp;
-                      ジャンル：
-                      @foreach ($item->genres as $genre)
-                      {{ $genre->genre_name }}
-                      @endforeach
                     </p>
 
 
                   </div>
                 </td>
               </tr>
-
+              <tr class=tr_title>
+                <td width="270"> 著者:&nbsp;&nbsp;{{$item->chysh}}
+                </td>
+                <td>
+                  ジャンル：
+                  @foreach ($item->genres as $genre)
+                  {{ $genre->genre_name }}
+                  @endforeach
+                </td>
+              </tr>
+            </table>
+            <table border="0" width="800">
               <tr class=tr_review>
                 <td width="22%">
                   @isset($item->photo_path)

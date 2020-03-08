@@ -1,11 +1,9 @@
 $(function () {
   var connecting;
   //いいね登録時
-  // $('.iine-on').click(function (e) {
   $(document).on('click', '.iine-on', function () {
     var $this = $(this);
-    // var user_name = $this.closest('table').find('a').text();
-    var review_id = $this.closest('table').find('.reviewId').val();
+    var review_id = $this.closest('table').prev('table').find('.reviewId').val();
     if (connecting) {
       return;
     }
@@ -18,7 +16,6 @@ $(function () {
       url: '/like',
       type: 'POST',
       data: {
-        // 'user_name': user_name,
         'review_id': review_id
       }
     })
@@ -41,11 +38,10 @@ $(function () {
 
 
   //いいね取り消し時
-  // $('.iine-off').click(function (e) {
+
   $(document).on('click', '.iine-off', function () {
     var $this = $(this);
-    // var user_name = $this.closest('table').find('a').text();
-    var review_id = $this.closest('table').find('.reviewId').val();
+    var review_id = $this.closest('table').prev('table').find('.reviewId').val();
 
     if (connecting) {
       return;
@@ -59,7 +55,6 @@ $(function () {
       url: '/delLike',
       type: 'POST',
       data: {
-        // 'user_name': user_name,
         'review_id': review_id
       }
     })

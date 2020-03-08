@@ -92,7 +92,7 @@
                     value="{{ old('review_niy') }}" style="width:100%;"></textarea>
                 </td>
               </tr>
-              {{-- 写真str --}}
+
               <tr>
                 <th>
                   画像
@@ -102,7 +102,6 @@
                 </td>
               </tr>
 
-              {{-- 写真end --}}
             </table>
         </section>
       </div>
