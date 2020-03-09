@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/common.css">
+  <title>レビュー検索</title>
 </head>
 
 <body>
