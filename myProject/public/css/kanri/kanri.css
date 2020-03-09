@@ -1,15 +1,5 @@
-body {
-  font-family: "Yu Gothic Medium",YuGothic,sans-serif;
-  /* font-family: "Hiragino Kaku Gothic ProN", sans-serif; */
-  /* font-family: arial, sans-serif; */
-  /* font-family: helvetica, arial, 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif; */
-}
 /* ヘッダ str*/
 .header {
-	/* background-color:#364e96;
-	padding: 10px;
-	margin: 0;
-  overflow: hidden; */
   background: #777777;
 	padding: 10px;
 	margin: 0;
@@ -42,14 +32,6 @@ body {
 }
 /* ヘッダ end*/
 
-
-
-/* h1 {
-  font-size: 18px;
-  padding: 15px 15px;
-  background-color:#364e96;
-  color: #faf8f8;
-} */
 .title {
   text-align: center;
   font-size: 30px;
@@ -68,9 +50,15 @@ body {
 
 .all_errormessage {
   background-color:#ebe9b2;
-  margin-left:510px;
+  margin-left:460px;
   border-radius: 10px;
 }
+
+#tyfk_userid{
+  color: #FF0000;
+  margin-left:460px;
+}
+
 /* AAFFFF */
 .input_item {
   background-color:rgb(109, 146, 237);
@@ -93,4 +81,13 @@ body {
 .tbl_bold_thtd{
   text-align: left;
   padding: 10px 0px;
+}
+.passwordEyeOff {
+  vertical-align: bottom;
+  cursor: pointer;
+}
+
+.passwordEyeOn {
+  vertical-align: bottom;
+  cursor: pointer;
 }
