@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="/css/searchResult.css">
   <script src="{{mix('js/app.js')}}"></script>
   <script src="/js/searchResult.js"></script>
-
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>レビュー検索結果</title>
 </head>
 
 <body>

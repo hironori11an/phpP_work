@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/editMyReview.css">
   <script src="{{mix('js/app.js')}}"></script>
+  <title>マイレビュー　編集</title>
 </head>
 
 <body>

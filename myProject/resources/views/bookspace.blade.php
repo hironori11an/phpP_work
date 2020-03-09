@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="/css/bookspace.css">
   <script src="{{mix('js/app.js')}}"></script>
   <script src="/js/bookspaceHome.js"></script>
-
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>BookSpace 読書レビューを共有しよう</title>
 </head>
 
 <body>
