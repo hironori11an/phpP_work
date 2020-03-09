@@ -65,7 +65,7 @@ class loginKanriController extends Controller
             // 認証失敗
             $message_auth=config('const.login.CERTIFICATION_ERROR');
             // エラーメッセージをセッションに格納し、自画面遷移
-            return redirect()->back()->with('message_auth', $message_auth);
+            return redirect()->back()->with('message_auth', $message_auth)->withInput();
         }
     }
 }

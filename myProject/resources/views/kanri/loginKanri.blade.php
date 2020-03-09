@@ -2,6 +2,11 @@
 @section('title','ログイン')
 @section('titleHeader','BookSpace')
 @section('head')
+<script src="{{mix('js/app.js')}}"></script>
+<script src="/js/common/passwordEye.js"></script>
+@endsection
+@section('headerRight')
+<a href="{{ action('bookspaceController@init') }}">ホーム</a>
 @endsection
 @section('work')
 <form method="POST" action="{{ route('homeKanri.login') }}">
@@ -24,7 +29,7 @@
       </td>
 
       <td class="input_item_value">
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" value="{{ old('name') }}">
       </td>
     </tr>
     <tr>
@@ -42,7 +47,10 @@
       </td>
 
       <td class="input_item_value">
-        <input type="text" id="password" name="password">
+        <input type="password" id="password" name="password">
+
+        <img src="{{ asset('/images/eye.svg')}}" class="passwordEyeOn">
+
       </td>
     </tr>
     <tr>
