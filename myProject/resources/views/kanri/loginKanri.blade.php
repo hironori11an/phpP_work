@@ -5,6 +5,9 @@
 <script src="{{mix('js/app.js')}}"></script>
 <script src="/js/common/passwordEye.js"></script>
 @endsection
+@section('headerRight')
+<a href="{{ action('bookspaceController@init') }}">ホーム</a>
+@endsection
 @section('work')
 <form method="POST" action="{{ route('homeKanri.login') }}">
   @csrf
