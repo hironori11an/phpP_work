@@ -94,3 +94,12 @@ body {
   text-align: left;
   padding: 10px 0px;
 }
+.passwordEyeOff {
+  vertical-align: bottom;
+  cursor: pointer;
+}
+
+.passwordEyeOn {
+  vertical-align: bottom;
+  cursor: pointer;
+}
