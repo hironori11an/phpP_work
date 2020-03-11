@@ -96,10 +96,6 @@ Route::post('/kanri/userRegist/success', [
     'uses' => 'userRegistKanriController@regist',
     'as' => 'userRegistKanri.regist'
     ]);
-/*ユーザ一覧 */
-Route::get('/kanri/userListTEST', function () {
-    return view('kanri.userListKanri');
-});
     
 Auth::routes();
 
@@ -116,5 +112,10 @@ Route::group(['middleware' => ['can:admin']], function () {
     Route::get(
         '/kanri/userList',
         'userListKanriController@index'
+    );
+
+    Route::get(
+        '/kanri/reviews/{user_name?}',
+        'userReviewKanriController@init'
     );
 });

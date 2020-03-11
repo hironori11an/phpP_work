@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/css/searchResult.css">
   <script src="{{mix('js/app.js')}}"></script>
   <script src="/js/bookspaceHome.js"></script>
+  <title>{{$items[0]->user_name}}さんのレビュー</title>
 </head>
 
 <body>

@@ -4,9 +4,12 @@
 <script src="/js/userRegistKanri.js"></script>
 @endsection
 
-
 @section('titleHeader','BookSpace')
 @section('title','ユーザ登録')
+@section('headerRight')
+<a href="/kanri">ホーム</a>
+@endsection
+
 @section('work')
 
 <form id="form" method="POST" action="{{ route('userRegistKanri.regist') }}">
@@ -124,11 +127,6 @@
     <br>
   </div>
   <center>
-    @component('components.btn_modoru')
-    @slot('url','/kanri')
-    @slot('value','戻る')
-    @endcomponent
-    &nbsp;&nbsp;&nbsp;
     <input type="submit" class="btn">
   </center>
 </form>
