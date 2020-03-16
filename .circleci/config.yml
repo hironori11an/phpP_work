@@ -1,0 +1,58 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.2-node-browsers
+      - image: circleci/mysql:8.0.18
+    environment:
+      - DB_CONNECTION: testing
+
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: sudo apt-get update
+      - run:
+          name: Docker php extensions install
+          command: sudo docker-php-ext-install pdo_mysql
+      - run:
+          name: docker-compose build
+          command: cd laradock && sudo docker-compose build nginx mysql workspace phpmyadmin
+          # command: cd laradock && sudo docker-compose stop && sudo docker-compose down && sudo docker-compose up -d nginx mysql workspace phpmyadmin
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./myProject/composer.json" }}
+            - v1-dependencies-
+
+      - run:
+          name: Install composer packages
+          command: |
+           sudo docker-compose exec workspace composer install
+          working_directory: ./laradock
+
+      - save_cache:
+          paths:
+            - ./myProject/vendor
+          key: v1-dependencies-{{ checksum "./myProject/composer.json" }}
+ 
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+
+      - run:
+          name: Wait for db
+          command: sudo dockerize -wait tcp://localhost:3306 -timeout 1m
+
+      - run:
+          name: Migrate DB
+          command: |
+            sudo docker-compose exec workspace php artisan migrate
+          working_directory: ./laradock
+
+      - run:
+          name: PHPUnit
+          command: |
+            sudo docker-compose exec workspace ./vendor/bin/phpunit
+          working_directory: ./laradock
