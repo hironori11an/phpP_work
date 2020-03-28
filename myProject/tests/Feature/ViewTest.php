@@ -13,6 +13,7 @@ class ViewTest extends TestCase
      *
      * @return void
      */
+    use RefreshDatabase;
     public function testView()
     {
         // ホーム画面
