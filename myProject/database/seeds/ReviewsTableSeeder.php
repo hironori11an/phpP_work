@@ -13,14 +13,45 @@ class ReviewsTableSeeder extends Seeder
     {
         DB::table('reviews')->insert([
             [
-            'user_name' =>'ippan',
-            'genre' => '1',
-            'title' =>'テストタイトル',
-            'chysh' =>'テスト著者',
-            'hyk' =>'5',
-            'review_niy' =>'ああああああああ',
-            ]
-
+                'user_name' =>'ippan',
+                'genre' => '0',
+                'title' =>'T文学・評論',
+                'chysh' =>'C文学・評論',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '1',
+                'title' =>'Tノンフィクション',
+                'chysh' =>'Cノンフィクション',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '2',
+                'title' =>'T人文・思想・宗教',
+                'chysh' =>'C人文・思想・宗教',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '3',
+                'title' =>'Tコミックス',
+                'chysh' =>'Cコミックス',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '8',
+                'title' =>'Tその他',
+                'chysh' =>'Cその他',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
         ]);
     }
 }
