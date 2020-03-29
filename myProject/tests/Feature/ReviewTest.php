@@ -24,7 +24,11 @@ class ReviewTest extends TestCase
     public function regist()
     {
         $png = UploadedFile::fake()->create('file.png');
+        $jpeg = UploadedFile::fake()->create('file.jpeg');
+        $jpg = UploadedFile::fake()->create('file.jpg');
+        $gif = UploadedFile::fake()->create('file.gif');
         
+        //png
         $res=$this->post(
             '/review/success',
             [
@@ -35,6 +39,87 @@ class ReviewTest extends TestCase
             'hyk' => '3',
             'review_niy' => 'テストレビュー内容',
             'photo' => $png
+            ]
+        );
+        $res->assertSessionHasNoErrors();
+        $res->assertSeeText('レビュー投稿が完了しました');
+        $this->assertDatabaseHas(
+            'reviews',
+            [
+                'user_name' => 'ippan',
+                'genre' => '1',
+                'title' => 'テストタイトル',
+                'chysh' => 'テスト著者',
+                'hyk' => '3',
+                'review_niy' => 'テストレビュー内容',
+            ]
+        );
+        
+        //jpeg
+        $res=$this->post(
+            '/review/success',
+            [
+            'user_name' => 'ippan',
+            'genre' => '1',
+            'title' => 'テストタイトル',
+            'chysh' => 'テスト著者',
+            'hyk' => '3',
+            'review_niy' => 'テストレビュー内容',
+            'photo' => $jpeg
+            ]
+        );
+        $res->assertSessionHasNoErrors();
+        $res->assertSeeText('レビュー投稿が完了しました');
+        $this->assertDatabaseHas(
+            'reviews',
+            [
+                'user_name' => 'ippan',
+                'genre' => '1',
+                'title' => 'テストタイトル',
+                'chysh' => 'テスト著者',
+                'hyk' => '3',
+                'review_niy' => 'テストレビュー内容',
+            ]
+        );
+
+        //jpg
+        $res=$this->post(
+            '/review/success',
+            [
+            'user_name' => 'ippan',
+            'genre' => '1',
+            'title' => 'テストタイトル',
+            'chysh' => 'テスト著者',
+            'hyk' => '3',
+            'review_niy' => 'テストレビュー内容',
+            'photo' => $jpg
+            ]
+        );
+        $res->assertSessionHasNoErrors();
+        $res->assertSeeText('レビュー投稿が完了しました');
+        $this->assertDatabaseHas(
+            'reviews',
+            [
+                'user_name' => 'ippan',
+                'genre' => '1',
+                'title' => 'テストタイトル',
+                'chysh' => 'テスト著者',
+                'hyk' => '3',
+                'review_niy' => 'テストレビュー内容',
+            ]
+        );
+
+        //gif
+        $res=$this->post(
+            '/review/success',
+            [
+            'user_name' => 'ippan',
+            'genre' => '1',
+            'title' => 'テストタイトル',
+            'chysh' => 'テスト著者',
+            'hyk' => '3',
+            'review_niy' => 'テストレビュー内容',
+            'photo' => $gif
             ]
         );
         $res->assertSessionHasNoErrors();
@@ -81,7 +166,6 @@ class ReviewTest extends TestCase
         );
         $res->assertSessionHasErrors($expected);
         $res->assertStatus(302);
-        // $res->assertRedirect('/home');
     }
 
     public function requiredProvider()
