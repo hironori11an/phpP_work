@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/review.css">
   <title>レビュー投稿</title>
 </head>
 
@@ -34,13 +35,14 @@
       </header>
 
       <div id="pageBody">
-        @if ($errors->any())
-        @foreach ($errors->all() as $error)
-        <li>{{$error}}</li>
+        <div id="error">
+          @if ($errors->any())
+          @foreach ($errors->all() as $error)
+          <li>{{$error}}</li>
 
-        @endforeach
-
-        @endif
+          @endforeach
+          @endif
+        </div>
         <section class="mainVisual">
           <div id="pageBodyMain">
             <table id="mainTable">
