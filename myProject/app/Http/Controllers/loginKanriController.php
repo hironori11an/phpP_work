@@ -9,6 +9,7 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\User;
+use App\Http\Requests\loginKanriRequest;
 
 class loginKanriController extends Controller
 {
@@ -19,8 +20,8 @@ class loginKanriController extends Controller
     {
         return view('/kanri/loginKanri');
     }
-    /* ログインボタン押下時 */
-    public function postSignin(Request $request)
+    /* かんたんログインボタン押下時 */
+    public function kntnLogin(Request $request)
     {
         //かんたんログイン（一般）
         //ユーザ「ippan」としてログイン
@@ -37,99 +38,34 @@ class loginKanriController extends Controller
             $request->session()->put('name', 'kanri');
             $request->session()->put('role', '1');
             return redirect()->route('homeKanri');
-
-        //通常ログイン
-        } elseif (Input::get('login')) {
-            if ($this->validation($request)->fails()) {
-                /* バリデーションチェック失敗時 */
-                return redirect()->back()
-                ->withErrors(loginKanriController::$validator)
-                ->withInput();
-            } else {
-                /* バリデーションチェック成功時 */
-                /* Auth認証 */
-                if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
-                    // 認証成功
-    
-                    $users= DB ::table('users')->where('name', $request->input('name'))->get();
-                    
-                    //管理者ホームへ
-                    foreach ($users as $user) {
-                        $role=$user->role;
-                        $name=$user->name;
-                    }
-                    $request->session()->put('name', $name);
-                    $request->session()->put('role', $role);
-                    if ($role > 0) {
-                        return redirect()->route('homeKanri');
-                        // return redirect('/home');
-                    }
-                    //一般ホームへ
-                    return redirect('/home');
-                } else {
-                    // 認証失敗
-                    $message_auth=config('const.login.CERTIFICATION_ERROR');
-                    // エラーメッセージをセッションに格納し、自画面遷移
-                    return redirect()->back()->with('message_auth', $message_auth);
-                }
-            }
         }
     }
 
-    //バリデーション
-    public function validation(Request $request)
+    /* 通常ログインボタン押下時 */
+    public function login(loginKanriRequest $request)
     {
-        $rules = [
-                    'name' => 'between:4,8|alpha_dash_check',
-                    'password' => 'between:4,8|alpha_dash_check',
-                ];
-        $message = [
-                    'name.between' => config('const.validation.USERID_LIMIT_CHARACTER_NUMBER'),
-                    'name.alpha_dash_check' => config('const.validation.PASSWORD_AVAILABLE_CHARACTER'),
-                    'password.between' => config('const.validation.PASSWORD_LIMIT_CHARACTER_NUMBER'),
-                    'password.alpha_dash_check' => config('const.validation.PASSWORD_AVAILABLE_CHARACTER'),
-                ];
-        loginKanriController::$validator = Validator::make(
-            $request->all(),
-            $rules,
-            $message
-        );
-        return loginKanriController::$validator;
-    }
+        if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
+            // 認証成功
 
-    // public function login(Request $request)
-    // {
-    //     if ($validator->fails()) {
-    //         /* バリデーションチェック失敗時 */
-    //         return redirect()->back()
-    //             ->withErrors($validator)
-    //             ->withInput();
-    //     } else {
-    //         /* バリデーションチェック成功時 */
-    //         /* Auth認証 */
-    //         if (Auth::attempt(['name' => $request->input('name'), 'password' => $request->input('password')])) {
-    //             // 認証成功
-    
-    //             $users= DB ::table('users')->where('name', $request->input('name'))->get();
-                    
-    //             //管理者ホームへ
-    //             foreach ($users as $user) {
-    //                 $role=$user->role;
-    //                 $name=$user->name;
-    //             }
-    //             if ($role> 0) {
-    //                 return redirect()->route('homeKanri');
-    //             }
-    //             //一般ホームへ
-    //             $request->session()->put('name', $name);
-    //             $request->session()->put('role', $role);
-    //             return redirect('/home');
-    //         } else {
-    //             // 認証失敗
-    //             $message_auth=config('const.login.CERTIFICATION_ERROR');
-    //             // エラーメッセージをセッションに格納し、自画面遷移
-    //             return redirect()->back()->with('message_auth', $message_auth);
-    //         }
-    //     }
-    // }
+            $users= DB ::table('users')->where('name', $request->input('name'))->get();
+            
+            //管理者ホームへ
+            foreach ($users as $user) {
+                $role=$user->role;
+                $name=$user->name;
+            }
+            $request->session()->put('name', $name);
+            $request->session()->put('role', $role);
+            if ($role > 0) {
+                return redirect()->route('homeKanri');
+            }
+            //一般ホームへ
+            return redirect('/home');
+        } else {
+            // 認証失敗
+            $message_auth=config('const.login.CERTIFICATION_ERROR');
+            // エラーメッセージをセッションに格納し、自画面遷移
+            return redirect()->back()->with('message_auth', $message_auth)->withInput();
+        }
+    }
 }

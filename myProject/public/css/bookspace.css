@@ -1,0 +1,18 @@
+.title{
+  font-weight: 900; 
+  font-size: 20px; 
+}
+
+.td {
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+}
+.tr_title{
+  background-color: rgb(109, 146, 237);
+}
+.tr_review{
+  background-color: #dedade;
+}

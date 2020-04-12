@@ -1,9 +1,10 @@
 @extends('layouts.kanri.kanri')
 @section('head')
 <link href="{{ asset('css/pagination.css') }}" rel="stylesheet" type="text/css">
-
 @endsection
-
+@section('headerRight')
+<a href="/kanri">ホーム</a>
+@endsection
 
 @section('titleHeader','BookSpace')
 @section('title','ユーザ一覧')
@@ -18,7 +19,9 @@
         </tr>
         @foreach ($items as $item)
         <tr>
-          <td>{{$item->name}}</td>
+          <td>
+            <a href="/kanri/reviews/{{$item->name}}">{{$item->name}}</a>
+          </td>
           @if ($item->role === 0)
           <td>一般</td>
           @elseif ($item->role === 1)
@@ -32,10 +35,5 @@
 </table>
 <center>
   {{ $items->links()}}
-  <br><br>
-  @component('components.btn_modoru')
-  @slot('url','/kanri')
-  @slot('value','戻る')
-  @endcomponent
 </center>
 @endsection

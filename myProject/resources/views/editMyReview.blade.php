@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/editMyReview.css">
   <script src="{{mix('js/app.js')}}"></script>
+  <title>マイレビュー　編集</title>
 </head>
 
 <body>
@@ -83,7 +84,7 @@
                         タイトル
                       </th>
                       <td>
-                        <input name="title" type="text" value="{{$item->title}}">
+                        <input name="title" type="text" value="{{$item->title}}" maxlength="20" size="40">
 
                       </td>
                     </tr>
@@ -92,7 +93,7 @@
                         著者
                       </th>
                       <td>
-                        <input name="chysh" type="text" value="{{$item->chysh}}">
+                        <input name="chysh" type="text" value="{{$item->chysh}}" maxlength="10" size="20">
 
                       </td>
                     </tr>
@@ -118,7 +119,7 @@
                         レビュー
                       </th>
                       <td>
-                        <textarea name="review_niy" maxlength="250" rows="4"
+                        <textarea name="review_niy" maxlength="250" rows="9"
                           style="width:100%;">{{$item->review_niy}}</textarea>
 
                       </td>

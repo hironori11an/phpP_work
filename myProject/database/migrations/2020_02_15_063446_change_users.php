@@ -17,7 +17,7 @@ class ChangeUsers extends Migration
             $table->dropUnique('users_email_unique');
             $table->index('name');
             $table->unique('name');
-            $table->nullable('email');
+            $table->string('email')->nullable()->change();
         });
     }
 
