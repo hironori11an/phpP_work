@@ -1,7 +1,7 @@
 # BookSpace
 ---
 # 概要   
-読み終わった本についてレビューを投稿し、読書レビューを共有できるアプリです。
+本のレビューを投稿し、読書レビューを共有できるアプリです。
 ---
 # URL
 https://www.bookspace-review.net
@@ -33,5 +33,6 @@ https://www.bookspace-review.net
     - EC2
     - VPC
     - Route53
+    - ACM
     - ALB
     
