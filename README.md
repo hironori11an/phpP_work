@@ -7,8 +7,10 @@
 https://www.bookspace-review.net
 ---
 # 機能一覧
-ログイン機能（一般、管理者を分けて認証）  
-ユーザ登録（一般）   
+### ホーム
+- ログイン機能（一般、管理者を分けて認証）  
+- ユーザ登録（一般）   
+- レビュー検索
 ### 一般ユーザ用機能
 - レビュー検索、いいね登録
 - レビュー投稿
@@ -24,8 +26,7 @@ https://www.bookspace-review.net
   - php 7.1
   - laravel 5.7
 - DB
-  -mysql 8.0.18(ローカル)
-  -RDS(AWS)
+  -mysql 5.7
 - インフラ
   - laradock
   - AWS
