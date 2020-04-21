@@ -17,8 +17,29 @@ table {
   background-color: #dedade;
 }
 .iine-btn {
-  padding: 0.5em 0.8em;
+  padding: 0.3em 0.8em;
   display: block;
-  font-size: 10px;
+  font-size: 13px;
   cursor: pointer;
 }
+
+.iineUser{
+  padding: 0em 0.8em;
+  display: block;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#fadeLayer {
+  position:absolute;
+  top:0px;
+  left:0px;
+
+  width:100%;
+  height:100%;
+
+  background-color:#000000;
+  opacity:0.5;
+  visibility:hidden;
+  z-index:1;
+} 

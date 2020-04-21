@@ -79,4 +79,36 @@ $(function () {
     $(this).find('img').click();
   });
 
+
+  //いいねしたユーザリンク押下
+  $(document).on('click', '#likedUser', function () {
+    // 適当に高さを指定してwindow.openでポップアップ画面を開く
+    var $this = $(this);
+    var review_id = $this.closest('table').prev('table').find('.reviewId').val();
+    var openWindow = window.open('/search/results/userLiked/' + review_id, 'sub', 'width=400, height=300,top=300,left=450');
+    // 親画面にシェードをかける処理を実施
+    var fadeLayer = $("#fadeLayer").get(0);
+    fadeLayer.style.visibility = "visible";
+
+    // １秒間隔で子画面の状態を監視
+    var interval = setInterval(function () {
+      // 子画面が閉じていたら
+      if (!openWindow || openWindow.closed) {
+        // 親画面のシェードを外す処理
+        fadeLayer.style.visibility = "hidden";
+
+        // Intervalを破棄
+        clearInterval(interval);
+        // 画面が起動していたら
+      }
+      else {
+        // 子画面にフォーカスを当てる
+        if (!openWindow.document.hasFocus()) {
+          openWindow.focus();
+        }
+      }
+    }, 1000);
+  });
+
+
 });

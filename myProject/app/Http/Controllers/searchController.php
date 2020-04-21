@@ -57,25 +57,41 @@ class searchController extends Controller
         return view('searchUserName', compact('all', 'items'));
     }
 
-    public function like(Request $request)
+    public function searchlikedUsers(Request $request)
     {
-        $review_id=$request->review_id;
-        
-        $user = Auth::user();
-        $review_userLikes=$user->reviews()->attach($review_id);
-        return response()->json(
-            \Illuminate\Http\Response::HTTP_OK
-        );
+        $reviewId=$request->reviewId;
+        $items = Review::where('id', '=', $reviewId)->get();
+        if ($items->isEmpty()) {
+            return response()->view(
+                'common.success',
+                ['success_message'=>'ユーザが見つかりません',
+            'url'=>'/search']
+            );
+        }
+
+        $all = Session::all();
+        return view('likedUsers', compact('all', 'items'));
     }
 
-    public function delLike(Request $request)
-    {
-        $review_id=$request->review_id;
+    // public function like(Request $request)
+    // {
+    //     $review_id=$request->review_id;
         
-        $user = Auth::user();
-        $review_userLikes=$user->reviews()->detach($review_id);
-        return response()->json(
-            \Illuminate\Http\Response::HTTP_OK
-        );
-    }
+    //     $user = Auth::user();
+    //     $review_userLikes=$user->reviews()->attach($review_id);
+    //     return response()->json(
+    //         \Illuminate\Http\Response::HTTP_OK
+    //     );
+    // }
+
+    // public function delLike(Request $request)
+    // {
+    //     $review_id=$request->review_id;
+        
+    //     $user = Auth::user();
+    //     $review_userLikes=$user->reviews()->detach($review_id);
+    //     return response()->json(
+    //         \Illuminate\Http\Response::HTTP_OK
+    //     );
+    // }
 }

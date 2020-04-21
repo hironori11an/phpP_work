@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/searchResult.css">
+
   <script src="{{mix('js/app.js')}}"></script>
   <script src="/js/searchResult.js"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -23,15 +24,15 @@
         @if(Session::has('role'))
         <a href="{{ action('bookspaceController@init') }}">ログアウト</a>
         &nbsp;&nbsp;
-        <a>{{ session('name') }}</a></div>
+        <a>{{ session('name') }}</a>
+      </div>
       @else
       <a href="/loginbs">ログイン</a>&nbsp;&nbsp;
       <a>ゲスト</a>
       @endif
     </div>
-    </div>
-    <div id="page">
 
+    <div id="page">
       <header id="pageHead">
         <nav class="globalNavi">
           <ul>
@@ -100,40 +101,56 @@
               <tr class=tr_review>
                 <td class="td">
                   <label class="iine-btn">
-
-                    {{--@if(count($item->users) > 0)--}}
                     @forelse($item->users as $user)
                     @if($user->name === session('name'))
                     <img src="{{ asset('/images/iineZumi.png')}}" class="iine-off" width="20" height="20">
                     <div class="iine-word">いいね済み</div>
                     @break
                     @endif
+
                     @empty
                     <img src="{{ asset('/images/iine.png')}}" class="iine-on" width="20" height="20">
                     <div class="iine-word">いいね</div>
                     @endforelse
+
                     @if((count($item->users) > 0) && ($user->name != session('name')))
                     <img src="{{ asset('/images/iine.png')}}" class="iine-on" width="20" height="20">
                     <div class="iine-word">いいね</div>
                     @endif
 
-
                   </label>
-                </td>
-                <td>&nbsp;</td>
-              </tr>
-              @endif
-            </table>
 
-            <br><br>
-            @endforeach
-            @endif
+                  <label class="iineUser">
+                    {{--
+                    <a href="/search/results/userLiked/{{$item->id}}">いいねしたユーザ
+                      &nbsp;({{count($item->users)}})</a>
+                    --}}
+                    <input type="button" id="likedUser" value="いいねしたユーザ&nbsp;({{count($item->users)}})">
+
+                    <input type="hidden" name="selectedReviewId" value="{{$item->id}}">
+                  </label>
 
           </div>
-        </section>
+
+          </td>
+          <td>&nbsp;</td>
+          </tr>
+          @endif
+          </table>
+
+          <br><br>
+          @endforeach
+          @endif
+
       </div>
-      <br>
+      </section>
     </div>
+    <br>
+
+    <!-- 小画面遷移時に、この画面全体を暗くするためのdiv -->
+    <div id="fadeLayer">
+    </div>
+
 
 
   </form>

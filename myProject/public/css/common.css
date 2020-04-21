@@ -33,3 +33,15 @@
   cursor : pointer;
   background: #7b0600;
 }
+
+.buttonLink{
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #0033cc;
+}
+
+.buttonLink:hover {
+  text-decoration: underline;
+  color: #002080;
+}
