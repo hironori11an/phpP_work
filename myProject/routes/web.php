@@ -49,6 +49,11 @@ Route::post('/home/editMyReview/success', [
 Route::get('/search/results/{user_name?}', [
     'uses' => 'searchController@searchUserName',
 ]);
+
+Route::get('/search/results/userLiked/{reviewId?}', [
+    'uses' => 'searchController@searchlikedUsers',
+])->name('searchlikedUsers');
+
 //ajax いいね登録用
 Route::post('/like', [
     'uses' => 'reviewLikesController@like']);
