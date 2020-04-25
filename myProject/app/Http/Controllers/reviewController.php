@@ -30,8 +30,9 @@ class reviewController extends Controller
         unset($form['photo']);
         unset($form['tag']);
         $review->fill($form)->save();
+
+        // tagに入力値がある場合、カンマでタグを分割して登録する
         if ($request->tag) {
-            // tagに入力値がある場合、カンマでタグを分割して登録する
             $tags=explode(",", $request->tag);
             foreach ($tags as $tagValue) {
                 //カンマ終わりの場合にブランクで設定されてるのを回避
@@ -40,6 +41,7 @@ class reviewController extends Controller
                 }
             }
         }
+        
         //アップロードファイルがある場合、S3にアップロードする
         //S3のurlは、reviews.photo_pathに登録する
         if ($_FILES['photo']['size'] > 0) {

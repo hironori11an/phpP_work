@@ -98,9 +98,10 @@
                   {{$item->review_niy}}
                 </td>
               </tr>
-              @if(Session::has('role'))
               <tr class=tr_review>
                 <td class="td">
+                  {{--ログインしていない場合は、いいねボタンを非表示--}}
+                  @if(Session::has('role'))
                   <label class="iine-btn">
                     @forelse($item->users as $user)
                     @if($user->name === session('name'))
@@ -118,36 +119,33 @@
                     <img src="{{ asset('/images/iine.png')}}" class="iine-on" width="20" height="20">
                     <div class="iine-word">いいね</div>
                     @endif
-
                   </label>
-
+                  @endif
                   <label class="iineUser">
                     <input type="button" id="likedUser" value="いいねしたユーザ&nbsp;({{count($item->users)}})">
                   </label>
 
-          </div>
+                </td>
+                <td class="tag_td">
+                  @foreach ($item->review_tags as $review_tag)
+                  <input type="submit" class="buttonLink" name="tag_button" value="{{ $review_tag->tag_name }}">
+                  @endforeach
+                </td>
+              </tr>
 
-          </td>
-          <td class="tag_td">
-            @foreach ($item->review_tags as $review_tag)
-            <input type="submit" class="buttonLink" name="tag_button" value="{{ $review_tag->tag_name }}">
+            </table>
+            <br><br>
             @endforeach
-          </td>
-          </tr>
-          @endif
-          </table>
-          <br><br>
-          @endforeach
-          @endif
-
+            @endif
+          </div>
       </div>
       </section>
     </div>
     <br>
+    <!-- 小画面遷移時に、この画面全体を暗くするためのdiv -->
+    <div id="fadeLayer">
+    </div>
   </form>
-  <!-- 小画面遷移時に、この画面全体を暗くするためのdiv -->
-  <div id="fadeLayer">
-  </div>
 </body>
 
 </html>
