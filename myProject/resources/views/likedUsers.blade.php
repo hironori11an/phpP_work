@@ -28,12 +28,8 @@
                 <button class="buttonLink" value="{{$user->name}}">
                   {{$user->name}}
                 </button>
-                <input name="userName" type="hidden" value="{{$user->name}}">
               </td>
             </tr>
-            {{--
-            <a href="/search/results/{{$user->name}}">{{$user->name}}</a><br><br>
-            --}}
             @endforeach
             @endif
 
