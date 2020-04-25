@@ -28,7 +28,20 @@ class reviewController extends Controller
         $review->photo_path = null;
         unset($form['_token']);
         unset($form['photo']);
+        unset($form['tag']);
         $review->fill($form)->save();
+
+        // tagに入力値がある場合、カンマでタグを分割して登録する
+        if ($request->tag) {
+            $tags=explode(",", $request->tag);
+            foreach ($tags as $tagValue) {
+                //カンマ終わりの場合にブランクで設定されてるのを回避
+                if ($tagValue) {
+                    $review->review_tags()->create(['tag_name'=>$tagValue]);
+                }
+            }
+        }
+        
         //アップロードファイルがある場合、S3にアップロードする
         //S3のurlは、reviews.photo_pathに登録する
         if ($_FILES['photo']['size'] > 0) {

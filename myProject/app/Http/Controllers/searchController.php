@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Review;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class searchController extends Controller
 {
@@ -20,11 +21,22 @@ class searchController extends Controller
 
     public function search(Request $request)
     {
+        // タグから検索
+        if (Input::get('tag_button')) {
+            $tagName = $request->input('tag_button');
+            $items = Review::whereHas('review_tags', function ($query) use ($tagName) {
+                $query->where('tag_name', '=', $tagName);
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
+            
+            $all = Session::all();
+            return view('searchResult', compact('all', 'items'));
+        }
         $genre = $request->input('genre');
         $title = $request->input('title');
         $chysh = $request->input('chysh');
 
-        // $query = DB::table('reviews');
         $query = Review::whereHas('genres');
         if (!is_null($genre) && $genre !=='9') {
             $query = $query->where('genre', '=', $genre);
@@ -36,7 +48,6 @@ class searchController extends Controller
             $query = $query->where('chysh', 'LIKE', "%{$chysh}%");
         }
         $items = $query->orderByRaw('updated_at DESC')->get();
-        // $userLikes = $items->users()->where('user_id', '=', $request->user_name)->get();
 
         $all = Session::all();
         return view('searchResult', compact('all', 'items'));
@@ -72,26 +83,4 @@ class searchController extends Controller
         $all = Session::all();
         return view('likedUsers', compact('all', 'items'));
     }
-
-    // public function like(Request $request)
-    // {
-    //     $review_id=$request->review_id;
-        
-    //     $user = Auth::user();
-    //     $review_userLikes=$user->reviews()->attach($review_id);
-    //     return response()->json(
-    //         \Illuminate\Http\Response::HTTP_OK
-    //     );
-    // }
-
-    // public function delLike(Request $request)
-    // {
-    //     $review_id=$request->review_id;
-        
-    //     $user = Auth::user();
-    //     $review_userLikes=$user->reviews()->detach($review_id);
-    //     return response()->json(
-    //         \Illuminate\Http\Response::HTTP_OK
-    //     );
-    // }
 }

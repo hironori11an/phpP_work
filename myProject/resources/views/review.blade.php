@@ -105,6 +105,15 @@
                 </td>
               </tr>
 
+              <tr>
+                <th>
+                  タグ
+                </th>
+                <td>
+                  <input name="tag" type="text" value="{{ old('tag') }}" maxlength="40" size="80">
+                </td>
+              </tr>
+
             </table>
         </section>
       </div>

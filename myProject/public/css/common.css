@@ -38,10 +38,11 @@
   cursor: pointer;
   border: none;
   background: none;
-  color: #0033cc;
+  color: #335cd6;
+  text-decoration: underline; 
 }
 
 .buttonLink:hover {
-  text-decoration: underline;
-  color: #002080;
+  color: #000c2f;
 }
+
