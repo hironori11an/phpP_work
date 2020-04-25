@@ -25,11 +25,12 @@
         <a href="{{ action('bookspaceController@init') }}">ログアウト</a>
         &nbsp;&nbsp;
         <a>{{ session('name') }}</a>
+
+        @else
+        <a href="/loginbs">ログイン</a>&nbsp;&nbsp;
+        <a>ゲスト</a>
+        @endif
       </div>
-      @else
-      <a href="/loginbs">ログイン</a>&nbsp;&nbsp;
-      <a>ゲスト</a>
-      @endif
     </div>
 
     <div id="page">
@@ -97,9 +98,10 @@
                   {{$item->review_niy}}
                 </td>
               </tr>
-              @if(Session::has('role'))
               <tr class=tr_review>
                 <td class="td">
+                  {{--ログインしていない場合は、いいねボタンを非表示--}}
+                  @if(Session::has('role'))
                   <label class="iine-btn">
                     @forelse($item->users as $user)
                     @if($user->name === session('name'))
@@ -117,42 +119,32 @@
                     <img src="{{ asset('/images/iine.png')}}" class="iine-on" width="20" height="20">
                     <div class="iine-word">いいね</div>
                     @endif
-
                   </label>
-
+                  @endif
                   <label class="iineUser">
-                    {{--
-                    <a href="/search/results/userLiked/{{$item->id}}">いいねしたユーザ
-                      &nbsp;({{count($item->users)}})</a>
-                    --}}
                     <input type="button" id="likedUser" value="いいねしたユーザ&nbsp;({{count($item->users)}})">
-
-                    <input type="hidden" name="selectedReviewId" value="{{$item->id}}">
                   </label>
 
+                </td>
+                <td class="tag_td">
+                  @foreach ($item->review_tags as $review_tag)
+                  <input type="submit" class="buttonLink" name="tag_button" value="{{ $review_tag->tag_name }}">
+                  @endforeach
+                </td>
+              </tr>
+
+            </table>
+            <br><br>
+            @endforeach
+            @endif
           </div>
-
-          </td>
-          <td>&nbsp;</td>
-          </tr>
-          @endif
-          </table>
-
-          <br><br>
-          @endforeach
-          @endif
-
       </div>
       </section>
     </div>
     <br>
-
     <!-- 小画面遷移時に、この画面全体を暗くするためのdiv -->
     <div id="fadeLayer">
     </div>
-
-
-
   </form>
 </body>
 

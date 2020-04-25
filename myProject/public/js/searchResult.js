@@ -107,7 +107,7 @@ $(function () {
           openWindow.focus();
         }
       }
-    }, 1000);
+    }, 500);
   });
 
 

@@ -39,7 +39,7 @@ Route::post('/userRegist/success', [
 
 //一般 マイレビューの編集
 Route::post('/home/editMyReview', [
-    'uses' => 'editMyReviewController@init',
+    'uses' => 'bookspaceController@action',
 ]);
 Route::post('/home/editMyReview/success', [
     'uses' => 'editMyReviewController@edit',
