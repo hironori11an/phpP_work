@@ -111,6 +111,7 @@
                 </th>
                 <td>
                   <input name="tag" type="text" value="{{ old('tag') }}" maxlength="40" size="80">
+                  <br>※複数タグを登録する場合はカンマ区切りで入力してください。
                 </td>
               </tr>
 
