@@ -21,7 +21,7 @@
     <br>
     @endif
 
-    <input class="value_ur" type="text" name="name" size="20">
+    <input class="value_ur" type="text" name="name" size="20" value="{{ old('name') }}">
 
     <p class="item_ur" id="password">パスワード
     </p>
