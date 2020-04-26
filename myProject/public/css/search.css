@@ -1,0 +1,21 @@
+#tagArea {
+	left: 50px;
+  /* background-color: #CCFFFF	; */
+  background-color: #EEEEEE;
+	width: 900px;
+  padding: 20px 10px;
+  border-radius: 20px;
+}
+#tagArea .headline{
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0px 0px 10px 0px;
+}
+#tagArea .headlineChild{
+  font-size: 14px;
+  font-weight: normal;
+}
+
+#tagArea #tagNnk{
+  padding: 0px 10px;
+}
