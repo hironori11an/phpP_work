@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/search.css">
   <title>レビュー検索</title>
 </head>
 
@@ -77,7 +78,7 @@
                   タイトル
                 </th>
                 <td>
-                  <input name="title" type="text" value="{{ old('title') }}">
+                  <input name="title" type="text" value="{{ old('title') }}" maxlength="20" size="40">
                 </td>
               </tr>
               <tr>
@@ -85,14 +86,35 @@
                   著者
                 </th>
                 <td>
-                  <input name="chysh" type="text" value="{{ old('chysh') }}">
+                  <input name="chysh" type="text" value="{{ old('chysh') }}" maxlength="10" size="20">
                 </td>
               </tr>
             </table>
+            <br>
+            <input type="submit" name="searchBtn" class="btn" value="検索">
+            <br><br>
         </section>
       </div>
-      <br>
-      <input type="submit" class="btn" value="検索">
+      <div id="tagArea">
+        <div class="headline">
+          <タグ検索>
+            <div class="headlineChild">
+              &nbsp;&nbsp;※未入力での検索は、タグありのレビューが検索対象となります。
+            </div>
+        </div>
+        <input name="tagNyryk" type="text" value="{{ old('title') }}" maxlength="40" size="80">
+        <input type="submit" class="btn" name="tagSearchBtn" value="検索">
+        <br><br>
+        <div class="headline">人気のあるタグ</div>
+        <div id="tagNnk">
+          {{--タグ上位１０件を表示--}}
+          @foreach ($reviewTags as $reviewTag)
+          @if ($loop->index < 10) <a href="/search/results/tag/{{$reviewTag->tag_name}}">
+            {{$reviewTag->tag_name}}</a><br>
+            @endif
+            @endforeach
+        </div>
+      </div>
     </div>
 
   </form>

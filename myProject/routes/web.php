@@ -54,6 +54,10 @@ Route::get('/search/results/userLiked/{reviewId?}', [
     'uses' => 'searchController@searchlikedUsers',
 ])->name('searchlikedUsers');
 
+Route::get('/search/results/tag/{tagName?}', [
+    'uses' => 'searchController@searchTagName',
+])->name('searchTagName');
+
 //ajax いいね登録用
 Route::post('/like', [
     'uses' => 'reviewLikesController@like']);

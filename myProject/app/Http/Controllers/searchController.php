@@ -16,12 +16,17 @@ class searchController extends Controller
     public function init(Request $request)
     {
         $all = Session::all();
-        return view('search', compact('all'));
+        $reviewTags = DB::table('review_tags')
+                    ->select(DB::raw('tag_name,count(tag_name) as tag_cnt'))
+                    ->groupBy('tag_name')
+                    ->orderByRaw('tag_cnt DESC')
+                    ->get();
+        return view('search', compact('all', 'reviewTags'));
     }
 
     public function search(Request $request)
     {
-        // タグから検索
+        // 検索結果画面のタグボタン押下時
         if (Input::get('tag_button')) {
             $tagName = $request->input('tag_button');
             $items = Review::whereHas('review_tags', function ($query) use ($tagName) {
@@ -32,26 +37,42 @@ class searchController extends Controller
             
             $all = Session::all();
             return view('searchResult', compact('all', 'items'));
-        }
-        $genre = $request->input('genre');
-        $title = $request->input('title');
-        $chysh = $request->input('chysh');
 
-        $query = Review::whereHas('genres');
-        if (!is_null($genre) && $genre !=='9') {
-            $query = $query->where('genre', '=', $genre);
-        }
-        if (!is_null($title)) {
-            $query = $query->where('title', 'LIKE', "%{$title}%");
-        }
-        if (!is_null($chysh)) {
-            $query = $query->where('chysh', 'LIKE', "%{$chysh}%");
-        }
-        $items = $query->orderByRaw('updated_at DESC')->get();
+        //検索画面（ジャンル、著者、タイトル）から
+        } elseif (Input::get('searchBtn')) {
+            $genre = $request->input('genre');
+            $title = $request->input('title');
+            $chysh = $request->input('chysh');
 
-        $all = Session::all();
-        return view('searchResult', compact('all', 'items'));
+            $query = Review::whereHas('genres');
+            if (!is_null($genre) && $genre !=='9') {
+                $query = $query->where('genre', '=', $genre);
+            }
+            if (!is_null($title)) {
+                $query = $query->where('title', 'LIKE', "%{$title}%");
+            }
+            if (!is_null($chysh)) {
+                $query = $query->where('chysh', 'LIKE', "%{$chysh}%");
+            }
+            $items = $query->orderByRaw('updated_at DESC')->get();
+
+            $all = Session::all();
+            return view('searchResult', compact('all', 'items'));
+
+        //検索画面（タグ）から
+        } elseif (Input::get('tagSearchBtn')) {
+            $tagNyryk = $request->input('tagNyryk');
+            $items = Review::whereHas('review_tags', function ($query) use ($tagNyryk) {
+                $query->where('tag_name', 'LIKE', "%{$tagNyryk}%");
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
+            $all = Session::all();
+            return view('searchResult', compact('all', 'items'));
+        }
     }
+
+    //レビュー者のリンク押下時（検索結果画面から）
     public function searchUserName(Request $request)
     {
         $user_name=$request->user_name;
@@ -68,6 +89,7 @@ class searchController extends Controller
         return view('searchUserName', compact('all', 'items'));
     }
 
+    //いいねしたユーザボタン押下時（検索結果画面から）
     public function searchlikedUsers(Request $request)
     {
         $reviewId=$request->reviewId;
@@ -75,12 +97,26 @@ class searchController extends Controller
         if ($items->isEmpty()) {
             return response()->view(
                 'common.success',
-                ['success_message'=>'ユーザが見つかりません',
+                ['success_message'=>'レビューが見つかりません',
             'url'=>'/search']
             );
         }
 
         $all = Session::all();
         return view('likedUsers', compact('all', 'items'));
+    }
+
+    // 人気のあるタグリンク押下時
+    public function searchTagName(Request $request)
+    {
+        $tagName=$request->tagName;
+        $items = Review::whereHas('review_tags', function ($query) use ($tagName) {
+            $query->where('tag_name', '=', $tagName);
+        })
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        
+        $all = Session::all();
+        return view('searchResult', compact('all', 'items'));
     }
 }

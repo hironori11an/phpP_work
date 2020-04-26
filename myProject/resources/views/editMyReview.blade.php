@@ -55,7 +55,7 @@
                 <td colspan="2">
                   <table id="mainTable">
                     <tr>
-                      <td rowspan="5" width="22%">
+                      <td rowspan="6" width="22%">
                         @isset($item->photo_path)
                         <input type="image" src="{{$item->photo_path}}" width="150px" height="150px">
                         @else
@@ -124,6 +124,19 @@
 
                       </td>
                     </tr>
+                    <tr>
+                      <th>
+                        タグ
+                      </th>
+                      <td>
+                        {{--
+                        @foreach ($item->review_tags as $review_tag)
+                        <input name="tag_name" type="text" value="{{ $review_tag->tag_name }}" maxlength="40" size="80">
+                        @endforeach
+                        --}}
+                        <input name="tag_name" type="text" value="{{ $review_tag_all }}" maxlength="40" size="80">
+                      </td>
+                    </tr>
                   </table>
                 </td>
               </tr>
@@ -142,11 +155,6 @@
                   <input type="text" id="fake_text_box" value="" size="35" readonly onClick="$('#file').click();">
                 </td>
 
-                {{--
-                <td>
-                  <input type="file" name="photo">
-                </td>
-                --}}
               </tr>
               <tr>
                 <td>&nbsp;</td>
