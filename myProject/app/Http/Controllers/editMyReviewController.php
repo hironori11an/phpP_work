@@ -20,7 +20,20 @@ class editMyReviewController extends Controller
         $all = Session::all();
         $allgenres = \App\Genre::all();
         $item = Review::find($selectedReviewId);
-        return view('editMyReview', compact('all', 'item', 'allgenres'));
+
+        // タグをカンマ区切り表示にする
+        $review_tag_all ="";
+        $loop_counts=0;
+        foreach ($item->review_tags as $review_tag) {
+            if ($loop_counts===0) {
+                $review_tag_all = $review_tag->tag_name;
+            } else {
+                $review_tag_all .= "," . $review_tag->tag_name;
+            }
+            ++$loop_counts;
+        }
+
+        return view('editMyReview', compact('all', 'item', 'allgenres', 'review_tag_all'));
     }
 
     public function edit(Request $request)
@@ -43,6 +56,18 @@ class editMyReviewController extends Controller
                 //画像なしから画像ありへの変更では、ここではじめてDBにphoto_pathが登録される
                 $reviewWork->photo_path=asset('storage/profile_images/review-' . $selectedReviewId. '.jpg');
             }
+            // レビュータグTBLの更新(delete,insert)
+            // tagに入力値がある場合、カンマでタグを分割して登録する
+            $reviewWork->review_tags()->delete();
+            if ($request->tag_name) {
+                $tags=explode(",", $request->tag_name);
+                foreach ($tags as $tagValue) {
+                    //カンマ終わりの場合にブランクで設定されてるのを回避
+                    if ($tagValue) {
+                        $reviewWork->review_tags()->create(['tag_name'=>$tagValue]);
+                    }
+                }
+            }
 
             $reviewWork->genre=$request->input('genre');
             $reviewWork->title=$request->input('title');
@@ -61,7 +86,7 @@ class editMyReviewController extends Controller
             if (!is_null($reviewWork->photo_path)) {
                 Storage::delete('public/profile_images/review-' . $selectedReviewId. '.jpg');
             }
-            Review::find($selectedReviewId)->delete();
+            $reviewWork->delete();
             return view(
                 'common.success',
                 ['success_message'=>'レビューが削除されました',
