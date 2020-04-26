@@ -129,12 +129,8 @@
                         タグ
                       </th>
                       <td>
-                        {{--
-                        @foreach ($item->review_tags as $review_tag)
-                        <input name="tag_name" type="text" value="{{ $review_tag->tag_name }}" maxlength="40" size="80">
-                        @endforeach
-                        --}}
                         <input name="tag_name" type="text" value="{{ $review_tag_all }}" maxlength="40" size="80">
+                        <br>※複数タグを登録する場合はカンマ区切りで入力してください。
                       </td>
                     </tr>
                   </table>

@@ -102,7 +102,7 @@
               &nbsp;&nbsp;※未入力での検索は、タグありのレビューが検索対象となります。
             </div>
         </div>
-        <input name="tagNyryk" type="text" value="{{ old('title') }}" maxlength="40" size="80">
+        <input name="tagNyryk" type="text" value="{{ old('tagNyryk') }}" maxlength="40" size="80">
         <input type="submit" class="btn" name="tagSearchBtn" value="検索">
         <br><br>
         <div class="headline">人気のあるタグ</div>
