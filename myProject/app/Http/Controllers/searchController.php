@@ -20,6 +20,7 @@ class searchController extends Controller
                     ->select(DB::raw('tag_name,count(tag_name) as tag_cnt'))
                     ->groupBy('tag_name')
                     ->orderByRaw('tag_cnt DESC')
+                    ->orderByRaw('tag_name')
                     ->get();
         return view('search', compact('all', 'reviewTags'));
     }
