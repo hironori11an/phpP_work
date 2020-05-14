@@ -39,6 +39,11 @@ class searchController extends Controller
             $all = Session::all();
             return view('searchResult', compact('all', 'items'));
 
+        // レビュー内容行押下時
+        }elseif(Input::get('reviewNiyClick')){
+            $reviewNiyService = app()->make('App\Http\Controllers\reviewNiyServiceController');
+            return $reviewNiyService->tmp($request);
+        
         //検索画面（ジャンル、著者、タイトル）から
         } elseif (Input::get('searchBtn')) {
             $genre = $request->input('genre');
@@ -120,4 +125,5 @@ class searchController extends Controller
         $all = Session::all();
         return view('searchResult', compact('all', 'items'));
     }
+
 }

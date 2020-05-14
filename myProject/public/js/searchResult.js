@@ -110,5 +110,22 @@ $(function () {
     }, 500);
   });
 
+  // レビュー内容行をクリック時
+  $(document).on('click', '.tdReviwNiy, .tag_td', function () {
+    var review_id = $(this).closest('table').prev('table').find('.reviewId').val();
+    $('form').append('<input type="hidden" name="reviewNiyClick" value="X">');
+    $('form').append('<input type="hidden" name="selectedReviewId" value=' + review_id + '>');
+    $('form').submit();
+  });
+
+  $('.tdReviwNiy, .tag_td').hover(function () {
+    $(this).closest('table').find('.tdReviwNiy').css("background-color", "#C0C0C0");
+    $(this).closest('table').find('.tag_td').css("background-color", "#C0C0C0");
+
+  }, function () {
+    $(this).closest('table').find('.tdReviwNiy').css("background-color", "#dedade");
+    $(this).closest('table').find('.tag_td').css("background-color", "#dedade");
+  }
+  );
 
 });
