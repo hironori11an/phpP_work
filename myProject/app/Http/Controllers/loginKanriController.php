@@ -29,6 +29,9 @@ class loginKanriController extends Controller
             Auth::attempt(['name' => 'ippan', 'password' => 'ippan']);
             $request->session()->put('name', 'ippan');
             $request->session()->put('role', '0');
+            
+            $user = User::where('name', 'ippan')->first();
+            $request->session()->put('userId', $user->id);
             return redirect('/home');
             
         //かんたんログイン（管理）
@@ -37,6 +40,9 @@ class loginKanriController extends Controller
             Auth::attempt(['name' => 'kanri', 'password' => 'kanri']);
             $request->session()->put('name', 'kanri');
             $request->session()->put('role', '1');
+
+            $user = User::where('name', 'kanri')->first();
+            $request->session()->put('userId', $user->id);
             return redirect()->route('homeKanri');
         }
     }
@@ -53,9 +59,11 @@ class loginKanriController extends Controller
             foreach ($users as $user) {
                 $role=$user->role;
                 $name=$user->name;
+                $id=$user->id;
             }
             $request->session()->put('name', $name);
             $request->session()->put('role', $role);
+            $request->session()->put('userId', $id);
             if ($role > 0) {
                 return redirect()->route('homeKanri');
             }
