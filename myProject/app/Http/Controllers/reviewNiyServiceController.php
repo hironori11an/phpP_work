@@ -20,6 +20,13 @@ class reviewNiyServiceController extends Controller
         $reviewNiyReplies = DB::table('review_niy_replies')
                             ->join('users', 'review_niy_replies.user_id', '=', 'users.id')
                             ->where('review_niy_replies.review_id', '=', $selectedReviewId)
+                            ->select(
+                                'review_niy_replies.id as review_niy_replies_id',
+                                'review_niy_replies.review_id',
+                                'review_niy_replies.reply',
+                                'users.id as user_id',
+                                'users.name'
+                            )
                             ->orderBy('review_niy_replies.updated_at', 'asc')
                             ->get();
         return view('reviewNiyRep', compact('reviewMain', 'reviewNiyReplies'));
@@ -29,6 +36,8 @@ class reviewNiyServiceController extends Controller
     {
         if (Input::get('commentBtn')) {
             return $this->commentRegist($request);
+        } elseif (Input::get('comDelBtn')) {
+            return $this->commentDelete($request);
         }
     }
 
@@ -50,6 +59,21 @@ class reviewNiyServiceController extends Controller
         return view(
             'common.success',
             ['success_message'=>'コメント登録しました',
+            'url'=>"/search/results/reviewID/".$reviewId]
+        );
+    }
+
+    public function commentDelete(Request $request)
+    {
+        $delComId = $request->input('delComId');
+        $reviewId = $request->input('reviewId');
+        $ReviewNiyReplyWork = ReviewNiyReply::find($delComId);
+
+        $ReviewNiyReplyWork->delete();
+
+        return view(
+            'common.success',
+            ['success_message'=>'コメント削除しました',
             'url'=>"/search/results/reviewID/".$reviewId]
         );
     }

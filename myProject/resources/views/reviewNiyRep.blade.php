@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="/css/reviewNiyRep.css">
 
   <script src="{{mix('js/app.js')}}"></script>
-  <script src="/js/searchResult.js"></script>
+  <script src="/js/reviewNiyRep.js"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>リプライ</title>
+  <title>レビュー詳細</title>
 </head>
 
 <body>
@@ -142,18 +142,29 @@
             <table>
               <tr>
                 <td>
-                  @foreach ($reviewNiyReplies as $review_niy_reply)
+
                   <table class="commentIchiran" rules="none" border="1">
+                    @foreach ($reviewNiyReplies as $review_niy_reply)
                     <tr>
+                      <input type="hidden" class="comId" name="comId"
+                        value="{{$review_niy_reply->review_niy_replies_id}}">
                       <td class="comUserName">
                         <a href="/search/results/{{$review_niy_reply->name}}">{{$review_niy_reply->name}}</a>
                       </td>
                       <td class="comNiy">
                         {{ $review_niy_reply->reply }}
                       </td>
+                      <td>
+                        @if($review_niy_reply->user_id === session('userId'))
+                        <input type="submit" class="btn-strong" name="comDelBtn" value="削除">
+                        @else
+                        &nbsp;
+                        @endif
+                      </td>
                     </tr>
+                    @endforeach
                   </table>
-                  @endforeach
+
               </tr>
               </td>
             </table>

@@ -37,7 +37,15 @@ textarea{
 }
 .commentIchiran{
   width:720px;
+  border-collapse: collapse;
 }
+.commentIchiran tr{
+border-bottom:solid 1px silver;
+}
+.commentIchiran tr:last-child{
+  border-bottom:none;
+}
+
 .comUserName{
   width:110px
 }
