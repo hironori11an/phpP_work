@@ -115,6 +115,7 @@ $(function () {
     var review_id = $(this).closest('table').prev('table').find('.reviewId').val();
     $('form').append('<input type="hidden" name="reviewNiyClick" value="X">');
     $('form').append('<input type="hidden" name="selectedReviewId" value=' + review_id + '>');
+    $('form').attr('action', '/search/results');
     $('form').submit();
   });
 

@@ -128,7 +128,10 @@
                 </td>
                 <td class="tag_td">
                   @foreach ($item->review_tags as $review_tag)
+                  <!--
                   <input type="submit" class="buttonLink" name="tag_button" value="{{ $review_tag->tag_name }}">
+                  -->
+                  <a href="/search/results/tag/{{$review_tag->tag_name}}">{{$review_tag->tag_name}}</a>&nbsp;&nbsp;
                   @endforeach
                 </td>
               </tr>

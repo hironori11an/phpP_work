@@ -20,4 +20,8 @@ class Review extends Model
     {
         return $this->hasMany('\App\ReviewTag');
     }
+    public function review_niy_replies()
+    {
+        return $this->hasMany('\App\ReviewNiyReply');
+    }
 }
