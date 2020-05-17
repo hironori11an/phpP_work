@@ -129,4 +129,11 @@ $(function () {
   }
   );
 
+  // 削除ボタンクリック時
+  $(document).on('click', "[name=comDelBtn]", function () {
+    var com_id = $(this).closest('tr').find('.comId').val();
+    $('form').append('<input type="hidden" name="delComId" value=' + com_id + '>');
+    $('form').submit();
+  });
+
 });

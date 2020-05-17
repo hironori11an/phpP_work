@@ -66,6 +66,15 @@ Route::post('/like', [
 Route::post('/delLike', [
     'uses' => 'reviewLikesController@delLike']);
 
+//検索画面からレビュー内容をクリック時
+Route::get('/search/results/reviewID/{reviewID?}', [
+    'uses' => 'reviewNiyServiceController@init',
+])->name('reviewResult.init');
+
+Route::post('/search/results/comment', [
+    'uses' => 'reviewNiyServiceController@post',
+]);
+
 //処理成功画面（共通）
 Route::get('/success', function () {
     return view('common.success');
