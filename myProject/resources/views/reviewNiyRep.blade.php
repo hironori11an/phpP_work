@@ -133,6 +133,8 @@
               </tr>
 
             </table>
+            @if (Session::has('name'))
+
             <br>
             コメントを書く<br>
             <textarea name="reviewNiyRep" maxlength="250" rows="3" value="{{ old('reviewNiyRep') }}"></textarea>
@@ -170,7 +172,7 @@
             </table>
             @endif
 
-
+            @endif
           </div>
       </div>
       </section>
