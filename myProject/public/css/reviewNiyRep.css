@@ -32,6 +32,9 @@ table {
   font-size: 13px;
   cursor: pointer;
 }
+.tdReviwNiy{
+  vertical-align: top; 
+}
 textarea{
   width:620px;
 }

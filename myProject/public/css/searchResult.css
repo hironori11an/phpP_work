@@ -16,7 +16,10 @@ table {
 .tr_review{
   background-color: #dedade;
 }
-.tag_td .tag_td_iine{
+.tdReviwNiy{
+  vertical-align: top; 
+}
+.tag_td{
   vertical-align: bottom; 
 }
 .iine-btn {
