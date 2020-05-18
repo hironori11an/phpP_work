@@ -73,14 +73,17 @@
                         <tr class=tr_title>
                           <td colspan="2">
                             <div>
-                              <p><span class="title">{{$reviewLike->title}}</span>
+                              <p><span class="title">
+                                  <a href="/search/results/title/{{$reviewLike->title}}">{{$reviewLike->title}}</a>
+                                </span>
                               </p>
                             </div>
                           </td>
                         </tr>
                         <tr class=tr_title>
                           <td width="270">
-                            著者:&nbsp;&nbsp;{{$reviewLike->chysh}}
+                            著者:&nbsp;&nbsp;
+                            <a href="/search/results/chysh/{{$reviewLike->chysh}}">{{$reviewLike->chysh}}</a>
                           </td>
                           <td>ジャンル：
                             @foreach ($reviewLike->genres as $genre)
@@ -138,6 +141,7 @@
               </details>
               @endisset
 
+              <!-- 以下マイレビュ↓↓↓↓↓↓↓ -->
               @if(isset($items)){{--itemsがない場合は画像表示 class:mainVisualText--}}
               <details open>
                 <summary>マイレビュー</summary>
@@ -157,13 +161,16 @@
 
                             <td colspan="2">
                               <div>
-                                <p><span class="title">{{$item->title}}</span></p>
+                                <p><span class="title">
+                                    <a href="/search/results/title/{{$item->title}}">{{$item->title}}</a>
+                                  </span></p>
                               </div>
                             </td>
                           </tr>
                           <tr class=tr_title>
                             <td width="270">
-                              著者:&nbsp;&nbsp;{{$item->chysh}}
+                              著者:&nbsp;&nbsp;
+                              <a href="/search/results/chysh/{{$item->chysh}}">{{$item->chysh}}</a>
                             </td>
                             <td>
                               ジャンル：

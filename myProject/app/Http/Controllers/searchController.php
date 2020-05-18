@@ -100,13 +100,37 @@ class searchController extends Controller
         return view('likedUsers', compact('all', 'items'));
     }
 
-    // 人気のあるタグリンク押下時
+    // タグリンク押下時
     public function searchTagName(Request $request)
     {
         $tagName=$request->tagName;
         $items = Review::whereHas('review_tags', function ($query) use ($tagName) {
             $query->where('tag_name', '=', $tagName);
         })
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        
+        $all = Session::all();
+        return view('searchResult', compact('all', 'items'));
+    }
+
+    // 著者リンク押下時
+    public function searchChysh(Request $request)
+    {
+        $chysh=$request->chysh;
+        $items = Review::where('chysh', $chysh)
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        
+        $all = Session::all();
+        return view('searchResult', compact('all', 'items'));
+    }
+
+    // タイトルリンク押下時
+    public function searchTitle(Request $request)
+    {
+        $title=$request->title;
+        $items = Review::where('title', $title)
         ->orderBy('updated_at', 'desc')
         ->get();
         
