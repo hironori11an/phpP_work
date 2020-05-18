@@ -27,23 +27,8 @@ class searchController extends Controller
 
     public function search(Request $request)
     {
-        // 検索結果画面のタグボタン押下時
-        // if (Input::get('tag_button')) {
-        //     $tagName = $request->input('tag_button');
-        //     $items = Review::whereHas('review_tags', function ($query) use ($tagName) {
-        //         $query->where('tag_name', '=', $tagName);
-        //     })
-        //     ->orderBy('updated_at', 'desc')
-        //     ->get();
-            
-        //     $all = Session::all();
-        //     return view('searchResult', compact('all', 'items'));
-
         // レビュー内容行押下時
         if (Input::get('reviewNiyClick')) {
-            
-            // $reviewNiyService = app()->make('App\Http\Controllers\reviewNiyServiceController');
-            // return $reviewNiyService->init($request);
             $selectedReviewId = $request->input('selectedReviewId');
             return redirect()->route('reviewResult.init', ['reviewID'=>$selectedReviewId]);
         
