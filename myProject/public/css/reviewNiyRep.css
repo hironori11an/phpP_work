@@ -11,7 +11,7 @@ table {
   border-collapse: collapse;
 }
 .tr_title{
-  background-color: rgb(109, 146, 237);
+  background-color: rgb(118, 118, 147);
 }
 .tr_review{
   background-color: #dedade;
@@ -32,6 +32,9 @@ table {
   font-size: 13px;
   cursor: pointer;
 }
+.tdReviwNiy{
+  vertical-align: top; 
+}
 textarea{
   width:620px;
 }
@@ -51,6 +54,7 @@ border-bottom:solid 1px silver;
 }
 .comNiy{
   text-align:left;
+  width:560px
 }
 
 body{

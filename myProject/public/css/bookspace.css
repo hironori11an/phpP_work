@@ -11,7 +11,7 @@ table {
   border-collapse: collapse;
 }
 .tr_title{
-  background-color: rgb(109, 146, 237);
+  background-color: rgb(118, 118, 147);
 }
 .tr_review{
   background-color: #dedade;
@@ -24,6 +24,12 @@ table {
   cursor: pointer;
 }
 
+.tdReviwNiy,.tdReviwNiy_iine{
+  vertical-align: top; 
+}
+.tag_td,.tag_td_iine{
+  vertical-align: bottom; 
+}
 body{
   height: 100% ;
 }

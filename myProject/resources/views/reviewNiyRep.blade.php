@@ -63,7 +63,9 @@
                 <input type="hidden" name="reviewId" class="reviewId" value="{{$reviewMain->id}}">
                 <td colspan="2">
                   <div>
-                    <p><span class="title">{{$reviewMain->title}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p><span class="title">
+                        <a href="/search/results/title/{{$reviewMain->title}}">{{$reviewMain->title}}</a>
+                      </span>&nbsp;&nbsp;&nbsp;&nbsp;
                     </p>
 
 
@@ -71,7 +73,8 @@
                 </td>
               </tr>
               <tr class=tr_title>
-                <td width="270"> 著者:&nbsp;&nbsp;{{$reviewMain->chysh}}
+                <td width="270"> 著者:&nbsp;&nbsp;
+                  <a href="/search/results/chysh/{{$reviewMain->chysh}}">{{$reviewMain->chysh}}</a>
                 </td>
                 <td>
                   ジャンル：

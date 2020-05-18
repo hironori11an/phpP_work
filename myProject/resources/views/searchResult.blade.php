@@ -52,6 +52,9 @@
       </header>
 
       <div id="pageBody">
+        @isset($user_name)
+        {{$user_name}}さんのレビュー一覧
+        @endisset
         @if(count($items) ===0)
         検索結果はありません。他の条件で検索してください。
         @else
@@ -65,7 +68,9 @@
                 <input type="hidden" name="reviewId" class="reviewId" value="{{$item->id}}">
                 <td colspan="2">
                   <div>
-                    <p><span class="title">{{$item->title}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p><span class="title">
+                        <a href="/search/results/title/{{$item->title}}">{{$item->title}}</a>
+                      </span>&nbsp;&nbsp;&nbsp;&nbsp;
                     </p>
 
 
@@ -73,7 +78,8 @@
                 </td>
               </tr>
               <tr class=tr_title>
-                <td width="270"> 著者:&nbsp;&nbsp;{{$item->chysh}}
+                <td width="270"> 著者:&nbsp;&nbsp;
+                  <a href="/search/results/chysh/{{$item->chysh}}">{{$item->chysh}}</a>
                 </td>
                 <td>
                   ジャンル：

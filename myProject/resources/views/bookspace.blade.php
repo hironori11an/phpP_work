@@ -73,14 +73,17 @@
                         <tr class=tr_title>
                           <td colspan="2">
                             <div>
-                              <p><span class="title">{{$reviewLike->title}}</span>
+                              <p><span class="title">
+                                  <a href="/search/results/title/{{$reviewLike->title}}">{{$reviewLike->title}}</a>
+                                </span>
                               </p>
                             </div>
                           </td>
                         </tr>
                         <tr class=tr_title>
                           <td width="270">
-                            著者:&nbsp;&nbsp;{{$reviewLike->chysh}}
+                            著者:&nbsp;&nbsp;
+                            <a href="/search/results/chysh/{{$reviewLike->chysh}}">{{$reviewLike->chysh}}</a>
                           </td>
                           <td>ジャンル：
                             @foreach ($reviewLike->genres as $genre)
@@ -98,7 +101,7 @@
                             画像なし
                             @endisset
                           </td>
-                          <td class="td">
+                          <td class="tdReviwNiy_iine">
                             <a
                               href="/search/results/{{$reviewLike->user_name}}">{{$reviewLike->user_name}}</a>さんのレビュー&nbsp;&nbsp;
                             <img src="{{ asset('/images/hyk_level/ico_grade_'.$reviewLike->hyk.'.gif')}}" width="80"
@@ -112,10 +115,10 @@
                               <input type="button" id="likedUser" value="いいねしたユーザ&nbsp;({{count($reviewLike->users)}})">
                             </label>
                           </td>
-                          <td class="tag_td">
+                          <td class="tag_td_iine">
                             @foreach ($reviewLike->review_tags as $review_tag)
-                            <input type="submit" class="buttonLink" name="tag_button"
-                              value="{{ $review_tag->tag_name }}">
+                            <a
+                              href="/search/results/tag/{{$review_tag->tag_name}}">{{$review_tag->tag_name}}</a>&nbsp;&nbsp;
                             @endforeach
                           </td>
                         </tr>
@@ -138,6 +141,7 @@
               </details>
               @endisset
 
+              <!-- 以下マイレビュ↓↓↓↓↓↓↓ -->
               @if(isset($items)){{--itemsがない場合は画像表示 class:mainVisualText--}}
               <details open>
                 <summary>マイレビュー</summary>
@@ -157,13 +161,16 @@
 
                             <td colspan="2">
                               <div>
-                                <p><span class="title">{{$item->title}}</span></p>
+                                <p><span class="title">
+                                    <a href="/search/results/title/{{$item->title}}">{{$item->title}}</a>
+                                  </span></p>
                               </div>
                             </td>
                           </tr>
                           <tr class=tr_title>
                             <td width="270">
-                              著者:&nbsp;&nbsp;{{$item->chysh}}
+                              著者:&nbsp;&nbsp;
+                              <a href="/search/results/chysh/{{$item->chysh}}">{{$item->chysh}}</a>
                             </td>
                             <td>
                               ジャンル：
@@ -182,7 +189,7 @@
                               画像なし
                               @endisset
                             </td>
-                            <td class="td">
+                            <td class="tdReviwNiy">
                               <img src="{{ asset('/images/hyk_level/ico_grade_'.$item->hyk.'.gif')}}" width="80"
                                 height="15"><br>
                               {{$item->review_niy}}
@@ -196,8 +203,8 @@
                             </td>
                             <td class="tag_td">
                               @foreach ($item->review_tags as $review_tag)
-                              <input type="submit" class="buttonLink" name="tag_button"
-                                value="{{ $review_tag->tag_name }}">
+                              <a
+                                href="/search/results/tag/{{$review_tag->tag_name}}">{{$review_tag->tag_name}}</a>&nbsp;&nbsp;
                               @endforeach
                             </td>
                           </tr>

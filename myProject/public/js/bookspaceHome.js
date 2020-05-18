@@ -80,4 +80,43 @@ $(function () {
     }, 500);
   });
 
+  // マイレビューのレビュー内容行押下時
+  $(document).on('click', '.tdReviwNiy, .tag_td', function () {
+    var review_id = $(this).closest('#myReviewTable').find('.reviewId').val();
+    $('form').append('<input type="hidden" name="reviewNiyClick" value="X">');
+    $('form').append('<input type="hidden" name="selectedReviewId" value=' + review_id + '>');
+    $('form').attr('action', '/search/results');
+    $('form').submit();
+  });
+
+  // いいねしたレビューのレビュー内容行押下時
+  $(document).on('click', '.tdReviwNiy_iine, .tag_td_iine', function () {
+    var review_id = $(this).closest('#reviewLikeTable').find('.reviewLike_review_id').val();
+    $('form').append('<input type="hidden" name="reviewNiyClick" value="X">');
+    $('form').append('<input type="hidden" name="selectedReviewId" value=' + review_id + '>');
+    $('form').attr('action', '/search/results');
+    $('form').submit();
+  });
+
+  // レビュー内容行（マイレビュー）、オンマウス時
+  $('.tdReviwNiy, .tag_td').hover(function () {
+    $(this).closest('table').find('.tdReviwNiy').css("background-color", "#C0C0C0");
+    $(this).closest('table').find('.tag_td').css("background-color", "#C0C0C0");
+
+  }, function () {
+    $(this).closest('table').find('.tdReviwNiy').css("background-color", "#dedade");
+    $(this).closest('table').find('.tag_td').css("background-color", "#dedade");
+  }
+  );
+
+  // レビュー内容行（いいねしたレビュー）、オンマウス時
+  $('.tdReviwNiy_iine, .tag_td_iine').hover(function () {
+    $(this).closest('table').find('.tdReviwNiy_iine').css("background-color", "#C0C0C0");
+    $(this).closest('table').find('.tag_td_iine').css("background-color", "#C0C0C0");
+
+  }, function () {
+    $(this).closest('table').find('.tdReviwNiy_iine').css("background-color", "#dedade");
+    $(this).closest('table').find('.tag_td_iine').css("background-color", "#dedade");
+  }
+  );
 });

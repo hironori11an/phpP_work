@@ -119,6 +119,7 @@ $(function () {
     $('form').submit();
   });
 
+  // レビュー内容行、オンマウス時
   $('.tdReviwNiy, .tag_td').hover(function () {
     $(this).closest('table').find('.tdReviwNiy').css("background-color", "#C0C0C0");
     $(this).closest('table').find('.tag_td').css("background-color", "#C0C0C0");

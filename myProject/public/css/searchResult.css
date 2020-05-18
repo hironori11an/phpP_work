@@ -11,12 +11,15 @@ table {
   border-collapse: collapse;
 }
 .tr_title{
-  background-color: rgb(109, 146, 237);
+  background-color: rgb(118, 118, 147);
 }
 .tr_review{
   background-color: #dedade;
 }
-.tag_td {
+.tdReviwNiy{
+  vertical-align: top; 
+}
+.tag_td{
   vertical-align: bottom; 
 }
 .iine-btn {

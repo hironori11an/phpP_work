@@ -27,23 +27,8 @@ class searchController extends Controller
 
     public function search(Request $request)
     {
-        // 検索結果画面のタグボタン押下時
-        // if (Input::get('tag_button')) {
-        //     $tagName = $request->input('tag_button');
-        //     $items = Review::whereHas('review_tags', function ($query) use ($tagName) {
-        //         $query->where('tag_name', '=', $tagName);
-        //     })
-        //     ->orderBy('updated_at', 'desc')
-        //     ->get();
-            
-        //     $all = Session::all();
-        //     return view('searchResult', compact('all', 'items'));
-
         // レビュー内容行押下時
         if (Input::get('reviewNiyClick')) {
-            
-            // $reviewNiyService = app()->make('App\Http\Controllers\reviewNiyServiceController');
-            // return $reviewNiyService->init($request);
             $selectedReviewId = $request->input('selectedReviewId');
             return redirect()->route('reviewResult.init', ['reviewID'=>$selectedReviewId]);
         
@@ -81,7 +66,7 @@ class searchController extends Controller
         }
     }
 
-    //レビュー者のリンク押下時（検索結果画面から）
+    //ユーザ名ののリンク押下時（検索結果画面から）
     public function searchUserName(Request $request)
     {
         $user_name=$request->user_name;
@@ -95,7 +80,7 @@ class searchController extends Controller
         }
 
         $all = Session::all();
-        return view('searchUserName', compact('all', 'items'));
+        return view('searchResult', compact('all', 'items', 'user_name'));
     }
 
     //いいねしたユーザボタン押下時（検索結果画面から）
@@ -115,13 +100,37 @@ class searchController extends Controller
         return view('likedUsers', compact('all', 'items'));
     }
 
-    // 人気のあるタグリンク押下時
+    // タグリンク押下時
     public function searchTagName(Request $request)
     {
         $tagName=$request->tagName;
         $items = Review::whereHas('review_tags', function ($query) use ($tagName) {
             $query->where('tag_name', '=', $tagName);
         })
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        
+        $all = Session::all();
+        return view('searchResult', compact('all', 'items'));
+    }
+
+    // 著者リンク押下時
+    public function searchChysh(Request $request)
+    {
+        $chysh=$request->chysh;
+        $items = Review::where('chysh', $chysh)
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        
+        $all = Session::all();
+        return view('searchResult', compact('all', 'items'));
+    }
+
+    // タイトルリンク押下時
+    public function searchTitle(Request $request)
+    {
+        $title=$request->title;
+        $items = Review::where('title', $title)
         ->orderBy('updated_at', 'desc')
         ->get();
         

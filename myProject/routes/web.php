@@ -49,14 +49,22 @@ Route::post('/home/editMyReview/success', [
 Route::get('/search/results/{user_name?}', [
     'uses' => 'searchController@searchUserName',
 ]);
-
+// レビューIDパラメータ
 Route::get('/search/results/userLiked/{reviewId?}', [
     'uses' => 'searchController@searchlikedUsers',
 ])->name('searchlikedUsers');
-
+// タグネームパラメータ
 Route::get('/search/results/tag/{tagName?}', [
     'uses' => 'searchController@searchTagName',
 ])->name('searchTagName');
+// 著者パラメータ
+Route::get('/search/results/chysh/{chysh?}', [
+    'uses' => 'searchController@searchChysh',
+])->name('searchChysh');
+// タイトルパラメータ
+Route::get('/search/results/title/{title?}', [
+    'uses' => 'searchController@searchTitle',
+])->name('searchTitle');
 
 //ajax いいね登録用
 Route::post('/like', [
