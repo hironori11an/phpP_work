@@ -66,7 +66,7 @@ class searchController extends Controller
         }
     }
 
-    //レビュー者のリンク押下時（検索結果画面から）
+    //ユーザ名ののリンク押下時（検索結果画面から）
     public function searchUserName(Request $request)
     {
         $user_name=$request->user_name;
@@ -80,7 +80,7 @@ class searchController extends Controller
         }
 
         $all = Session::all();
-        return view('searchUserName', compact('all', 'items'));
+        return view('searchResult', compact('all', 'items', 'user_name'));
     }
 
     //いいねしたユーザボタン押下時（検索結果画面から）

@@ -52,6 +52,9 @@
       </header>
 
       <div id="pageBody">
+        @isset($user_name)
+        {{$user_name}}さんのレビュー一覧
+        @endisset
         @if(count($items) ===0)
         検索結果はありません。他の条件で検索してください。
         @else
