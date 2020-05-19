@@ -136,4 +136,15 @@ $(function () {
     $('form').submit();
   });
 
+  // コメント登録ボタンクリック時
+  $(document).on('click', "[name=commentBtn]", function () {
+    var comment = $('textarea[name="reviewNiyRep"]').val();
+    // スペースのみは入力不可、0のみは入力可
+    if (!$.trim(comment) && comment !== "0") {
+      alert('コメントが未入力です');
+      return false;
+    }
+
+  });
+
 });

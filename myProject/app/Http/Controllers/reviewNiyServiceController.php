@@ -48,6 +48,13 @@ class reviewNiyServiceController extends Controller
         $userId =$request->session()->get('userId');
         $reviewId = $request->input('reviewId');
         $reviewNiyRepInput = $request->input('reviewNiyRep');
+        if (is_null($reviewNiyRepInput)) {
+            return view(
+                'common.success',
+                ['success_message'=>'コメントが未入力です',
+                'url'=>"/search/results/reviewID/".$reviewId]
+            );
+        }
 
         $ReviewNiyReply->fill([
                             'review_id'=>$reviewId,
