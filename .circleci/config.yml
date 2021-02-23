@@ -27,11 +27,11 @@ jobs:
           command: |
             set -x
             docker-compose up -d
-      - run: docker exec -it laravel_app composer install -n --prefer-dist --working-dir=./src/laravelapp
+      - run: docker exec -it laravel_app bash && cd /var/www/html/laravelapp && composer install -n --prefer-dist --working-dir=./src/laravelapp
       - run:
           name: test
           command: |
-            ./src/laravelapp/vendor/bin/phpunit
+            docker exec -it laravel_app bash && cd /var/www/html/laravelapp && ./vendor/bin/phpunit
       - run:
           name: docker-compose down
           command: docker-compose down
