@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.1-apache-browsers
+      - image: circleci/php:7.2-apache-browsers
         environment:
           - APP_DEBUG: true
           - APP_ENV: testing
@@ -16,7 +16,6 @@ jobs:
     # working_directory: ./ci_repo
     steps:
       - checkout
-      - run: ls -l
       - run: sudo apt update
       - run: sudo docker-php-ext-install pdo_mysql
  
