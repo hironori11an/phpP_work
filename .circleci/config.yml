@@ -16,7 +16,6 @@ jobs:
     # working_directory: ./ci_repo
     steps:
       - checkout
-      - run: cd ./src/laravelapp
       - run: sudo apt update
       - run: sudo docker-php-ext-install pdo_mysql
  
@@ -26,16 +25,16 @@ jobs:
             - v1-dependencies-
       - run: pwd;
       - run: ls -l;
-      - run: composer install -n --prefer-dist
+      - run: composer install -n --prefer-dist　--working-dir=./src/laravelapp
  
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
-            - ./vendor
+            - ./src/laravelapp/vendor
  
       - run: echo "APP_KEY=" > .env.testing
-      - run: php artisan key:generate 
-      - run: php artisan migrate
+      - run: php artisan key:generate --working-dir=./src/laravelapp
+      - run: php artisan migrate　--working-dir=./src/laravelapp
  
-      - run: ./vendor/bin/phpunit
+      - run: ./src/laravelapp/vendor/bin/phpunit
       
