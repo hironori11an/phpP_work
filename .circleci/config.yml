@@ -24,7 +24,8 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "composer.json" }}
             - v1-dependencies-
- 
+      - run: pwd;
+      - run: ls -l;
       - run: composer install -n --prefer-dist --working-dir=./src/laravelapp
  
       - save_cache:
