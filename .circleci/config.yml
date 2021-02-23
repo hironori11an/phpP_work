@@ -29,12 +29,6 @@ jobs:
             docker-compose up -d
       - run: docker-compose run --workdir="/var/www/html/laravelapp" app composer install
       - run:
-          name: DB-setup
-          command: |
-            sudo apt-get update
-            sudo apt-get install default-mysql-client
-            mysql -u root -e "CREATE DATABASE IF NOT EXISTS test" --protocol=tcp
-      - run:
           name: DB-migrate
           command: |
             docker-compose run --workdir="/var/www/html/laravelapp" app php artisan migrate:refresh --force --database=testing
