@@ -12,6 +12,8 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run: sudo apt update
+      - run: sudo docker-php-ext-install pdo_mysql
       - run: composer install -n --prefer-dist --working-dir=./src/laravelapp
       - run:
           name: docker-compose up build
