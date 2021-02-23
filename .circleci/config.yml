@@ -29,6 +29,11 @@ jobs:
             docker-compose up -d
       - run: docker-compose run --workdir="/var/www/html/laravelapp" app composer install
       - run:
+          name: DB-setup
+          command: |
+            php artisan migrate:refresh --database=testing
+            php artisan db:seed --database=testing
+      - run:
           name: test
           command: |
             docker-compose run --workdir="/var/www/html/laravelapp" app vendor/bin/phpunit
