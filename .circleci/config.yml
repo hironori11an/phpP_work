@@ -15,9 +15,6 @@ jobs:
           - MYSQL_DATABASE: test
     # working_directory: ./ci_repo
     steps:
-      filters:
-        branches:
-          only: circleci
       - checkout
       - run: ls -l
       - run: sudo apt update
