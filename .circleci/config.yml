@@ -31,7 +31,7 @@ jobs:
       - run:
           name: DB-setup
           command: |
-            docker-compose run --workdir="/var/www/html/laravelapp" app php artisan migrate:refresh --database=testing
+            docker-compose run --workdir="/var/www/html/laravelapp" app php artisan migrate:refresh --force --database=testing
             docker-compose run --workdir="/var/www/html/laravelapp" app php artisan db:seed --database=testing
       - run:
           name: test
