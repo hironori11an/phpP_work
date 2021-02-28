@@ -4,8 +4,10 @@ jobs:
     machine:
       image: circleci/classic:edge
     environment:
-      APP_ENV: testing
-      DB_CONNECTION: test
+      - APP_ENV: testing
+      - DB_CONNECTION: testing
+      - DB_DATABASE: test
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/repo
     steps:
       - checkout
