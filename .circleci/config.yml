@@ -38,14 +38,14 @@ jobs:
       - run:
           name: Wait For DB
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
+          name: Create Database
+          working_directory: laravelapp
+          command: docker-compose exec db mysql -u root -proot -e "create database test;"
   test:
     executor: my-executor
     steps:
       - checkout
-      - run:
-          name: Create Database
-          working_directory: laravelapp
-          command: docker-compose run db mysql -u root -proot -e "create database test;"
       - run:
           name: DB-migrate
           command: |
