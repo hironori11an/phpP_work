@@ -2,12 +2,7 @@ version: 2
 jobs:
   build:
     machine:
-      - image: circleci/classic:edge
-      - image: mysql:5.7
-        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-        environment:
-          MYSQL_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
+      image: circleci/classic:edge
     working_directory: ~/repo
     steps:
       - checkout
@@ -43,16 +38,17 @@ jobs:
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
           name: Create Database
-          command: mysql  -h 127.0.0.1 -u root -e "create database test;"
-      - run:
+          working_directory: laravelapp
+          command: docker-compose exec db mysql -u root -proot -e "create database test;"
+    - run:
           name: DB-migrate
           command: |
-            docker-compose run --workdir="/var/www/html/laravelapp" app php artisan migrate:refresh --force --database=testing
-            docker-compose run --workdir="/var/www/html/laravelapp" app php artisan db:seed --database=testing
+            docker-compose exec --workdir="/var/www/html/laravelapp" app php artisan migrate:refresh --force --database=testing
+            docker-compose exec --workdir="/var/www/html/laravelapp" app php artisan db:seed --database=testing
       - run:
           name: test
           command: |
-            docker-compose run --workdir="/var/www/html/laravelapp" app vendor/bin/phpunit
+            docker-compose exec --workdir="/var/www/html/laravelapp" app vendor/bin/phpunit
       - run:
           name: docker-compose down
           command: docker-compose down
