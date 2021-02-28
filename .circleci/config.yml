@@ -3,11 +3,6 @@ jobs:
   build:
     machine:
       image: circleci/classic:edge
-    environment:
-      - APP_ENV: testing
-      - DB_CONNECTION: testing
-      - DB_DATABASE: test
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/repo
     steps:
       - checkout
@@ -34,8 +29,16 @@ jobs:
             docker-compose up -d
       - run: docker-compose run --workdir="/var/www/html/laravelapp" app composer install
       - run:
-          name: db接続を待機
-          command: sleep 10
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
+      - run:
+          name: Wait for db
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
+          name: Mysql database
+          command: mysql  -h 127.0.0.1 -u root -e "create database test;"
       - run:
           name: DB-migrate
           command: |
