@@ -43,12 +43,12 @@ jobs:
       - run:
           name: DB-migrate
           command: |
-            docker-compose exec --workdir="/var/www/html/laravelapp" app php artisan migrate:refresh --force --database=testing
-            docker-compose exec --workdir="/var/www/html/laravelapp" app php artisan db:seed --database=testing
+            docker-compose run --workdir="/var/www/html/laravelapp" app php artisan migrate:refresh --force --database=testing
+            docker-compose run --workdir="/var/www/html/laravelapp" app php artisan db:seed --database=testing
       - run:
           name: test
           command: |
-            docker-compose exec --workdir="/var/www/html/laravelapp" app vendor/bin/phpunit
+            docker-compose run --workdir="/var/www/html/laravelapp" app vendor/bin/phpunit
       - run:
           name: docker-compose down
           command: docker-compose down
