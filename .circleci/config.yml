@@ -8,6 +8,10 @@ jobs:
     executor: my-executor
     steps:
       - checkout
+      - persist_to_workspace:
+          root: .
+          paths:
+            - /*
       - run:
           name: Install Docker Compose
           command: |
@@ -46,6 +50,8 @@ jobs:
     executor: my-executor
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: DB-migrate
           command: |
