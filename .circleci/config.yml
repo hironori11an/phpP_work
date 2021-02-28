@@ -11,7 +11,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - /*
+            - docker/db/data/*
       - run:
           name: Install Docker Compose
           command: |
