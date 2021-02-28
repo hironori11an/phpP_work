@@ -8,6 +8,7 @@ jobs:
     executor: my-executor
     steps:
       - checkout
+      - run: ls
       - persist_to_workspace:
           root: .
           paths:
