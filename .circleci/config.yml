@@ -4,15 +4,10 @@ executors:
     machine:
       image: circleci/classic:edge
 jobs:
-  build:
+  build_test:
     executor: my-executor
     steps:
       - checkout
-      - run: ls
-      - persist_to_workspace:
-          root: .
-          paths:
-            - docker/db/*
       - run:
           name: Install Docker Compose
           command: |
@@ -46,13 +41,7 @@ jobs:
       - run:
           name: Create Database
           working_directory: laravelapp
-          command: docker-compose exec db mysql -u root -proot -e "create database test;"
-  test:
-    executor: my-executor
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
+          command: docker-compose run db mysql -u root -proot -e "create database test;"
       - run:
           name: DB-migrate
           command: |
@@ -69,7 +58,4 @@ workflows:
   version: 2.1
   workflow:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - build_test
