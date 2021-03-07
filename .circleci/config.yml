@@ -29,7 +29,9 @@ jobs:
           command: |
             set -x
             docker-compose up -d
-      - run: docker-compose run --workdir="/var/www/html/laravelapp" app composer install
+      - run: 
+          name: install composer
+          command: docker-compose run --workdir="/var/www/html/laravelapp" app composer install
       - run:
           name: install dockerize
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
@@ -39,7 +41,7 @@ jobs:
           name: Wait For DB
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
-          name: Create Database
+          name: Create Database for test
           working_directory: laravelapp
           command: docker-compose exec db mysql -u root -proot -e "create database test;"
       - run:
