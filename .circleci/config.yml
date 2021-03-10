@@ -63,7 +63,15 @@ jobs:
       - run:
           name: deploy by ssh
           command: |
-            ssh $SSH_USER@$SSH_HOST "cd ~/phpP_work && git pull origin develop"
+            ssh $SSH_USER@$SSH_HOST "cd ~/phpP_work && git pull origin develop && echo $ENV_FILE | base64 -di > ~/phpP_work/src/laravelapp/.env"
+      - run:
+          name: restart docker by ssh
+          command: |
+            ssh $SSH_USER@$SSH_HOST "cd ~/phpP_work && docker-compose stop && docker-compose down && docker-compose up -d app"
+      - run:
+          name: migrate-DB by ssh
+          command: |
+            ssh $SSH_USER@$SSH_HOST "cd ~/phpP_work && docker-compose run --workdir="/var/www/html/laravelapp" app php artisan migrate"
 workflows:
   version: 2.1
   workflow:
@@ -75,5 +83,4 @@ workflows:
           filters:
             branches:
               only: 
-                # - master
-                - develop
+                - master
