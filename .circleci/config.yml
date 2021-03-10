@@ -63,7 +63,7 @@ jobs:
       - run:
           name: deploy by ssh
           command: |
-            ssh $SSH_USER@$SSH_HOST "cd ~/phpP_work && git pull origin develop"
+            ssh $SSH_USER@$SSH_HOST "cd ~/phpP_work && git pull origin develop && echo $ENV_FILE | base64 -di > ~/phpP_work/src/laravelapp/.env"
 workflows:
   version: 2.1
   workflow:
