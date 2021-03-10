@@ -9,7 +9,7 @@
       "type": "php",
       "request": "launch",
       "pathMappings": {
-        "var/www": "/Users/hironori/work/phpP_work/myProject"
+        "/var/www/html": "/Users/hironori/work/phpP_work/src"
       },
       "log": true,
       "stopOnEntry": false,
