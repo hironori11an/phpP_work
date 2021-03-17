@@ -20,10 +20,10 @@ jobs:
             set -x
             docker-compose up --build -d
       - run:
-          name: docker-compose stop
+          name: docker-compose stop down
           command: |
             set -x
-            docker-compose stop
+            docker-compose stop && docker-compose down
       - run:
           name: docker-compose up
           command: |
