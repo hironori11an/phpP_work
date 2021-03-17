@@ -52,7 +52,7 @@
             </ul>
           </nav>
         </header>
-
+        <!-- ページメイン ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
         <div id="pageBody">
           <section class="mainVisual">
             <div id="pageBodyMain">
@@ -62,7 +62,7 @@
                 @if(count($reviewLikes) > 0)
                 @foreach ($reviewLikes as $reviewLike)
 
-
+                <!-- 以下いいねしたレビュー ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
                 <table width="900" border="0" id="reviewLikeTable">
                   <tr>
                     <input type="hidden" name="reviewLike_review_id" class="reviewLike_review_id"
@@ -139,14 +139,29 @@
                 @endif
 
               </details>
+              <br>
               @endisset
-
-              <!-- 以下マイレビュ↓↓↓↓↓↓↓ -->
+              <!-- 以下マイレビュータグ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+              
+                  @if(isset($myReviewTags))
+                  <details>
+                    <summary>マイタグ一覧</summary>
+                    @if(count($myReviewTags) ===0)
+                      登録されているタグはありません
+                    @endif
+                    @foreach ($myReviewTags as $myReviewTag)
+                      {{$myReviewTag->tag_name}}
+                    @endforeach
+                    </details>
+                  @endif
+              
+              <br>
+              <!-- 以下マイレビュ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
               @if(isset($items)){{--itemsがない場合は画像表示 class:mainVisualText--}}
               <details open>
                 <summary>マイレビュー</summary>
                 @if(count($items) ===0)
-                レビュー投稿がありません
+                  レビュー投稿がありません
                 @endif
                 <div id="my_review">
                   @foreach ($items as $item)

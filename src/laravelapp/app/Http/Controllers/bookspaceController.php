@@ -39,7 +39,13 @@ class bookspaceController extends Controller
         $user = Auth::user();
         $reviewLikes=$user->reviews()->get();
         $all = Session::all();
-        return view('bookspace', compact('all', 'items', 'reviewLikes'));
+        // 自分が登録したタグの一覧を取得
+        $myReviewTags = DB::table('reviews')
+        ->select(DB::raw('distinct review_tags.tag_name'))
+        ->join('review_tags','reviews.id','=','review_tags.review_id')
+        ->where('reviews.user_name', '=', $request->session()->get('name'))
+        ->get();
+        return view('bookspace', compact('all', 'items', 'reviewLikes','myReviewTags'));
     }
 
     /* タグボタン押下時 */
