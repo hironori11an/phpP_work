@@ -13,10 +13,10 @@ services:
    image: mysql:5.7
    container_name: laravel_db
    environment:
-     MYSQL_ROOT_PASSWORD: password
+     MYSQL_ROOT_PASSWORD: root
      MYSQL_DATABASE: laravel_db
-     MYSQL_USER: root
-    #  MYSQL_PASSWORD: password
+     MYSQL_USER: docker
+     MYSQL_PASSWORD: docker
      TZ: 'Asia/Tokyo'
    # 起動時のコマンド
    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
