@@ -16,7 +16,7 @@ services:
      MYSQL_ROOT_PASSWORD: password
      MYSQL_DATABASE: laravel_db
      MYSQL_USER: root
-     MYSQL_PASSWORD: password
+    #  MYSQL_PASSWORD: password
      TZ: 'Asia/Tokyo'
    # 起動時のコマンド
    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
