@@ -15,15 +15,15 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: docker-compose up build
-          command: |
-            set -x
-            docker-compose up --build -d
-      - run:
           name: docker-compose stop down
           command: |
             set -x
             docker-compose stop && docker-compose down
+      - run:
+          name: docker-compose up build
+          command: |
+            set -x
+            docker-compose up --build -d
       - run:
           name: docker-compose up
           command: |
