@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/bookspace.css">
   <script src="{{mix('js/app.js')}}"></script>
+  <script src="{{ mix('js/show_chart.js') }}"></script>
+ 
   <script src="/js/bookspaceHome.js"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>BookSpace 読書レビューを共有しよう</title>
@@ -56,13 +58,34 @@
         <div id="pageBody">
           <section class="mainVisual">
             <div id="pageBodyMain">
+              <!-- 以下グラフ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+              @if(isset($items))
+              <p>マイレビュー</p>
+                <div class="ChartItem"><canvas id="genreChart"></canvas></div>
+                <div class="ChartItem"><canvas id="chyshChart"></canvas></div>
+              @endif
+
+              <script src="{{ mix('js/show_chart.js') }}"></script>
+              <script>
+                @if(isset($items))
+                  id = 'genreChart';
+                  labels = @json($genreGraphKeys);
+                  data = @json($genreGraphCounts);
+                  make_chart(id,labels,data);
+                  
+                  id = 'chyshChart';
+                  labels = @json($chyshGraphKeys);
+                  data = @json($chyshGraphCounts);
+                  make_chart(id,labels,data);
+                @endif
+              </script>
+            <!-- 以下いいねしたレビュー ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
               @isset($reviewLikes)
               <details>
                 <summary>いいねしたレビュー</summary>
                 @if(count($reviewLikes) > 0)
                 @foreach ($reviewLikes as $reviewLike)
 
-                <!-- 以下いいねしたレビュー ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
                 <table width="900" border="0" id="reviewLikeTable">
                   <tr>
                     <input type="hidden" name="reviewLike_review_id" class="reviewLike_review_id"
@@ -156,6 +179,7 @@
                   @endif
               
               <br>
+
               <!-- 以下マイレビュ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
               @if(isset($items)){{--itemsがない場合は画像表示 class:mainVisualText--}}
               <details open>
