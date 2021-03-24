@@ -52,6 +52,63 @@ class ReviewsTableSeeder extends Seeder
                 'hyk' =>'5',
                 'review_niy' =>'ああああああああ',
             ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '8',
+                'title' =>'Tその他',
+                'chysh' =>'Cその他',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '8',
+                'title' =>'Tその他',
+                'chysh' =>'Cその他a',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '8',
+                'title' =>'Tその他',
+                'chysh' =>'Cその他b',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '8',
+                'title' =>'Tその他',
+                'chysh' =>'Cその他c',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '8',
+                'title' =>'Tその他',
+                'chysh' =>'Cその他d',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '8',
+                'title' =>'Tその他',
+                'chysh' =>'Cその他f',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            [
+                'user_name' =>'ippan',
+                'genre' => '8',
+                'title' =>'Tその他',
+                'chysh' =>'Cその他g',
+                'hyk' =>'5',
+                'review_niy' =>'ああああああああ',
+            ],
+            
         ]);
     }
 }

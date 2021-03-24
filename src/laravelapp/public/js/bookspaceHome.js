@@ -119,4 +119,11 @@ $(function () {
     $(this).closest('table').find('.tag_td_iine').css("background-color", "#dedade");
   }
   );
+
+  $(document).ready(function () {
+    // var container = $('.ChartItem');
+    // var ctx = $('#chart');
+    // ctx.attr('width', container.width());
+    // ctx.attr('height', 300);
+  });
 });

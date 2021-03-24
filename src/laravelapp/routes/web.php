@@ -146,7 +146,8 @@ Route::group(['middleware' => ['can:admin']], function () {
     );
 });
 
-
+// test用
+// Route::get('/test',     'testController@index');
 Route::get('/test', function () {
     return view('test');
 });
