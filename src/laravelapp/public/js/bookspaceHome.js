@@ -1,17 +1,17 @@
 $(function () {
   var connecting;
   //編集ボタン押下時
-  $('.btn').click(function (e) {
-    var reviewId = $(this).closest('tr').find('.reviewId').val();
-    var form = $(this).parents('form');
-    $('<input>').attr({
-      'type': 'hidden',
-      'name': 'selectedReviewId',
-      'value': reviewId
-    }).appendTo(form);
-    form.submit();
+  // $('.btn').click(function (e) {
+  //   var reviewId = $(this).closest('tr').find('.reviewId').val();
+  //   var form = $(this).parents('form');
+  //   $('<input>').attr({
+  //     'type': 'hidden',
+  //     'name': 'selectedReviewId',
+  //     'value': reviewId
+  //   }).appendTo(form);
+  //   form.submit();
 
-  });
+  // });
 
   //取消押下時
   $(document).on('click', '.btn-strong', function () {
@@ -120,10 +120,5 @@ $(function () {
   }
   );
 
-  $(document).ready(function () {
-    // var container = $('.ChartItem');
-    // var ctx = $('#chart');
-    // ctx.attr('width', container.width());
-    // ctx.attr('height', 300);
-  });
+
 });

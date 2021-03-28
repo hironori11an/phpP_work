@@ -1,5 +1,6 @@
 import 'chart.js';
 import 'chartjs-plugin-colorschemes';
+import 'chartjs-plugin-datalabels';
 
 window.make_chart = function make_chart(id, labels, data) {
   var ctx = document.getElementById(id).getContext('2d');
@@ -24,6 +25,13 @@ window.make_chart = function make_chart(id, labels, data) {
         colorschemes: {
           // 色の指定しなくても、自動で割り付けてくれる
           scheme: 'brewer.Paired12'
+        },
+        datalabels: {
+          color: '#000',
+          font: {
+            weight: 'bold',
+            size: 20,
+          },
         }
       },
       layout: {

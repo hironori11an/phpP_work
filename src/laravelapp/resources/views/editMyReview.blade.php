@@ -55,11 +55,11 @@
                 <td colspan="2">
                   <table id="mainTable">
                     <tr>
-                      <td rowspan="6" width="22%">
+                      <td rowspan="6" width="25%">
                         @isset($item->photo_path)
-                        <input type="image" src="{{$item->photo_path}}" width="150px" height="150px">
+                          <input type="image" src="{{$item->photo_path}}" width="150" height="100">
                         @else
-                        画像なし
+                          <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
                         @endisset
                       </td>
                       <th>
