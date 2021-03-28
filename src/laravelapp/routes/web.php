@@ -38,8 +38,8 @@ Route::post('/userRegist/success', [
 ]);
 
 //一般 マイレビューの編集
-Route::post('/home/editMyReview', [
-    'uses' => 'bookspaceController@action',
+Route::post('/home/editMyReview/', [
+    'uses' => 'editMyReviewController@init',
 ]);
 Route::post('/home/editMyReview/success', [
     'uses' => 'editMyReviewController@edit',
@@ -102,6 +102,7 @@ Route::post('/login/home', [
 'as' => 'homeKanri.login'
 ]);
 
+
 /*一般ログイン後画面 直URL禁止*/
 Route::group(['middleware' => ['can:user']], function () {
     Route::get('/review', [
@@ -111,6 +112,11 @@ Route::group(['middleware' => ['can:user']], function () {
     /* 一般ユーザログイン後　ホーム*/
     Route::get('/home', [
     'uses' => 'bookspaceController@login',
+    ]);
+
+    // ログイン後のホーム画面からマイレビュー画面遷移
+    Route::get('/myreview/{user_name?}', [
+        'uses' => 'myreviewController@init',
     ]);
 });
 

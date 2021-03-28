@@ -15,13 +15,13 @@ class bookspaceController extends Controller
     public function action(Request $request)
     {
         // タグボタン押下時
-        if (Input::get('tag_button')) {
-            return $this->tagSearch($request);
-        // いいねしたレビューの取り消し
-        } else {
-            $editMyReview = app()->make('App\Http\Controllers\editMyReviewController');
-            return $editMyReview->init($request);
-        }
+        // if (Input::get('tag_button')) {
+        //     return $this->tagSearch($request);
+        // } 
+        // else {
+        //     $editMyReview = app()->make('App\Http\Controllers\editMyReviewController');
+        //     return $editMyReview->init($request);
+        // }
     }
 
     /* 初期表示 */

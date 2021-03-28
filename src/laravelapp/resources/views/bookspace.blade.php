@@ -14,8 +14,6 @@
 </head>
 
 <body>
-  {{--<form method="POST" action="{{ action('editMyReviewController@init') }}">--}}
-    <form method="POST" action="{{ action('bookspaceController@action') }}">
       @csrf
       <div class="sampleHead">
         <h1>BookSpace</h1>
@@ -60,7 +58,11 @@
             <div id="pageBodyMain">
               <!-- 以下グラフ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
               @if(isset($items))
-              <p>マイレビュー</p>
+              <p>
+              <b><a href="/myreview/{{session('name')}}">マイレビュー一覧</a></b>
+              </p>
+              &nbsp;&nbsp;&nbsp;&nbsp;ジャンル・著者別の内訳（全{{count($items)}}冊）
+              
                 <div class="ChartItem"><canvas id="genreChart"></canvas></div>
                 <div class="ChartItem"><canvas id="chyshChart"></canvas></div>
               @endif
@@ -119,9 +121,9 @@
                         <tr class=tr_review>
                           <td width="22%">
                             @isset($reviewLike->photo_path)
-                            <img src="{{$reviewLike->photo_path}}" width="150px" height="150px">
+                              <img src="{{$reviewLike->photo_path}}" width="150px" height="100px">
                             @else
-                            画像なし
+                              <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
                             @endisset
                           </td>
                           <td class="tdReviwNiy_iine">
@@ -140,8 +142,7 @@
                           </td>
                           <td class="tag_td_iine">
                             @foreach ($reviewLike->review_tags as $review_tag)
-                            <a
-                              href="/search/results/tag/{{$review_tag->tag_name}}">{{$review_tag->tag_name}}</a>&nbsp;&nbsp;
+                            <a href="/search/results/tag/{{$review_tag->tag_name}}">{{$review_tag->tag_name}}</a>&nbsp;&nbsp;
                             @endforeach
                           </td>
                         </tr>
@@ -164,120 +165,32 @@
               </details>
               <br>
               @endisset
-              <!-- 以下マイレビュータグ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
-              
-                  @if(isset($myReviewTags))
-                  <details>
-                    <summary>マイタグ一覧</summary>
-                    @if(count($myReviewTags) ===0)
-                      登録されているタグはありません
-                    @endif
-                    @foreach ($myReviewTags as $myReviewTag)
-                      {{$myReviewTag->tag_name}}
-                    @endforeach
-                    </details>
-                  @endif
-              
-              <br>
-
-              <!-- 以下マイレビュ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
-              @if(isset($items)){{--itemsがない場合は画像表示 class:mainVisualText--}}
-              <details open>
-                <summary>マイレビュー</summary>
-                @if(count($items) ===0)
-                  レビュー投稿がありません
-                @endif
-                <div id="my_review">
-                  @foreach ($items as $item)
-
-                  <table width="900" border="0" id="myReviewTable">
-                    <tr>
-                      <input type="hidden" name="reviewId" class="reviewId" value="{{$item->id}}">
-
-                      <td width="800">
-                        <table border="0" width="800">
-                          <tr class=tr_title>
-
-                            <td colspan="2">
-                              <div>
-                                <p><span class="title">
-                                    <a href="/search/results/title/{{$item->title}}">{{$item->title}}</a>
-                                  </span></p>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr class=tr_title>
-                            <td width="270">
-                              著者:&nbsp;&nbsp;
-                              <a href="/search/results/chysh/{{$item->chysh}}">{{$item->chysh}}</a>
-                            </td>
-                            <td>
-                              ジャンル：
-                              @foreach ($item->genres as $genre)
-                              {{ $genre->genre_name }}
-                              @endforeach
-                            </td>
-                          </tr>
-                        </table>
-                        <table border="0" width="800">
-                          <tr class=tr_review>
-                            <td width="22%">
-                              @isset($item->photo_path)
-                              <img src="{{$item->photo_path}}" width="150px" height="150px">
-                              @else
-                              画像なし
-                              @endisset
-                            </td>
-                            <td class="tdReviwNiy">
-                              <img src="{{ asset('/images/hyk_level/ico_grade_'.$item->hyk.'.gif')}}" width="80"
-                                height="15"><br>
-                              {{$item->review_niy}}
-                            </td>
-                          </tr>
-                          <tr class=tr_review>
-                            <td>
-                              <label class="iineUser">
-                                <input type="button" id="likedUser" value="いいねしたユーザ&nbsp;({{count($item->users)}})">
-                              </label>
-                            </td>
-                            <td class="tag_td">
-                              @foreach ($item->review_tags as $review_tag)
-                              <a
-                                href="/search/results/tag/{{$review_tag->tag_name}}">{{$review_tag->tag_name}}</a>&nbsp;&nbsp;
-                              @endforeach
-                            </td>
-                          </tr>
-
-                        </table>
-                      </td>
-                      <td>
-                        <input type="submit" class="btn" value="編集">
-                      </td>
-                    </tr>
-                  </table>
-                  <br>
-
-                  @endforeach
-                </div>
-              </details>
+              <!-- 以下タグ一覧 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->              
+              登録したタグ一覧<br>
+              @if(count($myReviewTags) ===0)
+                登録されているタグはありません
               @else
-            </div>
+                @foreach ($myReviewTags as $myReviewTag)        
+                        <a href="/search/results/tag/{{$myReviewTag->tag_name}}">{{$myReviewTag->tag_name}}</a>&nbsp;&nbsp;
+                @endforeach
+              @endif
 
-            <div class="mainVisualText">
 
-              <h1>読書レビューサイト</h1>
-              <p>読みたい本が見つかる。<br>
-                読み終わった本のレビューを投稿しよう</p>
             </div>
-            <img src="{{ asset('/images/bookspace_home.jpg')}}" width="980" height="500" alt="">
-            @endif
+            @unless(isset($items)){{--itemsがない場合は画像表示 class:mainVisualText--}}
+              <div class="mainVisualText">
+                <h1>読書レビューサイト</h1>
+                <p>読みたい本が見つかる。<br>
+                  読み終わった本のレビューを投稿しよう</p>
+              </div>
+              <img src="{{ asset('/images/bookspace_home.jpg')}}" width="980" height="500" alt="">
+            @endunless
           </section>
         </div>
       </div>
       <!-- 小画面遷移時に、この画面全体を暗くするためのdiv -->
       <div id="fadeLayer">
       </div>
-    </form>
 </body>
 
 </html>
