@@ -1,0 +1,24 @@
+.oneArea {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.onebox{
+  width: 200px;
+  height: 180px;
+  padding: 0.5em 0.1em;
+  margin: 0.5em 0.5em;
+  color: #5989cf;
+  background: #c6e4ff;
+  border-bottom: solid 6px #aac5de;
+  border-radius: 9px;
+}
+.picture{
+  /* margin: 0 auto; */
+  text-align: center;
+}
+.picture img { border: 1px #03162c solid;}
+.hyk_level{margin: 0 0 0 30;}
+h3{
+  margin-top: 0px;
+}
