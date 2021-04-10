@@ -22,6 +22,36 @@ class reviewController extends Controller
 
     public function regist(reviewRequest $request)
     {
+        // 相関チェック 再読回数に応じて読了日をチェック
+        $reread_times=$request->reread_times;
+        switch ($reread_times) {
+            case "1":
+                $request->validate([
+                    'read_end_date_for_first' => 'required', 
+                   ]);
+                break;
+            case "2":
+                $request->validate([
+                    'read_end_date_for_first' => 'required', 
+                    'read_end_date_for_second' => 'required', 
+                   ]);
+                break;
+            case "3":
+                $request->validate([
+                    'read_end_date_for_first' => 'required', 
+                    'read_end_date_for_second' => 'required', 
+                    'read_end_date_for_third' => 'required', 
+                ]);
+                break;
+            case "4":
+                $request->validate([
+                    'read_end_date_for_first' => 'required', 
+                    'read_end_date_for_second' => 'required', 
+                    'read_end_date_for_third' => 'required', 
+                    'read_end_date_for_fourth' => 'required', 
+                ]);
+                break;
+        }
         /* レビュー登録 */
         $review= new Review;
         $form =$request->all();
