@@ -14,7 +14,7 @@ class Review extends Model
     }
     public function users()
     {
-        return $this->belongsToMany('\App\User', 'review_userLikes', 'review_id', 'user_id');
+        return $this->belongsToMany('\App\User', 'review_user_likes', 'review_id', 'user_id');
     }
     public function review_tags()
     {

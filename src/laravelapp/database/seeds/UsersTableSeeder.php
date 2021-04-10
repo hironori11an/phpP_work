@@ -22,7 +22,17 @@ class UsersTableSeeder extends Seeder
             'name' =>'kanri',
             'password' =>Hash::make('kanri'),
             'role' =>'1',
-            ]
+            ],
+            [
+            'name' =>'taro',
+            'password' =>Hash::make('taro'),
+            'role' =>'0',
+            ],
+            [
+            'name' =>'jiro',
+            'password' =>Hash::make('jiro'),
+            'role' =>'0',
+            ],  
         ]);
     }
 }

@@ -12,7 +12,7 @@ class reviewLikesController extends Controller
         $review_id=$request->review_id;
         
         $user = Auth::user();
-        $review_userLikes=$user->reviews()->attach($review_id);
+        $review_user_likes=$user->reviews()->attach($review_id);
         return response()->json(
             \Illuminate\Http\Response::HTTP_OK
         );
@@ -23,7 +23,7 @@ class reviewLikesController extends Controller
         $review_id=$request->review_id;
         
         $user = Auth::user();
-        $review_userLikes=$user->reviews()->detach($review_id);
+        $review_user_likes=$user->reviews()->detach($review_id);
         return response()->json(
             \Illuminate\Http\Response::HTTP_OK
         );

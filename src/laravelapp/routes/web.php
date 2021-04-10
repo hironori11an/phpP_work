@@ -37,7 +37,6 @@ Route::post('/userRegist/success', [
     'uses' => 'userRegistController@regist',
 ]);
 
-//一般 マイレビューの編集
 Route::post('/home/editMyReview/', [
     'uses' => 'editMyReviewController@init',
 ]);
@@ -117,6 +116,11 @@ Route::group(['middleware' => ['can:user']], function () {
     // ログイン後のホーム画面からマイレビュー画面遷移
     Route::get('/myreview/{user_name?}', [
         'uses' => 'myreviewController@init',
+    ]);
+
+    //一般 マイレビューの編集
+    Route::get('/home/editMyReview/', [
+        'uses' => 'editMyReviewController@init',
     ]);
 });
 
