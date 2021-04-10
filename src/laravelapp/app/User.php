@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function reviews()
     {
-        return $this->belongsToMany('\App\Review', 'review_userLikes', 'user_id', 'review_id')
+        return $this->belongsToMany('\App\Review', 'review_user_likes', 'user_id', 'review_id')
         ->withPivot(['created_at', 'updated_at', 'id'])
         ->orderBy('pivot_id', 'desc');
     }

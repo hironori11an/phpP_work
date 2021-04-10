@@ -12,6 +12,6 @@ class reviewsSelController extends Controller
 {
     public function showCreateForm()
     {
-        DB::table('review_userLikes')-> join('users', 'review_userLikes.user_id', '=', 'users.id') -> get():
+        DB::table('review_user_likes')-> join('users', 'review_user_likes.user_id', '=', 'users.id') -> get():
     }
 }
