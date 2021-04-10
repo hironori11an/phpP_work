@@ -14,7 +14,11 @@ class ReviewTagsTableSeeder extends Seeder
         DB::table('review_tags')->insert([
             [
                 'review_id' => 1,
-                'tag_name' => "テスト１",
+                'tag_name' => "近代文学",
+            ],
+            [
+                'review_id' => 2,
+                'tag_name' => "近代文学",
             ],
  
         ]);
