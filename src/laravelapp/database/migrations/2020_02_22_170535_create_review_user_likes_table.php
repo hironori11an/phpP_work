@@ -13,7 +13,7 @@ class CreateReviewUserLikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('review_userLikes', function (Blueprint $table) {
+        Schema::create('review_user_likes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('review_id');
             $table->unsignedInteger('user_id');
@@ -38,6 +38,6 @@ class CreateReviewUserLikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('review_userLikes');
+        Schema::dropIfExists('review_user_likes');
     }
 }

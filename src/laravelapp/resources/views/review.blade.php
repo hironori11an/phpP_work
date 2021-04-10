@@ -5,6 +5,8 @@
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/review.css">
+  <script src="{{mix('js/app.js')}}"></script>
+  <script src="/js/review.js"></script>
   <title>レビュー投稿</title>
 </head>
 
@@ -92,7 +94,39 @@
                 </th>
                 <td>
                   <textarea name="review_niy" maxlength="250" rows="6" placeholder="250文字以内でレビューしてください"
-                    value="{{ old('review_niy') }}" style="width:100%;"></textarea>
+                    style="width:100%;">{{ old('review_niy') }}</textarea>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  再読回数
+                </th>
+                <td>
+                  <select name="reread_times">
+                    <option value="1" selected　@if(old('reread_times')=="1") selected @endif>初回</option>
+                    <option value="2"　@if(old('reread_times')=="2") selected @endif>２回</option>
+                    <option value="3"　@if(old('reread_times')=="3") selected @endif>３回</option>
+                    <option value="4"　@if(old('reread_times')=="4") selected @endif>４回以上</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  読了日
+                </th>
+                <td>
+                  <div id="read_end_date_are">
+                    初回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="date" name="read_end_date_for_first" value="{{ old('read_end_date_for_first') }}"><br>
+                    &nbsp;２回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="date" name="read_end_date_for_second" value="{{ old('read_end_date_for_second') }}" disabled=true><br>
+                    &nbsp;３回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="date" name="read_end_date_for_third" value="{{ old('read_end_date_for_third') }}" disabled=true><br>
+                    &nbsp;４回以降&nbsp;
+                      <input type="date" name="read_end_date_for_fourth" value="{{ old('read_end_date_for_fourth') }}" disabled=true><br>
+                  </div>
                 </td>
               </tr>
 

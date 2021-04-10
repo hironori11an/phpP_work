@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Create Database for test
           working_directory: laravelapp
-          command: docker-compose exec db mysql -u root -proot -e "create database test;"
+          command: docker-compose exec db mysql -u root -h 127.0.0.1 -proot -e "create database test;"
       - run:
           name: DB-migrate
           command: |
@@ -63,7 +63,7 @@ jobs:
       - run:
           name: deploy by ssh
           command: |
-            ssh $SSH_USER@$SSH_HOST "cd ~/phpP_work && git pull origin develop && echo $ENV_FILE | base64 -di > ~/phpP_work/src/laravelapp/.env"
+            ssh $SSH_USER@$SSH_HOST "cd ~/phpP_work && git pull origin master && echo $ENV_FILE | base64 -di > ~/phpP_work/src/laravelapp/.env"
       - run:
           name: restart docker by ssh
           command: |

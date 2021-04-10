@@ -50,121 +50,121 @@
 
       <div id="pageBody">
         <section class="mainVisual">
-          <div id="pageBodyMain">
+        <div id="pageBodyMain">
         <h3>マイレビュー 一覧</h3>
-        文学・評論<br>
         @if(count($myreviewsByGenre0) ===0)
         @else
-        <div class="oneArea">
-          @foreach ($myreviewsByGenre0 as $myreviewByGenre0)
-            <div class="onebox">
-              <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre0->id}}">
-              <b>『{{$myreviewByGenre0->title}}』</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre0->chysh}}<br>
-              <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre0->hyk.'.gif')}}" width="80" height="15"></div>
-              <p><div class="picture">
-                @isset($myreviewByGenre0->photo_path)
-                  <img src="{{$myreviewByGenre0->photo_path}}" width="150" height="100">
-                @else
-                  <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
-                @endisset
+          文学・評論<br>
+          <div class="oneArea">
+            @foreach ($myreviewsByGenre0 as $myreviewByGenre0)
+              <div class="onebox">
+                <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre0->id}}">
+                <b>『{{$myreviewByGenre0->title}}』</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre0->chysh}}<br>
+                <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre0->hyk.'.gif')}}" width="80" height="15"></div>
+                <p><div class="picture">
+                  @isset($myreviewByGenre0->photo_path)
+                    <img src="{{$myreviewByGenre0->photo_path}}" width="150" height="100">
+                  @else
+                    <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
+                  @endisset
+                </div>
+                </p>
               </div>
-              </p>
-            </div>
-          @endforeach
-        </div>
+            @endforeach
+          </div>
         @endif
 
-        <br>ノンフィクション<br>
         @if(count($myreviewsByGenre1) ===0)
         @else
-        <div class="oneArea">
-          @foreach ($myreviewsByGenre1 as $myreviewByGenre1)
-            <div class="onebox">
-              <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre1->id}}">
-              <b>『{{$myreviewByGenre1->title}}』</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre1->chysh}}<br>
-              <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre1->hyk.'.gif')}}" width="80" height="15"></div>
-              <p><div class="picture">
-                @isset($myreviewByGenre1->photo_path)
-                  <img src="{{$myreviewByGenre1->photo_path}}" width="150" height="100">
-                @else
-                  <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
-                @endisset
+          <br>ノンフィクション<br>
+          <div class="oneArea">
+            @foreach ($myreviewsByGenre1 as $myreviewByGenre1)
+              <div class="onebox">
+                <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre1->id}}">
+                <b>『{{$myreviewByGenre1->title}}』</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre1->chysh}}<br>
+                <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre1->hyk.'.gif')}}" width="80" height="15"></div>
+                <p><div class="picture">
+                  @isset($myreviewByGenre1->photo_path)
+                    <img src="{{$myreviewByGenre1->photo_path}}" width="150" height="100">
+                  @else
+                    <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
+                  @endisset
+                </div>
+                </p>
               </div>
-              </p>
-            </div>
-          @endforeach
-        </div>
+            @endforeach
+          </div>
         @endif
 
-        <br>人文・思想・宗教<br>
         @if(count($myreviewsByGenre2) ===0)
         @else
-        <div class="oneArea">
-          @foreach ($myreviewsByGenre2 as $myreviewByGenre2)
-            <div class="onebox">
-              <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre2->id}}">
-              <b>『{{$myreviewByGenre2->title}}』</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre2->chysh}}<br>
-              <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre2->hyk.'.gif')}}" width="80" height="15"></div>
-              <p><div class="picture">
-                @isset($myreviewByGenre2->photo_path)
-                  <img src="{{$myreviewByGenre2->photo_path}}" width="150" height="100">
-                @else
-                  <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
-                @endisset
+          <br>人文・思想・宗教<br>
+          <div class="oneArea">
+            @foreach ($myreviewsByGenre2 as $myreviewByGenre2)
+              <div class="onebox">
+                <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre2->id}}">
+                <b>『{{$myreviewByGenre2->title}}』</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre2->chysh}}<br>
+                <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre2->hyk.'.gif')}}" width="80" height="15"></div>
+                <p><div class="picture">
+                  @isset($myreviewByGenre2->photo_path)
+                    <img src="{{$myreviewByGenre2->photo_path}}" width="150" height="100">
+                  @else
+                    <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
+                  @endisset
+                </div>
+                </p>
               </div>
-              </p>
-            </div>
-          @endforeach
-        </div>
+            @endforeach
+          </div>
         @endif
 
-        <br>コミックス<br>
         @if(count($myreviewsByGenre3) ===0)
         @else
-        <div class="oneArea">
-          @foreach ($myreviewsByGenre3 as $myreviewByGenre3)
-            <div class="onebox">
-              <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre3->id}}">
-              <b>『{{$myreviewByGenre3->title}}』</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre3->chysh}}<br>
-              <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre3->hyk.'.gif')}}" width="80" height="15"></div>
-              <p><div class="picture">
-                @isset($myreviewByGenre3->photo_path)
-                  <img src="{{$myreviewByGenre3->photo_path}}" width="150" height="100">
-                @else
-                  <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
-                @endisset
+          <br>コミックス<br>
+          <div class="oneArea">
+            @foreach ($myreviewsByGenre3 as $myreviewByGenre3)
+              <div class="onebox">
+                <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre3->id}}">
+                <b>『{{$myreviewByGenre3->title}}』</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre3->chysh}}<br>
+                <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre3->hyk.'.gif')}}" width="80" height="15"></div>
+                <p><div class="picture">
+                  @isset($myreviewByGenre3->photo_path)
+                    <img src="{{$myreviewByGenre3->photo_path}}" width="150" height="100">
+                  @else
+                    <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
+                  @endisset
+                </div>
+                </p>
               </div>
-              </p>
-            </div>
-          @endforeach
-        </div>
+            @endforeach
+          </div>
         @endif
 
-        <br>その他<br>
         @if(count($myreviewsByGenre8) ===0)
         @else
-        <div class="oneArea">
-          @foreach ($myreviewsByGenre8 as $myreviewByGenre8)
-            <div class="onebox">
-              <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre8->id}}">
-              <b>『{{$myreviewByGenre8->title}}』</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre8->chysh}}<br>
-              <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre8->hyk.'.gif')}}" width="80" height="15"></div>
-              <p><div class="picture">
-                @isset($myreviewByGenre8->photo_path)
-                  <img src="{{$myreviewByGenre8->photo_path}}" width="150" height="100">
-                @else
-                  <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
-                @endisset
+          <br>その他<br>
+          <div class="oneArea">
+            @foreach ($myreviewsByGenre8 as $myreviewByGenre8)
+              <div class="onebox">
+                <input type="hidden" name="reviewId" class="reviewId" value="{{$myreviewByGenre8->id}}">
+                <b>『{{$myreviewByGenre8->title}}』</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{{$myreviewByGenre8->chysh}}<br>
+                <div class="hyk_level"><img src="{{ asset('/images/hyk_level/ico_grade_'.$myreviewByGenre8->hyk.'.gif')}}" width="80" height="15"></div>
+                <p><div class="picture">
+                  @isset($myreviewByGenre8->photo_path)
+                    <img src="{{$myreviewByGenre8->photo_path}}" width="150" height="100">
+                  @else
+                    <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
+                  @endisset
+                </div>
+                </p>
               </div>
-              </p>
-            </div>
-          @endforeach
-        </div>
+            @endforeach
+          </div>
         @endif
  
           </div>

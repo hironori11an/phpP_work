@@ -8,6 +8,7 @@ use App\Review;
 use App\Genre;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use App\Http\Requests\editMyReviewRequest;
 use Illuminate\Support\Facades\Storage;
 
 class editMyReviewController extends Controller
@@ -15,8 +16,14 @@ class editMyReviewController extends Controller
     /* 初期表示 */
     public function init(Request $request)
     {
-        $selectedReviewId =$request->input('selectedReviewId');
-        $request->session()->put('selectedReviewId', $selectedReviewId);
+        // バリデーションエラーかつセッション（selectedReviewId）ある場合
+        if ($request->session()->get('errors') && $request->session()->exists('selectedReviewId')) {
+            $selectedReviewId = $request->session()->get('selectedReviewId');
+        }else{
+            $selectedReviewId =$request->input('selectedReviewId');
+            $request->session()->put('selectedReviewId', $selectedReviewId);
+        }
+        
         $all = Session::all();
         $allgenres = \App\Genre::all();
         $item = Review::find($selectedReviewId);
@@ -36,7 +43,7 @@ class editMyReviewController extends Controller
         return view('editMyReview', compact('all', 'item', 'allgenres', 'review_tag_all'));
     }
 
-    public function edit(Request $request)
+    public function edit(editMyReviewRequest $request)
     {
         $selectedReviewId = $request->session()->pull('selectedReviewId');
         $reviewWork = Review::find($selectedReviewId);
@@ -74,12 +81,19 @@ class editMyReviewController extends Controller
             $reviewWork->chysh=$request->input('chysh');
             $reviewWork->hyk=$request->input('hyk');
             $reviewWork->review_niy=$request->input('review_niy');
+
+            $reviewWork->reread_times=$request->input('reread_times');
+            $reviewWork->read_end_date_for_first=$request->input('read_end_date_for_first');
+            $reviewWork->read_end_date_for_second=$request->input('read_end_date_for_second');
+            $reviewWork->read_end_date_for_third=$request->input('read_end_date_for_third');
+            $reviewWork->read_end_date_for_fourth=$request->input('read_end_date_for_fourth');
             $reviewWork->save();
 
+            $request->session()->forget('selectedReviewId');
             return view(
                 'common.success',
                 ['success_message'=>'レビューが更新されました',
-                'url'=>'/home']
+                'url'=>'/myreview/'.$request->session()->get('name')]
             );
         //削除ボタン押下時、ストレージの画像とreviewを削除する
         } elseif (Input::get('del-btn')) {
@@ -87,10 +101,11 @@ class editMyReviewController extends Controller
                 Storage::delete('public/profile_images/review-' . $selectedReviewId. '.jpg');
             }
             $reviewWork->delete();
+            $request->session()->forget('selectedReviewId');
             return view(
                 'common.success',
                 ['success_message'=>'レビューが削除されました',
-                'url'=>'/home']
+                'url'=>'/myreview/'.$request->session()->get('name')]
             );
         }
     }

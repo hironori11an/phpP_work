@@ -58,13 +58,18 @@
             <div id="pageBodyMain">
               <!-- 以下グラフ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
               @if(isset($items))
-              <p>
-              <b><a href="/myreview/{{session('name')}}">マイレビュー一覧</a></b>
-              </p>
-              &nbsp;&nbsp;&nbsp;&nbsp;ジャンル・著者別の内訳（全{{count($items)}}冊）
-              
-                <div class="ChartItem"><canvas id="genreChart"></canvas></div>
-                <div class="ChartItem"><canvas id="chyshChart"></canvas></div>
+                @if(count($items) > 0)
+                <p>
+                <b><a href="/myreview/{{session('name')}}">マイレビュー一覧</a></b>
+                </p>
+                &nbsp;&nbsp;&nbsp;&nbsp;ジャンル・著者別の内訳（全{{count($items)}}冊）
+                
+                  <div class="ChartItem"><canvas id="genreChart"></canvas></div>
+                  <div class="ChartItem"><canvas id="chyshChart"></canvas></div>
+                @else
+                マイレビュー一覧<br>
+                &nbsp;&nbsp;レビュー投稿がありません
+                @endif
               @endif
 
               <script src="{{ mix('js/show_chart.js') }}"></script>
@@ -166,13 +171,15 @@
               <br>
               @endisset
               <!-- 以下タグ一覧 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->              
+              @if(isset($items))
               登録したタグ一覧<br>
-              @if(count($myReviewTags) ===0)
-                登録されているタグはありません
-              @else
-                @foreach ($myReviewTags as $myReviewTag)        
-                        <a href="/search/results/tag/{{$myReviewTag->tag_name}}">{{$myReviewTag->tag_name}}</a>&nbsp;&nbsp;
-                @endforeach
+                @if(count($myReviewTags) ===0)
+                  登録されているタグはありません
+                @else
+                  @foreach ($myReviewTags as $myReviewTag)        
+                          <a href="/search/results/tag/{{$myReviewTag->tag_name}}">{{$myReviewTag->tag_name}}</a>&nbsp;&nbsp;
+                  @endforeach
+                @endif
               @endif
 
 

@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/editMyReview.css">
   <script src="{{mix('js/app.js')}}"></script>
+  <script src="/js/editMyReview.js"></script>
   <title>マイレビュー　編集</title>
 </head>
 
@@ -48,6 +49,14 @@
       </header>
 
       <div id="pageBody">
+        <div id="error">
+          @if ($errors->any())
+          @foreach ($errors->all() as $error)
+          <li>{{$error}}</li>
+
+          @endforeach
+          @endif
+        </div>
         <section class="mainVisual">
           <div id="pageBodyMain">
             <table border="0">
@@ -55,7 +64,7 @@
                 <td colspan="2">
                   <table id="mainTable">
                     <tr>
-                      <td rowspan="6" width="25%">
+                      <td rowspan="8" width="25%">
                         @isset($item->photo_path)
                           <input type="image" src="{{$item->photo_path}}" width="150" height="100">
                         @else
@@ -68,13 +77,13 @@
                       <td>
                         <select name="genre">
                           @foreach ($allgenres as $allgenre)
-                          @foreach ($item->genres as $genre)
-                          @if($allgenre->id === $genre->id)
-                          <option selected value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
-                          @else
-                          <option value="{{ $allgenre->id }}">{{ $allgenre->genre_name }}</option>
-                          @endif
-                          @endforeach
+                            @foreach ($item->genres as $genre)
+                              @if($allgenre->id === $genre->id)
+                              <option selected value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
+                              @else
+                              <option value="{{ $allgenre->id }}">{{ $allgenre->genre_name }}</option>
+                              @endif
+                            @endforeach
                           @endforeach
                         </select>
                       </td>
@@ -124,6 +133,38 @@
 
                       </td>
                     </tr>
+                    <tr>
+                      <th>
+                        再読回数
+                      </th>
+                      <td>
+                        <select name="reread_times">
+                          <option value="1" {{ $item->reread_times === "1" ? 'selected="selected"' : ''}}>初回</option>
+                          <option value="2" {{ $item->reread_times === "2" ? 'selected="selected"' : ''}}>２回</option>
+                          <option value="3" {{ $item->reread_times === "3" ? 'selected="selected"' : ''}}>３回</option>
+                          <option value="4" {{ $item->reread_times === "4" ? 'selected="selected"' : ''}}>４回以上</option>
+                        </select>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th>
+                        読了日
+                      </th>
+                      <td>
+                        <div id="read_end_date_are">
+                          初回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="date" name="read_end_date_for_first" value="{{$item->read_end_date_for_first}}"><br>
+                          &nbsp;２回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="date" name="read_end_date_for_second" value="{{$item->read_end_date_for_second}}" disabled=true><br>
+                          &nbsp;３回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="date" name="read_end_date_for_third" value="{{$item->read_end_date_for_third}}" disabled=true><br>
+                          &nbsp;４回以降&nbsp;
+                            <input type="date" name="read_end_date_for_fourth" value="{{$item->read_end_date_for_fourth}}" disabled=true><br>
+                        </div>
+                      </td>
+                    </tr>
+
                     <tr>
                       <th>
                         タグ
