@@ -69,17 +69,17 @@
 
 <form method="POST" action="{{ route('homeKanri.kntnLogin') }}">
   @csrf
-  <table align="center" width="350" class="tbl_bold">
+  <table align="center" width="250" class="tbl_bold">
     <tr>
       <th class="tbl_bold_thtd">
-        かんたんログイン
+        かんたんログイン&nbsp;==>>
       </th>
       <td class="tbl_bold_thtd">
-        <input type="submit" class="btn" name="ippn" value="一般ログイン">
+        <input type="submit" class="btn" name="ippn" value="ログイン">
       </td>
-      <td>
+      <!-- <td>
         <input type="submit" class="btn" name="knr" value="管理ログイン">
-      </td>
+      </td> -->
     </tr>
   </table>
 

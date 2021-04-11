@@ -37,6 +37,7 @@ class searchController extends Controller
             $genre = $request->input('genre');
             $title = $request->input('title');
             $chysh = $request->input('chysh');
+            $onlyMine = $request->input('onlyMine');
 
             $query = Review::whereHas('genres');
             if (!is_null($genre) && $genre !=='9') {
@@ -47,6 +48,11 @@ class searchController extends Controller
             }
             if (!is_null($chysh)) {
                 $query = $query->where('chysh', 'LIKE', "%{$chysh}%");
+            }
+            if (!is_null($onlyMine)) {
+                $query = $query->where('user_name', '=', $request->user_name);
+            }else{
+                $query = $query->where('user_name', '<>', $request->user_name);
             }
             $items = $query->orderByRaw('updated_at DESC')->get();
 
