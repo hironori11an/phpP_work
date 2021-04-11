@@ -62,6 +62,10 @@ class editMyReviewController extends Controller
                 );
                 //画像なしから画像ありへの変更では、ここではじめてDBにphoto_pathが登録される
                 $reviewWork->photo_path=asset('storage/profile_images/review-' . $selectedReviewId. '.jpg');
+            }elseif(!is_null($request->input('delPhoto'))){
+                // 「画像を削除する」チェック時
+                Storage::delete('public/profile_images/review-' . $selectedReviewId. '.jpg');
+                $reviewWork->photo_path= NULL;
             }
             // レビュータグTBLの更新(delete,insert)
             // tagに入力値がある場合、カンマでタグを分割して登録する

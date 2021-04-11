@@ -66,7 +66,7 @@
                     <tr>
                       <td rowspan="8" width="25%">
                         @isset($item->photo_path)
-                          <input type="image" src="{{$item->photo_path}}" width="150" height="100">
+                          <img src="{{$item->photo_path}}" width="150" height="100">
                         @else
                           <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
                         @endisset
@@ -192,6 +192,11 @@
                   <input type="text" id="fake_text_box" value="" size="35" readonly onClick="$('#file').click();">
                 </td>
 
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input type="checkbox" name="delPhoto" value="1">画像を削除する
+                </td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
