@@ -92,7 +92,7 @@
               @if(Session::has('role'))
               <tr>
                 <th>
-                  マイレビューのみ対象
+                  マイレビューを対象
                 </th>
                 <td>
                   <input type="checkbox" name="onlyMine" value="1">

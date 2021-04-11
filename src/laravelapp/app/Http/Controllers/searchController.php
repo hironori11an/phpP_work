@@ -51,6 +51,8 @@ class searchController extends Controller
             }
             if (!is_null($onlyMine)) {
                 $query = $query->where('user_name', '=', $request->user_name);
+            }else{
+                $query = $query->where('user_name', '<>', $request->user_name);
             }
             $items = $query->orderByRaw('updated_at DESC')->get();
 
