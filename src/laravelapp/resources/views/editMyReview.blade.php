@@ -66,7 +66,7 @@
                     <tr>
                       <td rowspan="8" width="25%">
                         @isset($item->photo_path)
-                          <input type="image" src="{{$item->photo_path}}" width="150" height="100">
+                          <img src="{{$item->photo_path}}" width="150" height="100">
                         @else
                           <img src="{{ asset('/images/no-image.png')}}" width="150" height="100">
                         @endisset
