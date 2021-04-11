@@ -17,7 +17,7 @@
 
       <div class="bookSite">
         {{-- ログイン前はゲスト、ログイン後はユーザネーム --}}
-        @if(Session::has('role'))
+      @if(Session::has('role'))
         <a href="{{ action('bookspaceController@init') }}">ログアウト</a>
         &nbsp;&nbsp;
         <a>{{ session('name') }}</a></div>
@@ -89,6 +89,16 @@
                   <input name="chysh" type="text" value="{{ old('chysh') }}" maxlength="10" size="20">
                 </td>
               </tr>
+              @if(Session::has('role'))
+              <tr>
+                <th>
+                  マイレビューのみ対象
+                </th>
+                <td>
+                  <input type="checkbox" name="onlyMine" value="1">
+                </td>
+              </tr>
+              @endif
             </table>
             <br>
             <input type="submit" name="searchBtn" class="btn" value="検索">
