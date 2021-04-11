@@ -194,6 +194,11 @@
 
               </tr>
               <tr>
+                <td colspan="2">
+                  <input type="checkbox" name="delPhoto" value="1">画像を削除する
+                </td>
+              </tr>
+              <tr>
                 <td>&nbsp;</td>
               </tr>
               <tr>
