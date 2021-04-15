@@ -47,24 +47,29 @@ class editMyReviewController extends Controller
     {
         $selectedReviewId = $request->session()->pull('selectedReviewId');
         $reviewWork = Review::find($selectedReviewId);
+        $diskS3 = Storage::disk('s3');
 
         //更新ボタン押下時
         if (Input::get('upd-btn')) {
             //画像変更ありの場合、ストレージの画像とreviewの画像パスを更新する
             if ($_FILES['photo']['size'] > 0) {
                 if (!is_null($reviewWork->photo_path)) {
-                    Storage::delete('public/profile_images/review-' . $selectedReviewId. '.jpg');
+                    // Storage::delete('public/profile_images/review-' . $selectedReviewId. '.jpg');
+                    $diskS3->delete('review-'.$selectedReviewId .'.jpg');
                 }
-                Storage::putFileAs(
-                    'public/profile_images',
-                    $request->photo,
-                    'review-'.$selectedReviewId .'.jpg'
-                );
+                $path = $diskS3->putFileAs('/', $request->photo, 'review-'.$selectedReviewId .'.jpg', 'public');
+                // Storage::putFileAs(
+                //     'public/profile_images',
+                //     $request->photo,
+                //     'review-'.$selectedReviewId .'.jpg'
+                // );
                 //画像なしから画像ありへの変更では、ここではじめてDBにphoto_pathが登録される
-                $reviewWork->photo_path=asset('storage/profile_images/review-' . $selectedReviewId. '.jpg');
+                // $reviewWork->photo_path=asset('storage/profile_images/review-' . $selectedReviewId. '.jpg');
+                $reviewWork->photo_path = $diskS3->url($path);
             }elseif(!is_null($request->input('delPhoto'))){
                 // 「画像を削除する」チェック時
-                Storage::delete('public/profile_images/review-' . $selectedReviewId. '.jpg');
+                // Storage::delete('public/profile_images/review-' . $selectedReviewId. '.jpg');
+                $diskS3->delete('review-'.$selectedReviewId .'.jpg');
                 $reviewWork->photo_path= NULL;
             }
             // レビュータグTBLの更新(delete,insert)
@@ -102,7 +107,8 @@ class editMyReviewController extends Controller
         //削除ボタン押下時、ストレージの画像とreviewを削除する
         } elseif (Input::get('del-btn')) {
             if (!is_null($reviewWork->photo_path)) {
-                Storage::delete('public/profile_images/review-' . $selectedReviewId. '.jpg');
+                // Storage::delete('public/profile_images/review-' . $selectedReviewId. '.jpg');
+                $diskS3->delete('review-'.$selectedReviewId .'.jpg');
             }
             $reviewWork->delete();
             $request->session()->forget('selectedReviewId');
