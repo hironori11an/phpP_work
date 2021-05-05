@@ -16,35 +16,14 @@ Route::get('/', [
     'uses' => 'bookspaceController@init',
 ]);
 
-/* 一般ユーザ 探す*/
+/* 探す*/
 Route::get('/search', [
     'uses' => 'searchController@init',
 ]);
 Route::post('/search/results', [
     'uses' => 'searchController@search',
 ]);
-
-
-/* 一般ユーザログイン後　レビューする*/
-Route::post('/review/success', [
-    'uses' => 'reviewController@regist',
-]);
-//ユーザ登録画面（一般）
-Route::get('/userRegist', function () {
-    return view('userRegist');
-})->name('userRegist');
-Route::post('/userRegist/success', [
-    'uses' => 'userRegistController@regist',
-]);
-
-Route::post('/home/editMyReview/', [
-    'uses' => 'editMyReviewController@init',
-]);
-Route::post('/home/editMyReview/success', [
-    'uses' => 'editMyReviewController@edit',
-]);
-
-//レビュー検索結果
+//ユーザ名パラメータ
 Route::get('/search/results/{user_name?}', [
     'uses' => 'searchController@searchUserName',
 ]);
@@ -64,6 +43,29 @@ Route::get('/search/results/chysh/{chysh?}', [
 Route::get('/search/results/title/{title?}', [
     'uses' => 'searchController@searchTitle',
 ])->name('searchTitle');
+
+/* ユーザ登録画面 */
+Route::get('/userRegist', function () {
+    return view('userRegist');
+})->name('userRegist');
+Route::post('/userRegist/success', [
+    'uses' => 'userRegistController@regist',
+]);
+
+
+/* レビュー登録*/
+Route::post('/review/success', [
+    'uses' => 'reviewController@regist',
+]);
+
+/* マイレビュー更新*/
+Route::post('/home/editMyReview/', [
+    'uses' => 'editMyReviewController@init',
+]);
+Route::post('/home/editMyReview/success', [
+    'uses' => 'editMyReviewController@edit',
+]);
+
 
 //ajax いいね登録用
 Route::post('/like', [
@@ -124,8 +126,6 @@ Route::group(['middleware' => ['can:user']], function () {
     ]);
 });
 
-
-
 /* 管理画面 */
 
 Route::post('/kanri/userRegist/success', [
@@ -156,8 +156,7 @@ Route::group(['middleware' => ['can:admin']], function () {
     );
 });
 
-// test用
-// Route::get('/test',     'testController@index');
-Route::get('/test', function () {
-    return view('test');
-});
+// test用 phpinfoを出力
+// Route::get('/test', function () {
+//     return view('test');
+// });
