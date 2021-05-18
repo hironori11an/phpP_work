@@ -28,8 +28,9 @@ http://18.178.20.64/
   - php 7.3
   - laravel 5.7
 - DB
-  -mysql 5.7
+  - mysql 5.7
 - インフラ
+  - Apache
   - Docker,docker-compose
   - AWS
     - VPC
