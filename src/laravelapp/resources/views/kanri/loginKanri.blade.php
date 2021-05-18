@@ -6,6 +6,7 @@
 <script src="/js/common/passwordEye.js"></script>
 @endsection
 @section('headerRight')
+<a href="/userRegist">ユーザ登録</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="{{ action('bookspaceController@init') }}">ホーム</a>
 @endsection
 @section('work')
